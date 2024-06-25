@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+     <item android:id="@+id/calculator"
+         android:icon="@drawable/ic_calculatio"
+         android:title="Calculator"/>
+
+     <item android:id="@+id/cannula"
+         android:icon="@drawable/ic_cannula"
+         android:title="Cannula"/>
+
+     <item android:id="@+id/support"
+         android:icon="@drawable/ic_support"
+         android:title="Support"/>
+</menu>
