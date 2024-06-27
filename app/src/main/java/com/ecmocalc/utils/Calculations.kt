@@ -1,5 +1,6 @@
 package com.ecmocalc.utils
 
+import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.Locale
@@ -16,7 +17,7 @@ class Calculations {
         fun calPoundsToKilograms(pounds: Double): String {
             val resultKg = pounds / 2.2F
             val r = Math.round(resultKg)
-            return Math.round(resultKg).toString() + " Kg"
+            return Math.round(resultKg).toString() + " kg"
         }
 
         /**
@@ -25,7 +26,7 @@ class Calculations {
          */
         fun calKilogramsToPounds(kilograms: Double): String {
             val resultPounds = kilograms * 2.2F
-            return Math.round(resultPounds).toString() + " Lb"
+            return Math.round(resultPounds).toString() + " lbs"
         }
 
         /**
@@ -43,7 +44,7 @@ class Calculations {
          */
         fun calCentimetersToInches(centimeters: Double): String {
             val resultInches = centimeters / 2.54F
-            return String.format(Locale.ROOT, "%.2f", resultInches) + " In"
+            return String.format(Locale.ROOT, "%.2f", resultInches) + " in"
         }
 
         /**
@@ -76,13 +77,14 @@ class Calculations {
          * OI = (FiO2 * MAP / PaO2) * 100 or (Oxygen % * Mean Airway Pressure) ÷ Partial Pressure of Arterial Oxygen
          *
          * @param fio2 the fraction of inspired oxygen (as a decimal, e.g., 0.21 for 21%) or Oxygen Percentage
-         * @param map the mean airway pressure (in cmH2O)
+         * @param map the mean airway pressure (in cmH₂O)
          * @param pao2 the partial pressure of arterial oxygen (in mmHg)
          * @return the calculated OI as a string formatted to 2 decimal places
          */
         fun calOxygenIndex(fio2: Double, map: Double, pao2: Double): String {
-            val resultOxygenIndex = (fio2 * map / pao2) * 100
-            return String.format(Locale.ROOT, "%.2f", resultOxygenIndex) + " %"
+            val resultOxygenIndex =
+                ((fio2 / 100) * map / pao2) * 100 /* Acc. to doc val resultOxygenIndex = fio2 * map / pao2 */
+            return String.format(Locale.ROOT, "%.1f", resultOxygenIndex)
         }
 
         /**
@@ -93,8 +95,9 @@ class Calculations {
          * @param fio2 the fraction of inspired oxygen (as a decimal, e.g., 0.21 for 21% oxygen)
          * @return the calculated P/F ratio
          */
-        fun calPaO2ByFiO2Ratio(fio2: Double, map: Double, pao2: Double): String {
-            val resultPaO2ByFiO2Ratio = (fio2 * map / pao2) * 100
+        fun calPaO2ByFiO2Ratio(pao2: Double, fio2: Double): String {
+            val resultPaO2ByFiO2Ratio =
+                (pao2 / (fio2 / 100)) /* Acc. to doc val resultPaO2ByFiO2Ratio = (pao2/fio2)*100 */
             return Math.round(resultPaO2ByFiO2Ratio).toString()
         }
 
@@ -111,41 +114,13 @@ class Calculations {
          * @param weight - Kg
          */
         fun calHeparinLoadingDose(weight: Double): String {
-            return "25u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                25 * weight
-            ) + "units\n" +
-                    "50u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                50 * weight
-            ) + "units\n" +
-                    "75u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                75 * weight
-            ) + "units\n" +
-                    "100u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                100 * weight
-            ) + "units\n" +
-                    "200u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                200 * weight
-            ) + "units\n" +
-                    "300u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                300 * weight
-            ) + "units\n" +
-                    "400u/Kg = " + String.format(
-                Locale.ROOT,
-                "%.1f",
-                400 * weight
-            ) + "units\n"
+            return "25u/Kg = " + formatNumberWithDecimal(25 * weight) + " units\n" +
+                    "50u/Kg = " + formatNumberWithDecimal(50 * weight) + " units\n" +
+                    "75u/Kg = " + formatNumberWithDecimal(75 * weight) + " units\n" +
+                    "100u/Kg = " + formatNumberWithDecimal(100 * weight) + " units\n" +
+                    "200u/Kg = " + formatNumberWithDecimal(200 * weight) + " units\n" +
+                    "300u/Kg = " + formatNumberWithDecimal(300 * weight) + " units\n" +
+                    "400u/Kg = " + formatNumberWithDecimal(400 * weight) + " units"
         }
 
         /**
@@ -163,33 +138,33 @@ class Calculations {
          * @param BSA - m^2 or m²
          */
         fun calCardiacIndexCalculator(BSA: Double): String {
-            return "CI 1.0 = " + String.format(Locale.ROOT, "%.2f", 1.0 * BSA) + "L/min\n" +
-                    "CI 1.5 = " + String.format(Locale.ROOT, "%.2f", 1.5 * BSA) + "L/min\n" +
-                    "CI 1.8 = " + String.format(Locale.ROOT, "%.2f", 1.8 * BSA) + "L/min\n" +
-                    "CI 2.0 = " + String.format(Locale.ROOT, "%.2f", 2.0 * BSA) + "L/min\n" +
-                    "CI 2.2 = " + String.format(Locale.ROOT, "%.2f", 2.2 * BSA) + "L/min\n" +
-                    "CI 2.4 = " + String.format(Locale.ROOT, "%.2f", 2.4 * BSA) + "L/min\n" +
-                    "CI 2.6 = " + String.format(Locale.ROOT, "%.2f", 2.6 * BSA) + "L/min\n" +
-                    "CI 2.8 = " + String.format(Locale.ROOT, "%.2f", 2.8 * BSA) + "L/min\n" +
-                    "CI 3.0 = " + String.format(Locale.ROOT, "%.2f", 3.0 * BSA) + "L/min\n"
+            return "CI 1.0 = " + String.format(Locale.ROOT, "%.2f", 1.0 * BSA) + " L/min\n" +
+                    "CI 1.5 = " + String.format(Locale.ROOT, "%.2f", 1.5 * BSA) + " L/min\n" +
+                    "CI 1.8 = " + String.format(Locale.ROOT, "%.2f", 1.8 * BSA) + " L/min\n" +
+                    "CI 2.0 = " + String.format(Locale.ROOT, "%.2f", 2.0 * BSA) + " L/min\n" +
+                    "CI 2.2 = " + String.format(Locale.ROOT, "%.2f", 2.2 * BSA) + " L/min\n" +
+                    "CI 2.4 = " + String.format(Locale.ROOT, "%.2f", 2.4 * BSA) + " L/min\n" +
+                    "CI 2.6 = " + String.format(Locale.ROOT, "%.2f", 2.6 * BSA) + " L/min\n" +
+                    "CI 2.8 = " + String.format(Locale.ROOT, "%.2f", 2.8 * BSA) + " L/min\n" +
+                    "CI 3.0 = " + String.format(Locale.ROOT, "%.2f", 3.0 * BSA) + " L/min"
         }
 
         /**
          * Calculates the Estimated Red Cell Mass (ERCM) using the formula:
-         *  * ERCM = Weight * Hematocrit
+         *  * ERCM = Weight * 75ml/Kg * (Hematocrit / 100)
          *
          * @param weight the body weight of the person (in kilograms)
          * @param hematocrit the percentage of red blood cells in the blood volume (e.g., 45 for 45%)
          * @return the calculated ERCM as a string formatted
          */
         fun calEstimatedRedCellMass(weight: Double, hematocrit: Double): String {
-            val resultERCM = weight * hematocrit
-            return Math.round(resultERCM).toString() + " Mass"
+            val resultERCM = (weight * 75 * (hematocrit / 100))
+            return Math.round(resultERCM).toString() + " ml"
         }
 
         /**
          * Calculates the Dilutional HCT using the formula:
-         * (Weight  x 75ml) x HCT  / Circuit Volume  + (Weight  x 75ml)
+         * ((Weight  x 75ml) x HCT(%)  / Circuit Volume  + (Weight  x 75ml)) x 100
          *
          * @param weight the body weight of the person (in kilograms)
          * @param hematocrit the percentage of red blood cells in the blood volume - HCT (e.g., 45 for 45%)
@@ -197,8 +172,8 @@ class Calculations {
          * @return the calculated Dilutional HCT as a string formatted
          */
         fun calDilutionalHCT(weight: Double, hematocrit: Double, eclsCircuit: Double): String {
-            val resultDilutionalHCT = (weight * 75) * hematocrit / eclsCircuit + (weight * 75)
-            return formatNumberWithDecimal(resultDilutionalHCT)  + " %"
+            val resultDilutionalHCT = (((weight * 75) * (hematocrit/100)) / (eclsCircuit + (weight * 75))) * 100
+            return formatNumberWithDecimal(resultDilutionalHCT) + " %"
         }
 
         /**
@@ -216,7 +191,7 @@ class Calculations {
 
         /**
          * Calculates the Cardiac Index (CI) using the formula:
-         * (Heart Rate  x Stroke Volume ) / 1000
+         * Cardiac Output / Body Surface Area
          *
          * @param cardiacOutput - Cardiac Output value - (L/min)
          * @param bsa - Body Surface Area (BSA) - m²
@@ -355,7 +330,7 @@ class Calculations {
          * @param targetCI - Cardiac Index value - (L/min/m²)
          * @return the calculated Target Blood Flow For Pediatric Entry as a string formatted (L/min)
          */
-        fun calTargetBloodFlowForPediatricEntry(weight: Double,targetCI:Double):String{
+        fun calTargetBloodFlowForPediatricEntry(weight: Double, targetCI: Double): String {
             val resultTargetBloodFlow = (weight * targetCI) / 1000
             return String.format(Locale.ROOT, "%.2f", resultTargetBloodFlow) + " L/min"
         }
@@ -368,8 +343,8 @@ class Calculations {
          * @param weight - Weight value - (in Kg)
          * @return the calculated Target Blood Flow For Adult Entry as a string formatted (mL/Kg/min)
          */
-        fun calTargetBloodFlowForAdultEntry(cardiacOutput:Double,weight: Double):String{
-            val resultTargetBloodFlow = (cardiacOutput * 1000)/weight
+        fun calTargetBloodFlowForAdultEntry(cardiacOutput: Double, weight: Double): String {
+            val resultTargetBloodFlow = (cardiacOutput * 1000) / weight
             return String.format(Locale.ROOT, "%.2f", resultTargetBloodFlow) + " mL/Kg/min"
         }
 
@@ -391,7 +366,13 @@ class Calculations {
          * Case2 input = 10999.14 output = 10,999.1
          */
         private fun formatNumberWithDecimal(number: Double): String {
-            val decimalFormat = DecimalFormat("#,###.0")
+            val decimalFormat = if (number % 1 == 0.0) {
+                DecimalFormat("#,###")
+            } else {
+                DecimalFormat("#,###.0").apply {
+                    roundingMode = RoundingMode.HALF_UP
+                }
+            }
             return decimalFormat.format(number)
         }
 
@@ -399,8 +380,10 @@ class Calculations {
          * Case1 input = 10999.19 output = 10,999.19
          * Case2 input = 10999.14 output = 10,999.14
          */
-        fun formatNumber(number: Double): String {
-            val numberFormat = NumberFormat.getNumberInstance(Locale.US)
+        private fun formatNumber(number: Double): String {
+            val numberFormat = NumberFormat.getNumberInstance(Locale.ROOT)
+            numberFormat.maximumFractionDigits = 1
+            numberFormat.minimumFractionDigits = 1
             return numberFormat.format(number)
         }
 
@@ -409,3 +392,4 @@ class Calculations {
 }
 
 // https://stackoverflow.com/questions/49011924/round-double-to-1-decimal-place-kotlin-from-0-044999-to-0-1
+// ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎
