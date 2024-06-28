@@ -21,9 +21,16 @@ import com.ecmocalc.utils.Calculations.Companion.calEstimatedRedCellMass
 import com.ecmocalc.utils.Calculations.Companion.calHeparinLoadingDose
 import com.ecmocalc.utils.Calculations.Companion.calInchesToCentimeters
 import com.ecmocalc.utils.Calculations.Companion.calKilogramsToPounds
+import com.ecmocalc.utils.Calculations.Companion.calOxygenConsumption
+import com.ecmocalc.utils.Calculations.Companion.calOxygenContentArterial
+import com.ecmocalc.utils.Calculations.Companion.calOxygenContentVenous
+import com.ecmocalc.utils.Calculations.Companion.calOxygenDelivery
 import com.ecmocalc.utils.Calculations.Companion.calOxygenIndex
 import com.ecmocalc.utils.Calculations.Companion.calPaO2ByFiO2Ratio
 import com.ecmocalc.utils.Calculations.Companion.calPoundsToKilograms
+import com.ecmocalc.utils.Calculations.Companion.calPulmonaryVascularResistance
+import com.ecmocalc.utils.Calculations.Companion.calSweepGas
+import com.ecmocalc.utils.Calculations.Companion.calSystemicVascularResistance
 import com.ecmocalc.utils.Calculations.Companion.calWeightBasedBodySurfaceArea
 import com.ecmocalc.utils.Helper
 
@@ -53,6 +60,13 @@ class CalculatorFragment : Fragment() {
         uiDilutionalHematocrit()
         uiCardiacOutput()
         uiCardiacIndex()
+        uiSystemicVascularResistance()
+        uiPulmonaryVascularResistance()
+        uiOxygenContentArterial()
+        uiOxygenDelivery()
+        uiOxygenContentVenous()
+        uiOxygenConsumption()
+        uiSweepGas()
 
         return binding.root
     }
@@ -395,6 +409,235 @@ class CalculatorFragment : Fragment() {
             binding.tvResultCardiacIndex.text = calCardiacIndex(vCO, vBSA)
         } else {
             binding.tvResultCardiacIndex.text = "--- L/min/m²"
+        }
+    }
+
+    private fun uiSystemicVascularResistance() {
+        binding.etMapSystemicVascularResistance.addTextChangedListener { value ->
+            sharedViewModel.setValueMAPForSystemicVascularResistance(value.toString())
+        }
+        binding.etCvpSystemicVascularResistance.addTextChangedListener { value ->
+            sharedViewModel.setValueCVPForSystemicVascularResistance(value.toString())
+        }
+        binding.etCoSystemicVascularResistance.addTextChangedListener { value ->
+            sharedViewModel.setValueCOForSystemicVascularResistance(value.toString())
+        }
+
+        sharedViewModel.valueMAPForSystemicVascularResistance.observe(viewLifecycleOwner, Observer { value ->
+            calculateSystemicVascularResistance()
+        })
+
+        sharedViewModel.valueCVPForSystemicVascularResistance.observe(viewLifecycleOwner, Observer { value ->
+            calculateSystemicVascularResistance()
+        })
+
+        sharedViewModel.valueCOForSystemicVascularResistance.observe(viewLifecycleOwner, Observer { value ->
+            calculateSystemicVascularResistance()
+        })
+    }
+
+    private fun calculateSystemicVascularResistance() {
+        val vMAP = sharedViewModel.valueMAPForSystemicVascularResistance.value?.let { Helper.convertStringToDouble(it) }
+        val vCVP = sharedViewModel.valueCVPForSystemicVascularResistance.value?.let { Helper.convertStringToDouble(it) }
+        val vCO = sharedViewModel.valueCOForSystemicVascularResistance.value?.let { Helper.convertStringToDouble(it) }
+        if (vMAP != null && vCVP != null&& vCO != null) {
+            binding.tvResultSystemicVascularResistance.text = calSystemicVascularResistance(vMAP, vCVP,vCO)
+        } else {
+            binding.tvResultSystemicVascularResistance.text = "--- Dynes-sec/cm⁵"
+        }
+    }
+
+    private fun uiPulmonaryVascularResistance() {
+        binding.etMpapPulmonaryVascularResistance.addTextChangedListener { value ->
+            sharedViewModel.setValueMPAPForPulmonaryVascularResistance(value.toString())
+        }
+        binding.etPcwpPulmonaryVascularResistance.addTextChangedListener { value ->
+            sharedViewModel.setValuePCWPForPulmonaryVascularResistance(value.toString())
+        }
+        binding.etCoPulmonaryVascularResistance.addTextChangedListener { value ->
+            sharedViewModel.setValueCOForPulmonaryVascularResistance(value.toString())
+        }
+
+        sharedViewModel.valueMPAPForPulmonaryVascularResistance.observe(viewLifecycleOwner, Observer { value ->
+            calculatePulmonaryVascularResistance()
+        })
+
+        sharedViewModel.valuePCWPForPulmonaryVascularResistance.observe(viewLifecycleOwner, Observer { value ->
+            calculatePulmonaryVascularResistance()
+        })
+
+        sharedViewModel.valueCOForPulmonaryVascularResistance.observe(viewLifecycleOwner, Observer { value ->
+            calculatePulmonaryVascularResistance()
+        })
+    }
+
+    private fun calculatePulmonaryVascularResistance() {
+        val vMPAP = sharedViewModel.valueMPAPForPulmonaryVascularResistance.value?.let { Helper.convertStringToDouble(it) }
+        val vPCWP = sharedViewModel.valuePCWPForPulmonaryVascularResistance.value?.let { Helper.convertStringToDouble(it) }
+        val vCO = sharedViewModel.valueCOForPulmonaryVascularResistance.value?.let { Helper.convertStringToDouble(it) }
+        if (vMPAP != null && vPCWP != null&& vCO != null) {
+            binding.tvResultPulmonaryVascularResistance.text = calPulmonaryVascularResistance(vMPAP, vPCWP,vCO)
+        } else {
+            binding.tvResultPulmonaryVascularResistance.text = "--- Dynes-sec/cm⁵"
+        }
+    }
+
+    private fun uiOxygenContentArterial() {
+        binding.etHgbOxygenContentArterial.addTextChangedListener { value ->
+            sharedViewModel.setValueHgbForOxygenContentArterial(value.toString())
+        }
+        binding.etSao2OxygenContentArterial.addTextChangedListener { value ->
+            sharedViewModel.setValueSaO2ForOxygenContentArterial(value.toString())
+        }
+        binding.etPao2OxygenContentArterial.addTextChangedListener { value ->
+            sharedViewModel.setValuePaO2ForOxygenContentArterial(value.toString())
+        }
+
+        sharedViewModel.valueHgbForOxygenContentArterial.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenContentArterial()
+        })
+
+        sharedViewModel.valueSaO2ForOxygenContentArterial.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenContentArterial()
+        })
+
+        sharedViewModel.valuePaO2ForOxygenContentArterial.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenContentArterial()
+        })
+    }
+
+    private fun calculateOxygenContentArterial() {
+        val vHgb = sharedViewModel.valueHgbForOxygenContentArterial.value?.let { Helper.convertStringToDouble(it) }
+        val vSaO2 = sharedViewModel.valueSaO2ForOxygenContentArterial.value?.let { Helper.convertStringToDouble(it) }
+        val vPaO2 = sharedViewModel.valuePaO2ForOxygenContentArterial.value?.let { Helper.convertStringToDouble(it) }
+        if (vHgb != null && vSaO2 != null&& vPaO2 != null) {
+            binding.tvResultOxygenContentArterial.text = calOxygenContentArterial(vHgb, vSaO2,vPaO2)
+        } else {
+            binding.tvResultOxygenContentArterial.text = "--- mL/dL"
+        }
+    }
+
+    private fun uiOxygenDelivery() {
+        binding.etCoOxygenDelivery.addTextChangedListener { value ->
+            sharedViewModel.setValueCOForOxygenDelivery(value.toString())
+        }
+        binding.etCao2OxygenDelivery.addTextChangedListener { value ->
+            sharedViewModel.setValueCaO2ForOxygenDelivery(value.toString())
+        }
+
+        sharedViewModel.valueCOForOxygenDelivery.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenDelivery()
+        })
+
+        sharedViewModel.valueCaO2ForOxygenDelivery.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenDelivery()
+        })
+    }
+
+    private fun calculateOxygenDelivery() {
+        val vCO = sharedViewModel.valueCOForOxygenDelivery.value?.let { Helper.convertStringToDouble(it) }
+        val vCaO2 = sharedViewModel.valueCaO2ForOxygenDelivery.value?.let { Helper.convertStringToDouble(it) }
+        if (vCO != null && vCaO2 != null) {
+            binding.tvResultOxygenDelivery.text = calOxygenDelivery(vCO, vCaO2)
+        } else {
+            binding.tvResultOxygenDelivery.text = "--- mL/min"
+        }
+    }
+
+    private fun uiOxygenContentVenous() {
+        binding.etHgbOxygenContentVenous.addTextChangedListener { value ->
+            sharedViewModel.setValueHgbForOxygenContentVenous(value.toString())
+        }
+        binding.etSvo2OxygenContentVenous.addTextChangedListener { value ->
+            sharedViewModel.setValueSvO2ForOxygenContentVenous(value.toString())
+        }
+        binding.etPvo2OxygenContentVenous.addTextChangedListener { value ->
+            sharedViewModel.setValuePvO2ForOxygenContentVenous(value.toString())
+        }
+
+        sharedViewModel.valueHgbForOxygenContentVenous.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenContentVenous()
+        })
+
+        sharedViewModel.valueSvO2ForOxygenContentVenous.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenContentVenous()
+        })
+
+        sharedViewModel.valuePvO2ForOxygenContentVenous.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenContentVenous()
+        })
+    }
+
+    private fun calculateOxygenContentVenous() {
+        val vHgb = sharedViewModel.valueHgbForOxygenContentVenous.value?.let { Helper.convertStringToDouble(it) }
+        val vSvO2 = sharedViewModel.valueSvO2ForOxygenContentVenous.value?.let { Helper.convertStringToDouble(it) }
+        val vPvO2 = sharedViewModel.valuePvO2ForOxygenContentVenous.value?.let { Helper.convertStringToDouble(it) }
+        if (vHgb != null && vSvO2 != null && vPvO2 != null) {
+            binding.tvResultOxygenContentVenous.text = calOxygenContentVenous(vHgb, vSvO2, vPvO2)
+        } else {
+            binding.tvResultOxygenContentVenous.text = "--- mL/dL"
+        }
+    }
+
+    private fun uiOxygenConsumption() {
+        binding.etCoOxygenConsumption.addTextChangedListener { value ->
+            sharedViewModel.setValueCOForOxygenConsumption(value.toString())
+        }
+        binding.etCao2Cvo2OxygenConsumption.addTextChangedListener { value ->
+            sharedViewModel.setValueCaO2CvO2ForOxygenConsumption(value.toString())
+        }
+
+        sharedViewModel.valueCOForOxygenConsumption.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenConsumption()
+        })
+
+        sharedViewModel.valueCaO2CvO2ForOxygenConsumption.observe(viewLifecycleOwner, Observer { value ->
+            calculateOxygenConsumption()
+        })
+    }
+
+    private fun calculateOxygenConsumption() {
+        val vCO = sharedViewModel.valueCOForOxygenConsumption.value?.let { Helper.convertStringToDouble(it) }
+        val vCaO2CvO2 = sharedViewModel.valueCaO2CvO2ForOxygenConsumption.value?.let { Helper.convertStringToDouble(it) }
+        if (vCO != null && vCaO2CvO2 != null) {
+            binding.tvResultOxygenConsumption.text = calOxygenConsumption(vCO, vCaO2CvO2)
+        } else {
+            binding.tvResultOxygenConsumption.text = "--- mL/min"
+        }
+    }
+
+    private fun uiSweepGas() {
+        binding.etCurrentPaco2SweepGas.addTextChangedListener { value ->
+            sharedViewModel.setValueCurrentPaCO2ForSweepGas(value.toString())
+        }
+        binding.etCurrentSweepFlowSweepGas.addTextChangedListener { value ->
+            sharedViewModel.setValueCurrentSweepFlowForSweepGas(value.toString())
+        }
+        binding.etDesiredPaco2SweepGas.addTextChangedListener { value ->
+            sharedViewModel.setValueDesiredPaCO2ForSweepGas(value.toString())
+        }
+
+        sharedViewModel.valueCurrentPaCO2ForSweepGas.observe(viewLifecycleOwner, Observer { value ->
+            calculateSweepGas()
+        })
+
+        sharedViewModel.valueCurrentSweepFlowForSweepGas.observe(viewLifecycleOwner, Observer { value ->
+            calculateSweepGas()
+        })
+
+        sharedViewModel.valueDesiredPaCO2ForSweepGas.observe(viewLifecycleOwner, Observer { value ->
+            calculateSweepGas()
+        })
+    }
+
+    private fun calculateSweepGas() {
+        val vCurrentPaCO2 = sharedViewModel.valueCurrentPaCO2ForSweepGas.value?.let { Helper.convertStringToDouble(it) }
+        val vCurrentSweepFlow = sharedViewModel.valueCurrentSweepFlowForSweepGas.value?.let { Helper.convertStringToDouble(it) }
+        val vDesiredPaCO2 = sharedViewModel.valueDesiredPaCO2ForSweepGas.value?.let { Helper.convertStringToDouble(it) }
+        if (vCurrentPaCO2 != null && vCurrentSweepFlow != null && vDesiredPaCO2 != null) {
+            binding.tvResultSweepGas.text = calSweepGas(vCurrentPaCO2, vCurrentSweepFlow, vDesiredPaCO2)
+        } else {
+            binding.tvResultSweepGas.text = "--- L/min"
         }
     }
 

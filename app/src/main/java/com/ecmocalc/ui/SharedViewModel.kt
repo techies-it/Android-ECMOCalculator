@@ -216,4 +216,151 @@ class SharedViewModel: ViewModel() {
     fun setValueBSAForCardiacIndex(value: String) {
         _valueBSAForCardiacIndex.value = value
     }
+
+    /* For Systemic Vascular Resistance */
+
+    private val _valueMAPForSystemicVascularResistance = MutableLiveData<String>()
+    val valueMAPForSystemicVascularResistance: LiveData<String> get() = _valueMAPForSystemicVascularResistance
+
+    fun setValueMAPForSystemicVascularResistance(value: String) {
+        _valueMAPForSystemicVascularResistance.value = value
+    }
+
+    private val _valueCVPForSystemicVascularResistance = MutableLiveData<String>()
+    val valueCVPForSystemicVascularResistance: LiveData<String> get() = _valueCVPForSystemicVascularResistance
+
+    fun setValueCVPForSystemicVascularResistance(value: String) {
+        _valueCVPForSystemicVascularResistance.value = value
+    }
+
+    private val _valueCOForSystemicVascularResistance = MutableLiveData<String>()
+    val valueCOForSystemicVascularResistance: LiveData<String> get() = _valueCOForSystemicVascularResistance
+
+    fun setValueCOForSystemicVascularResistance(value: String) {
+        _valueCOForSystemicVascularResistance.value = value
+    }
+
+    /* For Pulmonary Vascular Resistance */
+
+    private val _valueMPAPForPulmonaryVascularResistance = MutableLiveData<String>()
+    val valueMPAPForPulmonaryVascularResistance: LiveData<String> get() = _valueMPAPForPulmonaryVascularResistance
+
+    fun setValueMPAPForPulmonaryVascularResistance(value: String) {
+        _valueMPAPForPulmonaryVascularResistance.value = value
+    }
+
+    private val _valuePCWPForPulmonaryVascularResistance = MutableLiveData<String>()
+    val valuePCWPForPulmonaryVascularResistance: LiveData<String> get() = _valuePCWPForPulmonaryVascularResistance
+
+    fun setValuePCWPForPulmonaryVascularResistance(value: String) {
+        _valuePCWPForPulmonaryVascularResistance.value = value
+    }
+
+    private val _valueCOForPulmonaryVascularResistance = MutableLiveData<String>()
+    val valueCOForPulmonaryVascularResistance: LiveData<String> get() = _valueCOForPulmonaryVascularResistance
+
+    fun setValueCOForPulmonaryVascularResistance(value: String) {
+        _valueCOForPulmonaryVascularResistance.value = value
+    }
+
+    /* For Oxygen Content (CaO₂) - Arterial */
+
+    private val _valueHgbForOxygenContentArterial = MutableLiveData<String>()
+    val valueHgbForOxygenContentArterial: LiveData<String> get() = _valueHgbForOxygenContentArterial
+
+    fun setValueHgbForOxygenContentArterial(value: String) {
+        _valueHgbForOxygenContentArterial.value = value
+    }
+
+    private val _valueSaO2ForOxygenContentArterial = MutableLiveData<String>()
+    val valueSaO2ForOxygenContentArterial: LiveData<String> get() = _valueSaO2ForOxygenContentArterial
+
+    fun setValueSaO2ForOxygenContentArterial(value: String) {
+        _valueSaO2ForOxygenContentArterial.value = value
+    }
+
+    private val _valuePaO2ForOxygenContentArterial = MutableLiveData<String>()
+    val valuePaO2ForOxygenContentArterial: LiveData<String> get() = _valuePaO2ForOxygenContentArterial
+
+    fun setValuePaO2ForOxygenContentArterial(value: String) {
+        _valuePaO2ForOxygenContentArterial.value = value
+    }
+
+    /* For Oxygen Delivery (DO₂) */
+
+    private val _valueCOForOxygenDelivery = MutableLiveData<String>()
+    val valueCOForOxygenDelivery: LiveData<String> get() = _valueCOForOxygenDelivery
+
+    fun setValueCOForOxygenDelivery(value: String) {
+        _valueCOForOxygenDelivery.value = value
+    }
+
+    private val _valueCaO2ForOxygenDelivery = MutableLiveData<String>()
+    val valueCaO2ForOxygenDelivery: LiveData<String> get() = _valueCaO2ForOxygenDelivery
+
+    fun setValueCaO2ForOxygenDelivery(value: String) {
+        _valueCaO2ForOxygenDelivery.value = value
+    }
+
+    /* For Oxygen Content (CvO₂) - Venous */
+
+    private val _valueHgbForOxygenContentVenous = MutableLiveData<String>()
+    val valueHgbForOxygenContentVenous: LiveData<String> get() = _valueHgbForOxygenContentVenous
+
+    fun setValueHgbForOxygenContentVenous(value: String) {
+        _valueHgbForOxygenContentVenous.value = value
+    }
+
+    private val _valueSvO2ForOxygenContentVenous = MutableLiveData<String>()
+    val valueSvO2ForOxygenContentVenous: LiveData<String> get() = _valueSvO2ForOxygenContentVenous
+
+    fun setValueSvO2ForOxygenContentVenous(value: String) {
+        _valueSvO2ForOxygenContentVenous.value = value
+    }
+
+    private val _valuePvO2ForOxygenContentVenous = MutableLiveData<String>()
+    val valuePvO2ForOxygenContentVenous: LiveData<String> get() = _valuePvO2ForOxygenContentVenous
+
+    fun setValuePvO2ForOxygenContentVenous(value: String) {
+        _valuePvO2ForOxygenContentVenous.value = value
+    }
+
+    /* For Oxygen Consumption (VO₂) */
+
+    private val _valueCOForOxygenConsumption = MutableLiveData<String>()
+    val valueCOForOxygenConsumption: LiveData<String> get() = _valueCOForOxygenConsumption
+
+    fun setValueCOForOxygenConsumption(value: String) {
+        _valueCOForOxygenConsumption.value = value
+    }
+
+    private val _valueCaO2CvO2ForOxygenConsumption = MutableLiveData<String>()
+    val valueCaO2CvO2ForOxygenConsumption: LiveData<String> get() = _valueCaO2CvO2ForOxygenConsumption
+
+    fun setValueCaO2CvO2ForOxygenConsumption(value: String) {
+        _valueCaO2CvO2ForOxygenConsumption.value = value
+    }
+
+    /* For Sweep Gas */
+
+    private val _valueCurrentPaCO2ForSweepGas = MutableLiveData<String>()
+    val valueCurrentPaCO2ForSweepGas: LiveData<String> get() = _valueCurrentPaCO2ForSweepGas
+
+    fun setValueCurrentPaCO2ForSweepGas(value: String) {
+        _valueCurrentPaCO2ForSweepGas.value = value
+    }
+
+    private val _valueCurrentSweepFlowForSweepGas = MutableLiveData<String>()
+    val valueCurrentSweepFlowForSweepGas: LiveData<String> get() = _valueCurrentSweepFlowForSweepGas
+
+    fun setValueCurrentSweepFlowForSweepGas(value: String) {
+        _valueCurrentSweepFlowForSweepGas.value = value
+    }
+
+    private val _valueDesiredPaCO2ForSweepGas = MutableLiveData<String>()
+    val valueDesiredPaCO2ForSweepGas: LiveData<String> get() = _valueDesiredPaCO2ForSweepGas
+
+    fun setValueDesiredPaCO2ForSweepGas(value: String) {
+        _valueDesiredPaCO2ForSweepGas.value = value
+    }
 }

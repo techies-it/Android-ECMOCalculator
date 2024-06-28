@@ -1342,7 +1342,6 @@
                 android:id="@+id/layout_cardiac_index"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="500dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_cardiac_output">
@@ -1460,6 +1459,1094 @@
                     app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_systemic_vascular_resistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_cardiac_index">
+
+                <TextView
+                    android:id="@+id/tv_systemic_vascular_resistance_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Systemic Vascular Resistance"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_map_systemic_vascular_resistance_sub_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="MAP"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/map_systemic_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/map_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/map_systemic_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_map_systemic_vascular_resistance_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_map_systemic_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_cvp_systemic_vascular_resistance_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CVP"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cvp_systemic_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/map_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/map_systemic_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_cvp_systemic_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_co_systemic_vascular_resistance_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_systemic_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/cvp_systemic_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_co_systemic_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_systemic_vascular_resistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/co_systemic_vascular_resistance_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_pulmonary_vascular_resistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_systemic_vascular_resistance">
+
+                <TextView
+                    android:id="@+id/tv_pulmonary_vascular_resistance_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pulmonary Vascular Resistance"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_mpap_pulmonary_vascular_resistance_sub_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="MPAP"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/mpap_pulmonary_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/mpap_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mpap_pulmonary_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mpap_pulmonary_vascular_resistance_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_mpap_pulmonary_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_pcwp_pulmonary_vascular_resistance_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PCWP"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mpap_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/mpap_pulmonary_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_pcwp_pulmonary_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_co_pulmonary_vascular_resistance_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_pulmonary_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/pcwp_pulmonary_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_co_pulmonary_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_pulmonary_vascular_resistance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/co_pulmonary_vascular_resistance_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_content_arterial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_pulmonary_vascular_resistance">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_content_arterial_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oxygen Content (CaO₂) - Arterial"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hgb_oxygen_content_arterial_sub_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hgb"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/hgb_oxygen_content_arterial_til"
+                    app:layout_constraintEnd_toEndOf="@+id/hgb_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hgb_oxygen_content_arterial_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hgb_oxygen_content_arterial_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_hgb_oxygen_content_arterial"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="g/dL"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_sao2_oxygen_content_arterial_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SaO₂"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintEnd_toEndOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sao2_oxygen_content_arterial_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hgb_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toTopOf="@+id/hgb_oxygen_content_arterial_til">
+
+                    <EditText
+                        android:id="@+id/et_sao2_oxygen_content_arterial"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_pao2_oxygen_content_arterial_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PaO₂"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pao2_oxygen_content_arterial_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toTopOf="@+id/sao2_oxygen_content_arterial_til">
+
+                    <EditText
+                        android:id="@+id/et_pao2_oxygen_content_arterial"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_content_arterial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/pao2_oxygen_content_arterial_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_content_arterial">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_delivery_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oxygen Delivery (DO₂)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_co_oxygen_delivery_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/co_oxygen_delivery_til"
+                    app:layout_constraintEnd_toEndOf="@+id/co_oxygen_delivery_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_delivery_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_oxygen_delivery_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_co_oxygen_delivery_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_co_oxygen_delivery"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_cao2_oxygen_delivery_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CaO₂"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_delivery_title"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cao2_oxygen_delivery_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/co_oxygen_delivery_til"
+                    app:layout_constraintTop_toTopOf="@+id/co_oxygen_delivery_til">
+
+                    <EditText
+                        android:id="@+id/et_cao2_oxygen_delivery"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CaO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_delivery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/cao2_oxygen_delivery_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_content_venous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_delivery">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_content_venous_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oxygen Content (CvO₂) - Venous"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hgb_oxygen_content_venous_sub_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hgb"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/hgb_oxygen_content_venous_til"
+                    app:layout_constraintEnd_toEndOf="@+id/hgb_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hgb_oxygen_content_venous_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hgb_oxygen_content_venous_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_hgb_oxygen_content_venous"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="g/dL"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_svo2_oxygen_content_venous_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SvO₂"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintEnd_toEndOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/svo2_oxygen_content_venous_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hgb_oxygen_content_venous_til"
+                    app:layout_constraintTop_toTopOf="@+id/hgb_oxygen_content_venous_til">
+
+                    <EditText
+                        android:id="@+id/et_svo2_oxygen_content_venous"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_pvo2_oxygen_content_venous_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PvO₂"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintEnd_toEndOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pvo2_oxygen_content_venous_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toTopOf="@+id/svo2_oxygen_content_venous_til">
+
+                    <EditText
+                        android:id="@+id/et_pvo2_oxygen_content_venous"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_content_venous"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/pvo2_oxygen_content_venous_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_consumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_content_venous">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_consumption_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Oxygen Consumption (VO₂)"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_co_oxygen_consumption_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/co_oxygen_consumption_til"
+                    app:layout_constraintEnd_toEndOf="@+id/co_oxygen_consumption_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_consumption_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_oxygen_consumption_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_co_oxygen_consumption_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_co_oxygen_consumption"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_cao2_cvo2_oxygen_consumption_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CaO₂-CvO₂"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_consumption_title"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cao2_cvo2_oxygen_consumption_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/co_oxygen_consumption_til"
+                    app:layout_constraintTop_toTopOf="@+id/co_oxygen_consumption_til">
+
+                    <EditText
+                        android:id="@+id/et_cao2_cvo2_oxygen_consumption"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CaO₂-CvO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_consumption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/cao2_cvo2_oxygen_consumption_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_sweep_gas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="400dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_consumption">
+
+                <TextView
+                    android:id="@+id/tv_sweep_gas_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sweep Gas"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_current_paco2_sweep_gas_sub_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current\n(PaCO₂)"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintEnd_toEndOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/current_paco2_sweep_gas_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_current_paco2_sweep_gas_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_current_paco2_sweep_gas"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_current_sweep_flow_sweep_gas_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current\n(Sweep Flow)"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp"
+                    app:layout_constraintStart_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintEnd_toEndOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/current_sweep_flow_sweep_gas_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toTopOf="@+id/current_paco2_sweep_gas_til">
+
+                    <EditText
+                        android:id="@+id/et_current_sweep_flow_sweep_gas"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_desired_paco2_sweep_gas_sub_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Desired\n(PaCO₂)"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/desired_paco2_sweep_gas_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintTop_toTopOf="@+id/current_sweep_flow_sweep_gas_til">
+
+                    <EditText
+                        android:id="@+id/et_desired_paco2_sweep_gas"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_sweep_gas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="20sp"
+                    app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

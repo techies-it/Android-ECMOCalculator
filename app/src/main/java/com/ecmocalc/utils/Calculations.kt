@@ -172,7 +172,8 @@ class Calculations {
          * @return the calculated Dilutional HCT as a string formatted
          */
         fun calDilutionalHCT(weight: Double, hematocrit: Double, eclsCircuit: Double): String {
-            val resultDilutionalHCT = (((weight * 75) * (hematocrit/100)) / (eclsCircuit + (weight * 75))) * 100
+            val resultDilutionalHCT =
+                (((weight * 75) * (hematocrit / 100)) / (eclsCircuit + (weight * 75))) * 100
             return formatNumberWithDecimal(resultDilutionalHCT) + " %"
         }
 
@@ -245,8 +246,8 @@ class Calculations {
             partialPressureOfOxygen: Double
         ): String {
             val resultCaO2 =
-                (hemoglobin * 1.34 * arterialOxygenSaturation) + (partialPressureOfOxygen * 0.003)
-            return Math.round(resultCaO2).toString() + " mL/dL or grams %"
+                (hemoglobin * 1.34 * (arterialOxygenSaturation / 100)) + (partialPressureOfOxygen * 0.003)
+            return Math.round(resultCaO2).toString() + " mL/dL"
         }
 
         /**
@@ -280,8 +281,25 @@ class Calculations {
             partialPressureOfOxygen: Double
         ): String {
             val resultCvO2 =
-                (hemoglobin * 1.34 * venousOxygenSaturation) + (partialPressureOfOxygen * 0.003)
-            return Math.round(resultCvO2).toString() + " mL/dL or grams %"
+                (hemoglobin * 1.34 * (venousOxygenSaturation / 100)) + (partialPressureOfOxygen * 0.003)
+            return String.format(Locale.ROOT, "%.2f", resultCvO2) + " mL/dL"
+        }
+
+        /**
+         * Calculates the Oxygen Consumption (VO2) using the formula:
+         * (Cardiac Output  * (CaO2-CvO2)) * 10
+         *
+         * @param cardiacOutput - Cardiac Output (CO) - (in L/min)
+         * @param oxygenContentArterialVenous - Oxygen Content (CaO2)- Arterial - Oxygen Content Venous (CvO2) - (in CaO2 - CvO2)
+         * @return the calculated Oxygen Consumption (VO2) as a string formatted
+         */
+        fun calOxygenConsumption(
+            cardiacOutput: Double,
+            oxygenContentArterialVenous: Double
+        ): String {
+            val resultVO2 =
+                (cardiacOutput * oxygenContentArterialVenous) * 10
+            return Math.round(resultVO2).toString() + " mL/min"
         }
 
         /**
@@ -293,14 +311,14 @@ class Calculations {
          * @param oxygenContentVenous - Oxygen Content Venous (CvO2) - (in mL/dL)
          * @return the calculated Oxygen Consumption (VO2) as a string formatted
          */
-        fun calOxygenConsumption(
+        fun calOxygenConsumption2(
             cardiacOutput: Double,
             oxygenContentArterial: Double,
             oxygenContentVenous: Double
         ): String {
             val resultVO2 =
                 (cardiacOutput * (oxygenContentArterial - oxygenContentVenous)) * 10
-            return Math.round(resultVO2).toString() + " mL/dL or grams %"
+            return Math.round(resultVO2).toString() + " mL/min"
         }
 
         /**
