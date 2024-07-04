@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +28,8 @@ class TargetBloodFlowListAdapter(
             staticValuesList?.forEach { item ->
                 if (item.value == selectedValue) {
                     item.isSelected = true
+                }else{
+                    item.isSelected = false
                 }
             }
             notifyDataSetChanged()
@@ -47,8 +48,15 @@ class TargetBloodFlowListAdapter(
         holder.tvName.text = staticValue?.name
 
         if (staticValue?.isSelected == true) {
-            mContext?.let { ContextCompat.getColor(it, R.color.purple_200) }
+            mContext?.let { ContextCompat.getColor(it, R.color.blue) }
                 ?.let { holder.tvName.setBackgroundColor(it) }
+            mContext?.let { ContextCompat.getColor(it, R.color.white) }
+                ?.let { holder.tvName.setTextColor(it) }
+        }else{
+            mContext?.let { ContextCompat.getColor(it, android.R.color.transparent) }
+                ?.let { holder.tvName.setBackgroundColor(it) }
+            mContext?.let { ContextCompat.getColor(it, R.color.grey) }
+                ?.let { holder.tvName.setTextColor(it) }
         }
     }
 

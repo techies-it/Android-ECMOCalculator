@@ -2,22 +2,20 @@ package com.ecmocalc.ui.cannula
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ecmocalc.R
 import com.ecmocalc.databinding.FragmentCannulaBinding
-import com.ecmocalc.ui.SharedViewModel
 import com.ecmocalc.models.StaticValues
+import com.ecmocalc.ui.SharedViewModel
 import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea
 import com.ecmocalc.utils.Calculations.Companion.calCardiacOutputWithCIAndBSA
 import com.ecmocalc.utils.Calculations.Companion.calTargetBloodFlowForAdultEntry
@@ -38,7 +36,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
     ): View? {
         _binding = FragmentCannulaBinding.inflate(inflater, container, false)
 
-        binding.etTargetCI.setOnClickListener {
+        binding.layoutTargetCi.setOnClickListener {
             showTargetCIListDialog()
         }
 
@@ -52,8 +50,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             when {
                 formattedValue != null && formattedValue > 10.0 -> {
                     binding.tvTitle.text = getString(R.string.adult_entry)
-                    binding.heightTil.visibility = View.VISIBLE
-                    binding.etTargetCI.visibility = View.VISIBLE
+                    binding.layoutHeight.visibility = View.VISIBLE
+                    binding.layoutTargetCi.visibility = View.VISIBLE
                     binding.tvBSA.visibility = View.VISIBLE
                     binding.layoutTargetBloodFlow.visibility = View.GONE
                     calculateBSA()
@@ -61,8 +59,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
                 formattedValue != null && formattedValue > 0.0 && formattedValue <= 10.0 -> {
                     binding.tvTitle.text = getString(R.string.pediatric_entry)
-                    binding.heightTil.visibility = View.GONE
-                    binding.etTargetCI.visibility = View.VISIBLE
+                    binding.layoutHeight.visibility = View.GONE
+                    binding.layoutTargetCi.visibility = View.VISIBLE
                     binding.tvBSA.visibility = View.GONE
                     sharedViewModel.setEditTextCI(null)
                     generateTargetBloodFlowList()
@@ -70,8 +68,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
                 value.isNullOrEmpty() || formattedValue == 0.0 -> {
                     binding.tvTitle.text = getString(R.string.enter_weight)
-                    binding.heightTil.visibility = View.INVISIBLE
-                    binding.etTargetCI.visibility = View.INVISIBLE
+                    binding.layoutHeight.visibility = View.INVISIBLE
+                    binding.layoutTargetCi.visibility = View.INVISIBLE
                     binding.layoutTargetBloodFlow.visibility = View.GONE
                     binding.layoutVANeck.visibility = View.GONE
                     binding.layoutVAGroin.visibility = View.GONE
@@ -412,6 +410,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         }
 
         targetBloodFlowListAdapter = TargetBloodFlowListAdapter(targetBloodFlow)
+        binding?.rvTargetBloodFlow?.visibility = View.VISIBLE
         binding?.rvTargetBloodFlow?.adapter = targetBloodFlowListAdapter
 
         /*generateVANeckList()
@@ -471,6 +470,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     override fun onValueClick(value: StaticValues?, position: Int) {
         value?.name?.let { sharedViewModel.setEditTextCI(it) }
+        targetBloodFlowListAdapter?.updateSelection(value?.value)
         valuesDialog?.dismiss()
     }
 }

@@ -8,4 +8,10 @@
     <color name="purple_700">#C2185B</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="blue">#007DCC</color>
+    <color name="light_blue">#F8FAFF</color>
+    <color name="light_grey">#EAEAEA</color>
+    <color name="grey">#4E5667</color>
+    <color name="grey1">#38383A</color>
+
 </resources>

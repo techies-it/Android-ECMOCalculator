@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         //splashScreen.setKeepOnScreenCondition { false }
         window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)

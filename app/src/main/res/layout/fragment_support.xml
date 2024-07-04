@@ -7,48 +7,136 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.support.SupportFragment">
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
+        android:id="@+id/screen_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/support"
+        style="@style/ScreenTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="32dp"
+        android:src="@drawable/ic_ecmo_logo"
+        app:layout_constraintBottom_toTopOf="@+id/bt_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/screen_title"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bt_phone"
-        style="@style/BlueButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Phone"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/blue_button_bg"
+        android:paddingTop="22dp"
+        android:paddingBottom="22dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_blue_bg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_website"
-        style="@style/BlueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Website"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_phone" />
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/line"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_education"
-        style="@style/BlueButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Education"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_website" />
+        <View
+            android:id="@+id/line"
+            android:layout_width="1dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_contact"
-        style="@style/BlueButton"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView"
+            style="@style/BlueButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:text="@string/_1_800_874_ecmo_3266"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/line"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    <LinearLayout
+        android:id="@+id/layout_blue_bg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contact"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="24dp"
+        android:background="@drawable/blue_bg"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_education" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_website"
+            style="@style/LightBlueButton"
+            app:icon="@drawable/ic_website"
+            app:iconTint="@color/blue"
+            app:iconPadding="16dp"
+            app:iconSize="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/website" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_education"
+            style="@style/LightBlueButton"
+            android:layout_width="match_parent"
+            app:icon="@drawable/ic_education"
+            app:iconSize="24dp"
+            app:iconTint="@color/blue"
+            app:iconPadding="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/education"
+            android:layout_marginTop="16dp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_contact"
+            style="@style/LightBlueButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contact"
+            app:icon="@drawable/ic_contact"
+            app:iconTint="@color/blue"
+            app:iconPadding="16dp"
+            app:iconSize="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="106dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_education" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

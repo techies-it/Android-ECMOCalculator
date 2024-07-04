@@ -83,7 +83,7 @@ class Calculations {
          */
         fun calOxygenIndex(fio2: Double, map: Double, pao2: Double): String {
             val resultOxygenIndex =
-                ((fio2 / 100) * map / pao2) * 100 /* Acc. to doc val resultOxygenIndex = fio2 * map / pao2 */
+                ((fio2 / 100) * map / pao2) * 100 /* Acc. to doc val resultOxygenIndex = fio2(%) * map / pao2 */
             return String.format(Locale.ROOT, "%.1f", resultOxygenIndex)
         }
 
@@ -154,7 +154,7 @@ class Calculations {
          *  * ERCM = Weight * 75ml/Kg * (Hematocrit / 100)
          *
          * @param weight the body weight of the person (in kilograms)
-         * @param hematocrit the percentage of red blood cells in the blood volume (e.g., 45 for 45%)
+         * @param hematocrit the percentage of red blood cells in the blood volume (e.g., 0.45 for 45%)
          * @return the calculated ERCM as a string formatted
          */
         fun calEstimatedRedCellMass(weight: Double, hematocrit: Double): String {

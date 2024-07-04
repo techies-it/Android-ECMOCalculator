@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="invisible"
+    android:visibility="visible"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.calculator.CalculatorFragment">
 
@@ -15,32 +15,43 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="16dp"
+            android:paddingEnd="22dp"
+            android:paddingStart="22dp"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/screen_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/clinical_calculator"
+                style="@style/ScreenTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_pounds_to_kilograms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/screen_title"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <TextView
                     android:id="@+id/tv_pounds_to_kilograms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pounds To Kilograms"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/pounds_to_kilograms"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_lbs_sub_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lbs"
-                    android:textSize="14sp"
+                    android:text="@string/lbs"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pounds_to_kilograms" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -54,13 +65,13 @@
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeColor="@color/blue"
                     app:boxStrokeErrorColor="@android:color/holo_red_dark"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeWidthFocused="1dp"
                     app:errorTextColor="@android:color/holo_red_dark"
                     app:hintEnabled="false"
-                    app:hintTextColor="@android:color/darker_gray"
+                    app:hintTextColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_lbs_sub_til">
 
@@ -71,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:lines="1"
-                        android:hint="Lbs"
+                        android:hint="@string/lbs"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal" />
 
@@ -79,13 +90,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_kilograms"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
-                    app:layout_constraintTop_toBottomOf="@+id/lbs_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/lbs_til"
+                    app:layout_constraintEnd_toEndOf="@+id/lbs_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -101,17 +110,16 @@
                     android:id="@+id/tv_kilograms_to_pounds"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kilograms To Pounds"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/kilograms_to_pounds"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_kg_sub_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="kg"
-                    android:textSize="14sp"
+                    android:text="@string/kg"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_kilograms_to_pounds" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -142,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:lines="1"
-                        android:hint="kg"
+                        android:hint="@string/kg"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal" />
 
@@ -150,13 +158,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_pounds"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
-                    app:layout_constraintTop_toBottomOf="@+id/kg_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/kg_til"
+                    app:layout_constraintEnd_toEndOf="@+id/kg_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -172,17 +178,16 @@
                     android:id="@+id/tv_inches_to_centimeters"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Inches To Centimeters"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/inches_to_centimeters"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_inches_sub_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="in"
-                    android:textSize="14sp"
+                    android:text="@string/in"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_inches_to_centimeters" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -213,7 +218,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:lines="1"
-                        android:hint="in"
+                        android:hint="@string/in"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal" />
 
@@ -221,13 +226,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_centimeters"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
-                    app:layout_constraintTop_toBottomOf="@+id/inches_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/inches_til"
+                    app:layout_constraintEnd_toEndOf="@id/inches_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -243,17 +246,16 @@
                     android:id="@+id/tv_centimeters_to_inches"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Centimeters To Inches"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/centimeters_to_inches"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_centimeters_sub_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="cm"
-                    android:textSize="14sp"
+                    android:text="@string/cm"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_centimeters_to_inches" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -284,7 +286,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:lines="1"
-                        android:hint="cm"
+                        android:hint="@string/cm"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal" />
 
@@ -292,13 +294,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_inches"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
-                    app:layout_constraintTop_toBottomOf="@+id/centimeters_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/centimeters_til"
+                    app:layout_constraintEnd_toEndOf="@+id/centimeters_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -314,17 +314,16 @@
                     android:id="@+id/tv_body_surface_area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Body Surface Area"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/body_surface_area"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_height_sub_til"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Height"
-                    android:textSize="14sp"
+                    android:text="@string/height"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/height_til"
                     app:layout_constraintEnd_toEndOf="@+id/height_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area" />
@@ -358,7 +357,7 @@
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="cm"
+                        android:hint="@string/cm"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal"
                         android:lines="1"
@@ -370,8 +369,8 @@
                     android:id="@+id/tv_weight_sub_til"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
-                    android:textSize="14sp"
+                    android:text="@string/weight"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/weight_til"
                     app:layout_constraintEnd_toEndOf="@+id/weight_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area"/>
@@ -404,7 +403,7 @@
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="kg"
+                        android:hint="@string/kg"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal"
                         android:lines="1"
@@ -414,13 +413,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_BSA"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/weight_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/weight_til"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -436,17 +433,16 @@
                     android:id="@+id/tv_weight_base_body_surface_area"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Weight Base Body Surface Area"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/weight_base_body_surface_area"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_weight_BSA_sub_til"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
-                    android:textSize="14sp"
+                    android:text="@string/weight"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_weight_base_body_surface_area" />
 
 
@@ -478,7 +474,7 @@
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:lines="1"
-                        android:hint="kg"
+                        android:hint="@string/kg"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal" />
 
@@ -486,13 +482,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_weight_base_body_surface_area"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
-                    app:layout_constraintTop_toBottomOf="@+id/weight_BSA_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/weight_BSA_til"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_BSA_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -508,17 +502,16 @@
                     android:id="@+id/tv_oxygen_index_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Oxygen Index"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/oxygen_index"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_map_sub_til"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="MAP"
-                    android:textSize="14sp"
+                    android:text="@string/map"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/map_til"
                     app:layout_constraintEnd_toEndOf="@+id/map_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_index_title" />
@@ -565,7 +558,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="FiO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/fio2_til"
                     app:layout_constraintEnd_toEndOf="@+id/fio2_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_index_title" />
@@ -611,7 +604,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="PaO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/pao2_til"
                     app:layout_constraintEnd_toEndOf="@+id/pao2_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_index_title" />
@@ -654,13 +647,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_Oxygen_index"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/pao2_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/pao2_til"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -676,9 +667,8 @@
                     android:id="@+id/tv_paO2_fiO2_ratio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PaO₂/FiO₂ Ratio"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/pao_fio_ratio"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -686,7 +676,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="PaO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/paO2_ratio_til"
                     app:layout_constraintEnd_toEndOf="@+id/paO2_ratio_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_paO2_fiO2_ratio" />
@@ -733,7 +723,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="FiO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/fiO2_ratio_til"
                     app:layout_constraintEnd_toEndOf="@+id/fiO2_ratio_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_paO2_fiO2_ratio"/>
@@ -776,13 +766,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_paO2_fiO2_ratio"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/fiO2_ratio_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/fiO2_ratio_til"
+                    app:layout_constraintEnd_toEndOf="@+id/fiO2_ratio_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -798,9 +786,8 @@
                     android:id="@+id/tv_heparin_loading_dose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Heparin Loading Dose"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/heparin_loading_dose"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -808,7 +795,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Weight"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_heparin_loading_dose" />
 
 
@@ -848,11 +835,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_heparin_loading_dose"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    app:layout_constraintTop_toBottomOf="@+id/weight_heparin_loading_dose_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/weight_heparin_loading_dose_til"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_heparin_loading_dose_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -868,9 +855,8 @@
                     android:id="@+id/tv_cardiac_index_calculator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cardiac Index Calculator"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/cardiac_index_calculator"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -878,7 +864,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BSA"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_index_calculator" />
 
 
@@ -918,11 +904,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_cardiac_index_calculator"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_calculator_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_calculator_til"
+                    app:layout_constraintEnd_toEndOf="@+id/bsa_cardiac_index_calculator_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -938,9 +924,8 @@
                     android:id="@+id/tv_estimated_red_cell_mass_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Estimated Red Cell Mass"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/estimated_red_cell_mass"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -948,7 +933,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="kg"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/weight_estimated_red_cell_mass_til"
                     app:layout_constraintEnd_toEndOf="@+id/weight_estimated_red_cell_mass_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_estimated_red_cell_mass_title" />
@@ -995,7 +980,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Hematocrit"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/hematocrit_estimated_red_cell_mass_til"
                     app:layout_constraintEnd_toEndOf="@+id/hematocrit_estimated_red_cell_mass_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_estimated_red_cell_mass_title"/>
@@ -1038,13 +1023,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_estimated_red_cell_mass"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/hematocrit_estimated_red_cell_mass_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/hematocrit_estimated_red_cell_mass_til"
+                    app:layout_constraintEnd_toEndOf="@+id/hematocrit_estimated_red_cell_mass_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1060,9 +1043,8 @@
                     android:id="@+id/tv_dilutional_hematocrit_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dilutional Hematocrit (HCT)"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/dilutional_hematocrit_hct"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1070,7 +1052,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Weight"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/weight_dilutional_hematocrit_til"
                     app:layout_constraintEnd_toEndOf="@+id/weight_dilutional_hematocrit_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />
@@ -1117,7 +1099,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="HCT"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/hct_dilutional_hematocrit_til"
                     app:layout_constraintEnd_toEndOf="@+id/hct_dilutional_hematocrit_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />
@@ -1163,7 +1145,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="ECLS Circuit Vol."
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
                     app:layout_constraintEnd_toEndOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />
@@ -1206,13 +1188,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_dilutional_hematocrit_til"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
+                    app:layout_constraintEnd_toEndOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1228,9 +1208,8 @@
                     android:id="@+id/tv_cardiac_output_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cardiac Output"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/cardiac_output"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1238,7 +1217,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="HR"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/hr_cardiac_output_til"
                     app:layout_constraintEnd_toEndOf="@+id/hr_cardiac_output_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_output_title" />
@@ -1285,7 +1264,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Stroke Vol"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/stroke_vol_cardiac_output_til"
                     app:layout_constraintEnd_toEndOf="@+id/stroke_vol_cardiac_output_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_output_title"/>
@@ -1328,13 +1307,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_cardiac_output"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/stroke_vol_cardiac_output_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/stroke_vol_cardiac_output_til"
+                    app:layout_constraintEnd_toEndOf="@+id/stroke_vol_cardiac_output_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1350,9 +1327,8 @@
                     android:id="@+id/tv_cardiac_index_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cardiac Index"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/cardiac_index"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1360,7 +1336,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CO"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/co_cardiac_index_til"
                     app:layout_constraintEnd_toEndOf="@+id/co_cardiac_index_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_index_title" />
@@ -1407,7 +1383,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="BSA"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/bsa_cardiac_index_til"
                     app:layout_constraintEnd_toEndOf="@+id/bsa_cardiac_index_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_index_title"/>
@@ -1450,13 +1426,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_cardiac_index"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_til"
+                    app:layout_constraintEnd_toEndOf="@+id/bsa_cardiac_index_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1472,9 +1446,8 @@
                     android:id="@+id/tv_systemic_vascular_resistance_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Systemic Vascular Resistance"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/systemic_vascular_resistance"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1482,7 +1455,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="MAP"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/map_systemic_vascular_resistance_til"
                     app:layout_constraintEnd_toEndOf="@+id/map_systemic_vascular_resistance_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
@@ -1529,7 +1502,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CVP"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/cvp_systemic_vascular_resistance_til"
                     app:layout_constraintEnd_toEndOf="@+id/cvp_systemic_vascular_resistance_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
@@ -1575,7 +1548,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CO"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/co_systemic_vascular_resistance_til"
                     app:layout_constraintEnd_toEndOf="@+id/co_systemic_vascular_resistance_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
@@ -1618,13 +1591,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_systemic_vascular_resistance"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/co_systemic_vascular_resistance_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/co_systemic_vascular_resistance_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1640,9 +1611,8 @@
                     android:id="@+id/tv_pulmonary_vascular_resistance_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pulmonary Vascular Resistance"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/pulmonary_vascular_resistance"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1650,7 +1620,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="MPAP"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/mpap_pulmonary_vascular_resistance_til"
                     app:layout_constraintEnd_toEndOf="@+id/mpap_pulmonary_vascular_resistance_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
@@ -1697,7 +1667,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="PCWP"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/pcwp_pulmonary_vascular_resistance_til"
                     app:layout_constraintEnd_toEndOf="@+id/pcwp_pulmonary_vascular_resistance_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
@@ -1743,7 +1713,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CO"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/co_pulmonary_vascular_resistance_til"
                     app:layout_constraintEnd_toEndOf="@+id/co_pulmonary_vascular_resistance_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
@@ -1786,13 +1756,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_pulmonary_vascular_resistance"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/co_pulmonary_vascular_resistance_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintEnd_toEndOf="@+id/co_pulmonary_vascular_resistance_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1808,9 +1776,8 @@
                     android:id="@+id/tv_oxygen_content_arterial_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Oxygen Content (CaO₂) - Arterial"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/oxygen_content_cao_arterial"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1818,7 +1785,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Hgb"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/hgb_oxygen_content_arterial_til"
                     app:layout_constraintEnd_toEndOf="@+id/hgb_oxygen_content_arterial_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
@@ -1865,7 +1832,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="SaO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/sao2_oxygen_content_arterial_til"
                     app:layout_constraintEnd_toEndOf="@+id/sao2_oxygen_content_arterial_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
@@ -1911,7 +1878,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="PaO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/pao2_oxygen_content_arterial_til"
                     app:layout_constraintEnd_toEndOf="@+id/pao2_oxygen_content_arterial_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
@@ -1954,13 +1921,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_oxygen_content_arterial"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/pao2_oxygen_content_arterial_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_oxygen_content_arterial_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -1976,9 +1941,8 @@
                     android:id="@+id/tv_oxygen_delivery_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Oxygen Delivery (DO₂)"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/oxygen_delivery_do"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -1986,7 +1950,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CO"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/co_oxygen_delivery_til"
                     app:layout_constraintEnd_toEndOf="@+id/co_oxygen_delivery_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_delivery_title" />
@@ -2033,7 +1997,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CaO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/cao2_oxygen_delivery_til"
                     app:layout_constraintEnd_toEndOf="@+id/cao2_oxygen_delivery_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_delivery_title"/>
@@ -2076,13 +2040,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_oxygen_delivery"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/cao2_oxygen_delivery_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_oxygen_delivery_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -2098,9 +2060,8 @@
                     android:id="@+id/tv_oxygen_content_venous_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Oxygen Content (CvO₂) - Venous"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/oxygen_content_cvo_venous"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -2108,7 +2069,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Hgb"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/hgb_oxygen_content_venous_til"
                     app:layout_constraintEnd_toEndOf="@+id/hgb_oxygen_content_venous_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
@@ -2155,7 +2116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="SvO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/svo2_oxygen_content_venous_til"
                     app:layout_constraintEnd_toEndOf="@+id/svo2_oxygen_content_venous_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
@@ -2201,7 +2162,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="PvO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/pvo2_oxygen_content_venous_til"
                     app:layout_constraintEnd_toEndOf="@+id/pvo2_oxygen_content_venous_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
@@ -2244,13 +2205,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_oxygen_content_venous"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/pvo2_oxygen_content_venous_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintEnd_toEndOf="@+id/pvo2_oxygen_content_venous_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -2266,9 +2225,8 @@
                     android:id="@+id/tv_oxygen_consumption_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Oxygen Consumption (VO₂)"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/oxygen_consumption_vo"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -2276,7 +2234,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CO"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/co_oxygen_consumption_til"
                     app:layout_constraintEnd_toEndOf="@+id/co_oxygen_consumption_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_consumption_title" />
@@ -2323,7 +2281,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="CaO₂-CvO₂"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/cao2_cvo2_oxygen_consumption_til"
                     app:layout_constraintEnd_toEndOf="@+id/cao2_cvo2_oxygen_consumption_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_consumption_title"/>
@@ -2366,13 +2324,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_oxygen_consumption"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/cao2_cvo2_oxygen_consumption_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_cvo2_oxygen_consumption_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -2389,9 +2345,8 @@
                     android:id="@+id/tv_sweep_gas_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sweep Gas"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/sweep_gas"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -2399,7 +2354,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Current\n(PaCO₂)"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/current_paco2_sweep_gas_til"
                     app:layout_constraintEnd_toEndOf="@+id/current_paco2_sweep_gas_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
@@ -2446,8 +2401,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Current\n(Sweep Flow)"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="4dp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
                     app:layout_constraintEnd_toEndOf="@+id/current_sweep_flow_sweep_gas_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
@@ -2493,7 +2447,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Desired\n(PaCO₂)"
-                    android:textSize="14sp"
+                    style="@style/SubTitle"
                     app:layout_constraintStart_toStartOf="@+id/desired_paco2_sweep_gas_til"
                     app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
@@ -2538,11 +2492,9 @@
                     android:id="@+id/tv_result_sweep_gas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til" />
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

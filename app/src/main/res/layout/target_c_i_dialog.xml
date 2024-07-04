@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        style="@style/Blue20spHelveticaNeueMedium"
+        style="@style/Title"
         android:textColor="@color/purple_500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +46,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bt_cancel"
-        style="@style/BlueButton"
+        style="@style/LightBlueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
