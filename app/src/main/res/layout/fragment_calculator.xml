@@ -837,7 +837,10 @@
                     android:id="@+id/tv_result_heparin_loading_dose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Result"
+                    android:textColor="@color/blue"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="15sp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintTop_toBottomOf="@+id/weight_heparin_loading_dose_til"
                     app:layout_constraintEnd_toEndOf="@+id/weight_heparin_loading_dose_til"/>
 
@@ -906,7 +909,10 @@
                     android:id="@+id/tv_result_cardiac_index_calculator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Result"
+                    android:textColor="@color/blue"
+                    android:fontFamily="@font/inter_bold"
+                    android:textSize="15sp"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_calculator_til"
                     app:layout_constraintEnd_toEndOf="@+id/bsa_cardiac_index_calculator_til"/>
 
@@ -2490,7 +2496,7 @@
 
                 <TextView
                     android:id="@+id/tv_result_sweep_gas"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Result"
                     app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til"

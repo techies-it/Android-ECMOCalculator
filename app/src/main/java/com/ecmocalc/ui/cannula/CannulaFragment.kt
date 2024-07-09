@@ -33,7 +33,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCannulaBinding.inflate(inflater, container, false)
 
         binding.layoutTargetCi.setOnClickListener {
@@ -63,6 +63,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     binding.layoutTargetCi.visibility = View.VISIBLE
                     binding.tvBSA.visibility = View.GONE
                     sharedViewModel.setEditTextCI(null)
+                    binding.etheight.setText(null)
                     generateTargetBloodFlowList()
                 }
 
@@ -113,8 +114,16 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         } else {
             binding.tvBSA.text = getString(R.string.bsa_m)
             sharedViewModel.setValueBSA(0.0)
-            binding.layoutTargetBloodFlow?.visibility = View.GONE
+            binding.layoutTargetBloodFlow.visibility = View.GONE
             sharedViewModel.setEditTextCI(null)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.editTextCI.observe(viewLifecycleOwner) { value ->
+            binding.etTargetCI.text = value
+            targetBloodFlowListAdapter?.updateSelection(value)
         }
     }
 
@@ -161,7 +170,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         }
 
         val staticValuesListAdapterVANeck = StaticValuesListAdapter(staticValuesVANeck)
-        binding?.rvVANeck?.adapter = staticValuesListAdapterVANeck
+        binding.rvVANeck?.adapter = staticValuesListAdapterVANeck
     }
 
     private fun generateVAGroinList() {
@@ -224,7 +233,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             staticValuesVAGroin.add(StaticValues("Edwards Quickdraw Venous Cannula", "Venous 22Fr"))
         }
         val staticValuesListAdapterVAGroin = StaticValuesListAdapter(staticValuesVAGroin)
-        binding?.rvVAGroin?.adapter = staticValuesListAdapterVAGroin
+        binding.rvVAGroin?.adapter = staticValuesListAdapterVAGroin
     }
 
     private fun generateVVDLList() {
@@ -246,11 +255,11 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             staticValuesVVDL.add(StaticValues("Crescent Dual Lumen VV ECLS Cannula", "IJV 24Fr"))
         }
         val staticValuesListAdapterVVDL = StaticValuesListAdapter(staticValuesVVDL)
-        binding?.rvVVDL?.adapter = staticValuesListAdapterVVDL
+        binding.rvVVDL?.adapter = staticValuesListAdapterVVDL
     }
 
     private fun generateTargetBloodFlowList() {
-        binding?.layoutTargetBloodFlow?.visibility = View.VISIBLE
+        binding.layoutTargetBloodFlow?.visibility = View.VISIBLE
         val targetBloodFlow: ArrayList<StaticValues> = ArrayList<StaticValues>()
         targetBloodFlow.clear()
         if (binding.tvTitle.text == getString(R.string.pediatric_entry)) {
@@ -410,8 +419,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         }
 
         targetBloodFlowListAdapter = TargetBloodFlowListAdapter(targetBloodFlow)
-        binding?.rvTargetBloodFlow?.visibility = View.VISIBLE
-        binding?.rvTargetBloodFlow?.adapter = targetBloodFlowListAdapter
+        binding.rvTargetBloodFlow?.visibility = View.VISIBLE
+        binding.rvTargetBloodFlow?.adapter = targetBloodFlowListAdapter
 
         /*generateVANeckList()
         generateVAGroinList()
@@ -424,9 +433,9 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         valuesDialog?.setCancelable(true)
         valuesDialog?.setContentView(R.layout.target_c_i_dialog)
         valuesDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
-        val title = valuesDialog?.findViewById(R.id.tv_title) as TextView
-        val btCancel = valuesDialog?.findViewById(R.id.bt_cancel) as MaterialButton
-        val listValues = valuesDialog?.findViewById(R.id.list_values) as RecyclerView
+        val title: TextView = valuesDialog?.findViewById(R.id.tv_title)!!
+        val btCancel: MaterialButton = valuesDialog?.findViewById(R.id.bt_cancel)!!
+        val listValues: RecyclerView = valuesDialog?.findViewById(R.id.list_values)!!
 
         btCancel.setOnClickListener {
             valuesDialog?.dismiss()
@@ -458,7 +467,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         }
 
         val targetCIListAdapter = TargetCIListAdapter(targetCIArrayList, this@CannulaFragment)
-        listValues?.adapter = targetCIListAdapter
+        listValues.adapter = targetCIListAdapter
 
         valuesDialog?.show()
     }

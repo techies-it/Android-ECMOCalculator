@@ -2,12 +2,11 @@ package com.ecmocalc.ui.cannula
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ecmocalc.R
 import com.ecmocalc.models.StaticValues
@@ -44,6 +43,7 @@ class TargetCIListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val staticValue = staticValuesList?.get(position)
         holder.tvName.text = staticValue?.name
+        holder.tvName.setTextSize(TypedValue.COMPLEX_UNIT_SP,18f)
 
         holder.itemView.setOnClickListener {
             onItemListener.onValueClick(staticValue,position)

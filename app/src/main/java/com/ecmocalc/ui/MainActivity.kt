@@ -8,19 +8,12 @@ import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
 import com.ecmocalc.R
 import com.ecmocalc.databinding.ActivityMainBinding
-import com.ecmocalc.ui.calculator.CalculatorFragment
-import com.ecmocalc.ui.cannula.CannulaFragment
-import com.ecmocalc.ui.support.SupportFragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val calculatorFragment = CalculatorFragment()
-    private val cannulaFragment = CannulaFragment()
-    private val supportFragment = SupportFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // TODO: Launch splash screen activity before this to match the design.
@@ -43,31 +36,23 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        replaceFragment(calculatorFragment)
+        binding.viewPager.adapter = MyFragmentStateAdapter(this)
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.calculator -> {
-                    replaceFragment(calculatorFragment)
+                    binding.viewPager.setCurrentItem(0, true)
                 }
                 R.id.cannula -> {
-                    replaceFragment(cannulaFragment)
+                    binding.viewPager.setCurrentItem(1, true)
                 }
                 R.id.support -> {
-                    replaceFragment(supportFragment)
+                    binding.viewPager.setCurrentItem(0, true)
                 }
             }
             true
         }
 
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        if (fragment != null) {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, fragment)
-            transaction.commit()
-        }
     }
 
 

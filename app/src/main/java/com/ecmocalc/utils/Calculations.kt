@@ -16,8 +16,7 @@ class Calculations {
          */
         fun calPoundsToKilograms(pounds: Double): String {
             val resultKg = pounds / 2.2F
-            val r = Math.round(resultKg)
-            return Math.round(resultKg).toString() + " kg"
+            return String.format(Locale.ROOT, "%.2f", resultKg) + " kg"
         }
 
         /**
@@ -26,7 +25,7 @@ class Calculations {
          */
         fun calKilogramsToPounds(kilograms: Double): String {
             val resultPounds = kilograms * 2.2F
-            return Math.round(resultPounds).toString() + " lbs"
+            return String.format(Locale.ROOT, "%.2f", resultPounds) + " lbs"
         }
 
         /**
@@ -388,6 +387,17 @@ class Calculations {
                 DecimalFormat("#,###")
             } else {
                 DecimalFormat("#,###.0").apply {
+                    roundingMode = RoundingMode.HALF_UP
+                }
+            }
+            return decimalFormat.format(number)
+        }
+
+        private fun formatNumberWithDecimalForTwoDecimalPlaces(number: Double): String {
+            val decimalFormat = if (number % 1 == 0.00) {
+                DecimalFormat("#,###")
+            } else {
+                DecimalFormat("#,###.00").apply {
                     roundingMode = RoundingMode.HALF_UP
                 }
             }

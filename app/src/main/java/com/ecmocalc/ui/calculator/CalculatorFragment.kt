@@ -46,6 +46,11 @@ class CalculatorFragment : Fragment() {
     ): View? {
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
         uiPoundsToKilograms()
         uiKilogramsToPounds()
         uiInchesToCentimeters()
@@ -67,67 +72,65 @@ class CalculatorFragment : Fragment() {
         uiOxygenContentVenous()
         uiOxygenConsumption()
         uiSweepGas()
-
-        return binding.root
     }
 
     private fun uiPoundsToKilograms() {
         binding.etLbs.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultKilograms.text = "--Kg"
-            } else {
-                sharedViewModel.setValueLbs(value.toString())
-            }
+            sharedViewModel.setValueLbs(value.toString())
         }
 
         sharedViewModel.valueLbs.observe(viewLifecycleOwner, Observer { value ->
-            binding.tvResultKilograms.text = Helper.convertStringToDouble(value)
-                ?.let { calPoundsToKilograms(it) }
+            binding.tvResultKilograms.text = if (value.isNullOrEmpty()) {
+                "--Kg"
+            } else {
+                Helper.convertStringToDouble(value)
+                    ?.let { calPoundsToKilograms(it) }
+            }
         })
     }
 
     private fun uiKilogramsToPounds() {
         binding.etKg.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultPounds.text = "--Lbs"
-            } else {
-                sharedViewModel.setValueKg(value.toString())
-            }
+            sharedViewModel.setValueKg(value.toString())
         }
 
         sharedViewModel.valueKg.observe(viewLifecycleOwner, Observer { value ->
-            binding.tvResultPounds.text = Helper.convertStringToDouble(value)
-                ?.let { calKilogramsToPounds(it) }
+            binding.tvResultPounds.text = if (value.isNullOrEmpty()) {
+                "--Lbs"
+            } else {
+                Helper.convertStringToDouble(value)
+                    ?.let { calKilogramsToPounds(it) }
+            }
         })
     }
 
     private fun uiInchesToCentimeters() {
         binding.etInches.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultCentimeters.text = "--cm"
-            } else {
-                sharedViewModel.setValueInches(value.toString())
-            }
+            sharedViewModel.setValueInches(value.toString())
         }
 
         sharedViewModel.valueInches.observe(viewLifecycleOwner, Observer { value ->
-            binding.tvResultCentimeters.text = Helper.convertStringToDouble(value)
-                ?.let { calInchesToCentimeters(it) }
+            binding.tvResultCentimeters.text = if (value.isNullOrEmpty()) {
+                "--cm"
+            } else {
+                Helper.convertStringToDouble(value)
+                    ?.let { calInchesToCentimeters(it) }
+            }
         })
     }
 
     private fun uiCentimetersToInches() {
         binding.etCentimeters.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultInches.text = "--in"
-            } else {
-                sharedViewModel.setValueCentimeters(value.toString())
-            }
+            sharedViewModel.setValueCentimeters(value.toString())
         }
 
         sharedViewModel.valueCentimeters.observe(viewLifecycleOwner, Observer { value ->
-            binding.tvResultInches.text = Helper.convertStringToDouble(value)
-                ?.let { calCentimetersToInches(it) }
+            binding.tvResultInches.text = if (value.isNullOrEmpty()) {
+                "--in"
+            } else {
+                Helper.convertStringToDouble(value)
+                    ?.let { calCentimetersToInches(it) }
+            }
         })
     }
 
@@ -162,16 +165,16 @@ class CalculatorFragment : Fragment() {
 
     private fun uiWeightBaseBodySurfaceArea() {
         binding.etWeightBSA.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultWeightBaseBodySurfaceArea.text = "--m²"
-            } else {
-                sharedViewModel.setValueWeightBSAByWeight(value.toString())
-            }
+            sharedViewModel.setValueWeightBSAByWeight(value.toString())
         }
 
         sharedViewModel.valueWeightBSAByWeight.observe(viewLifecycleOwner, Observer { value ->
-            binding.tvResultWeightBaseBodySurfaceArea.text = Helper.convertStringToDouble(value)
-                ?.let { calWeightBasedBodySurfaceArea(it) }
+            binding.tvResultWeightBaseBodySurfaceArea.text = if (value.isNullOrEmpty()) {
+                "--m²"
+            } else {
+                Helper.convertStringToDouble(value)
+                    ?.let { calWeightBasedBodySurfaceArea(it) }
+            }
         })
     }
 
@@ -228,8 +231,10 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun calculatePaO2ByFiO2Ratio() {
-        val vPaO2 = sharedViewModel.valuePaO2ForRatio.value?.let { Helper.convertStringToDouble(it) }
-        val vFiO2 = sharedViewModel.valueFiO2ForRatio.value?.let { Helper.convertStringToDouble(it) }
+        val vPaO2 =
+            sharedViewModel.valuePaO2ForRatio.value?.let { Helper.convertStringToDouble(it) }
+        val vFiO2 =
+            sharedViewModel.valueFiO2ForRatio.value?.let { Helper.convertStringToDouble(it) }
         if (vFiO2 != null && vPaO2 != null) {
             binding.tvResultPaO2FiO2Ratio.text = calPaO2ByFiO2Ratio(vPaO2, vFiO2)
         } else {
@@ -239,37 +244,35 @@ class CalculatorFragment : Fragment() {
 
     private fun uiHeparinLoadingDose() {
         binding.etWeightHeparinLoadingDose.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultHeparinLoadingDose.text =
-                    getString(R.string.default_weight_heparin_loading_dose)
-            } else {
-                sharedViewModel.setValueWeightForHeparinLoadingDose(value.toString())
-            }
+            sharedViewModel.setValueWeightForHeparinLoadingDose(value.toString())
         }
 
         sharedViewModel.valueWeightForHeparinLoadingDose.observe(
             viewLifecycleOwner,
             Observer { value ->
-                binding.tvResultHeparinLoadingDose.text = Helper.convertStringToDouble(value)
-                    ?.let { calHeparinLoadingDose(it) }
+                binding.tvResultHeparinLoadingDose.text = if (value.isNullOrEmpty()) {
+                    getString(R.string.default_weight_heparin_loading_dose)
+                } else {
+                    Helper.convertStringToDouble(value)
+                        ?.let { calHeparinLoadingDose(it) }
+                }
             })
     }
 
     private fun uiCardiacIndexCalculator() {
         binding.etBsaCardiacIndexCalculator.addTextChangedListener { value ->
-            if (value.isNullOrEmpty()) {
-                binding.tvResultCardiacIndexCalculator.text =
-                    getString(R.string.default_cardiac_index_calculator)
-            } else {
-                sharedViewModel.setValueBSAForCardiacIndexCalculator(value.toString())
-            }
+            sharedViewModel.setValueBSAForCardiacIndexCalculator(value.toString())
         }
 
         sharedViewModel.valueBSAForCardiacIndexCalculator.observe(
             viewLifecycleOwner,
             Observer { value ->
-                binding.tvResultCardiacIndexCalculator.text = Helper.convertStringToDouble(value)
-                    ?.let { calCardiacIndexCalculator(it) }
+                binding.tvResultCardiacIndexCalculator.text = if (value.isNullOrEmpty()) {
+                    getString(R.string.default_cardiac_index_calculator)
+                } else {
+                    Helper.convertStringToDouble(value)
+                        ?.let { calCardiacIndexCalculator(it) }
+                }
             })
     }
 
@@ -370,14 +373,19 @@ class CalculatorFragment : Fragment() {
             calculateCardiacOutput()
         })
 
-        sharedViewModel.valueStrokeVolForCardiacOutput.observe(viewLifecycleOwner, Observer { value ->
-            calculateCardiacOutput()
-        })
+        sharedViewModel.valueStrokeVolForCardiacOutput.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateCardiacOutput()
+            })
     }
 
     private fun calculateCardiacOutput() {
-        val vHR = sharedViewModel.valueHRForCardiacOutput.value?.let { Helper.convertStringToDouble(it) }
-        val vStrokeVol = sharedViewModel.valueStrokeVolForCardiacOutput.value?.let { Helper.convertStringToDouble(it) }
+        val vHR =
+            sharedViewModel.valueHRForCardiacOutput.value?.let { Helper.convertStringToDouble(it) }
+        val vStrokeVol = sharedViewModel.valueStrokeVolForCardiacOutput.value?.let {
+            Helper.convertStringToDouble(it)
+        }
         if (vHR != null && vStrokeVol != null) {
             binding.tvResultCardiacOutput.text = calCardiacOutput(vHR, vStrokeVol)
         } else {
@@ -403,8 +411,10 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun calculateCardiacIndex() {
-        val vCO = sharedViewModel.valueCOForCardiacIndex.value?.let { Helper.convertStringToDouble(it) }
-        val vBSA = sharedViewModel.valueBSAForCardiacIndex.value?.let { Helper.convertStringToDouble(it) }
+        val vCO =
+            sharedViewModel.valueCOForCardiacIndex.value?.let { Helper.convertStringToDouble(it) }
+        val vBSA =
+            sharedViewModel.valueBSAForCardiacIndex.value?.let { Helper.convertStringToDouble(it) }
         if (vCO != null && vBSA != null) {
             binding.tvResultCardiacIndex.text = calCardiacIndex(vCO, vBSA)
         } else {
@@ -423,25 +433,38 @@ class CalculatorFragment : Fragment() {
             sharedViewModel.setValueCOForSystemicVascularResistance(value.toString())
         }
 
-        sharedViewModel.valueMAPForSystemicVascularResistance.observe(viewLifecycleOwner, Observer { value ->
-            calculateSystemicVascularResistance()
-        })
+        sharedViewModel.valueMAPForSystemicVascularResistance.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateSystemicVascularResistance()
+            })
 
-        sharedViewModel.valueCVPForSystemicVascularResistance.observe(viewLifecycleOwner, Observer { value ->
-            calculateSystemicVascularResistance()
-        })
+        sharedViewModel.valueCVPForSystemicVascularResistance.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateSystemicVascularResistance()
+            })
 
-        sharedViewModel.valueCOForSystemicVascularResistance.observe(viewLifecycleOwner, Observer { value ->
-            calculateSystemicVascularResistance()
-        })
+        sharedViewModel.valueCOForSystemicVascularResistance.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateSystemicVascularResistance()
+            })
     }
 
     private fun calculateSystemicVascularResistance() {
-        val vMAP = sharedViewModel.valueMAPForSystemicVascularResistance.value?.let { Helper.convertStringToDouble(it) }
-        val vCVP = sharedViewModel.valueCVPForSystemicVascularResistance.value?.let { Helper.convertStringToDouble(it) }
-        val vCO = sharedViewModel.valueCOForSystemicVascularResistance.value?.let { Helper.convertStringToDouble(it) }
-        if (vMAP != null && vCVP != null&& vCO != null) {
-            binding.tvResultSystemicVascularResistance.text = calSystemicVascularResistance(vMAP, vCVP,vCO)
+        val vMAP = sharedViewModel.valueMAPForSystemicVascularResistance.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vCVP = sharedViewModel.valueCVPForSystemicVascularResistance.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vCO = sharedViewModel.valueCOForSystemicVascularResistance.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        if (vMAP != null && vCVP != null && vCO != null) {
+            binding.tvResultSystemicVascularResistance.text =
+                calSystemicVascularResistance(vMAP, vCVP, vCO)
         } else {
             binding.tvResultSystemicVascularResistance.text = "--- Dynes-sec/cm⁵"
         }
@@ -458,25 +481,38 @@ class CalculatorFragment : Fragment() {
             sharedViewModel.setValueCOForPulmonaryVascularResistance(value.toString())
         }
 
-        sharedViewModel.valueMPAPForPulmonaryVascularResistance.observe(viewLifecycleOwner, Observer { value ->
-            calculatePulmonaryVascularResistance()
-        })
+        sharedViewModel.valueMPAPForPulmonaryVascularResistance.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculatePulmonaryVascularResistance()
+            })
 
-        sharedViewModel.valuePCWPForPulmonaryVascularResistance.observe(viewLifecycleOwner, Observer { value ->
-            calculatePulmonaryVascularResistance()
-        })
+        sharedViewModel.valuePCWPForPulmonaryVascularResistance.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculatePulmonaryVascularResistance()
+            })
 
-        sharedViewModel.valueCOForPulmonaryVascularResistance.observe(viewLifecycleOwner, Observer { value ->
-            calculatePulmonaryVascularResistance()
-        })
+        sharedViewModel.valueCOForPulmonaryVascularResistance.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculatePulmonaryVascularResistance()
+            })
     }
 
     private fun calculatePulmonaryVascularResistance() {
-        val vMPAP = sharedViewModel.valueMPAPForPulmonaryVascularResistance.value?.let { Helper.convertStringToDouble(it) }
-        val vPCWP = sharedViewModel.valuePCWPForPulmonaryVascularResistance.value?.let { Helper.convertStringToDouble(it) }
-        val vCO = sharedViewModel.valueCOForPulmonaryVascularResistance.value?.let { Helper.convertStringToDouble(it) }
-        if (vMPAP != null && vPCWP != null&& vCO != null) {
-            binding.tvResultPulmonaryVascularResistance.text = calPulmonaryVascularResistance(vMPAP, vPCWP,vCO)
+        val vMPAP = sharedViewModel.valueMPAPForPulmonaryVascularResistance.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vPCWP = sharedViewModel.valuePCWPForPulmonaryVascularResistance.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vCO = sharedViewModel.valueCOForPulmonaryVascularResistance.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        if (vMPAP != null && vPCWP != null && vCO != null) {
+            binding.tvResultPulmonaryVascularResistance.text =
+                calPulmonaryVascularResistance(vMPAP, vPCWP, vCO)
         } else {
             binding.tvResultPulmonaryVascularResistance.text = "--- Dynes-sec/cm⁵"
         }
@@ -493,25 +529,38 @@ class CalculatorFragment : Fragment() {
             sharedViewModel.setValuePaO2ForOxygenContentArterial(value.toString())
         }
 
-        sharedViewModel.valueHgbForOxygenContentArterial.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenContentArterial()
-        })
+        sharedViewModel.valueHgbForOxygenContentArterial.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenContentArterial()
+            })
 
-        sharedViewModel.valueSaO2ForOxygenContentArterial.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenContentArterial()
-        })
+        sharedViewModel.valueSaO2ForOxygenContentArterial.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenContentArterial()
+            })
 
-        sharedViewModel.valuePaO2ForOxygenContentArterial.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenContentArterial()
-        })
+        sharedViewModel.valuePaO2ForOxygenContentArterial.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenContentArterial()
+            })
     }
 
     private fun calculateOxygenContentArterial() {
-        val vHgb = sharedViewModel.valueHgbForOxygenContentArterial.value?.let { Helper.convertStringToDouble(it) }
-        val vSaO2 = sharedViewModel.valueSaO2ForOxygenContentArterial.value?.let { Helper.convertStringToDouble(it) }
-        val vPaO2 = sharedViewModel.valuePaO2ForOxygenContentArterial.value?.let { Helper.convertStringToDouble(it) }
-        if (vHgb != null && vSaO2 != null&& vPaO2 != null) {
-            binding.tvResultOxygenContentArterial.text = calOxygenContentArterial(vHgb, vSaO2,vPaO2)
+        val vHgb = sharedViewModel.valueHgbForOxygenContentArterial.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vSaO2 = sharedViewModel.valueSaO2ForOxygenContentArterial.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vPaO2 = sharedViewModel.valuePaO2ForOxygenContentArterial.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        if (vHgb != null && vSaO2 != null && vPaO2 != null) {
+            binding.tvResultOxygenContentArterial.text =
+                calOxygenContentArterial(vHgb, vSaO2, vPaO2)
         } else {
             binding.tvResultOxygenContentArterial.text = "--- mL/dL"
         }
@@ -535,8 +584,10 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun calculateOxygenDelivery() {
-        val vCO = sharedViewModel.valueCOForOxygenDelivery.value?.let { Helper.convertStringToDouble(it) }
-        val vCaO2 = sharedViewModel.valueCaO2ForOxygenDelivery.value?.let { Helper.convertStringToDouble(it) }
+        val vCO =
+            sharedViewModel.valueCOForOxygenDelivery.value?.let { Helper.convertStringToDouble(it) }
+        val vCaO2 =
+            sharedViewModel.valueCaO2ForOxygenDelivery.value?.let { Helper.convertStringToDouble(it) }
         if (vCO != null && vCaO2 != null) {
             binding.tvResultOxygenDelivery.text = calOxygenDelivery(vCO, vCaO2)
         } else {
@@ -555,23 +606,35 @@ class CalculatorFragment : Fragment() {
             sharedViewModel.setValuePvO2ForOxygenContentVenous(value.toString())
         }
 
-        sharedViewModel.valueHgbForOxygenContentVenous.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenContentVenous()
-        })
+        sharedViewModel.valueHgbForOxygenContentVenous.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenContentVenous()
+            })
 
-        sharedViewModel.valueSvO2ForOxygenContentVenous.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenContentVenous()
-        })
+        sharedViewModel.valueSvO2ForOxygenContentVenous.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenContentVenous()
+            })
 
-        sharedViewModel.valuePvO2ForOxygenContentVenous.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenContentVenous()
-        })
+        sharedViewModel.valuePvO2ForOxygenContentVenous.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenContentVenous()
+            })
     }
 
     private fun calculateOxygenContentVenous() {
-        val vHgb = sharedViewModel.valueHgbForOxygenContentVenous.value?.let { Helper.convertStringToDouble(it) }
-        val vSvO2 = sharedViewModel.valueSvO2ForOxygenContentVenous.value?.let { Helper.convertStringToDouble(it) }
-        val vPvO2 = sharedViewModel.valuePvO2ForOxygenContentVenous.value?.let { Helper.convertStringToDouble(it) }
+        val vHgb = sharedViewModel.valueHgbForOxygenContentVenous.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vSvO2 = sharedViewModel.valueSvO2ForOxygenContentVenous.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vPvO2 = sharedViewModel.valuePvO2ForOxygenContentVenous.value?.let {
+            Helper.convertStringToDouble(it)
+        }
         if (vHgb != null && vSvO2 != null && vPvO2 != null) {
             binding.tvResultOxygenContentVenous.text = calOxygenContentVenous(vHgb, vSvO2, vPvO2)
         } else {
@@ -591,14 +654,19 @@ class CalculatorFragment : Fragment() {
             calculateOxygenConsumption()
         })
 
-        sharedViewModel.valueCaO2CvO2ForOxygenConsumption.observe(viewLifecycleOwner, Observer { value ->
-            calculateOxygenConsumption()
-        })
+        sharedViewModel.valueCaO2CvO2ForOxygenConsumption.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateOxygenConsumption()
+            })
     }
 
     private fun calculateOxygenConsumption() {
-        val vCO = sharedViewModel.valueCOForOxygenConsumption.value?.let { Helper.convertStringToDouble(it) }
-        val vCaO2CvO2 = sharedViewModel.valueCaO2CvO2ForOxygenConsumption.value?.let { Helper.convertStringToDouble(it) }
+        val vCO =
+            sharedViewModel.valueCOForOxygenConsumption.value?.let { Helper.convertStringToDouble(it) }
+        val vCaO2CvO2 = sharedViewModel.valueCaO2CvO2ForOxygenConsumption.value?.let {
+            Helper.convertStringToDouble(it)
+        }
         if (vCO != null && vCaO2CvO2 != null) {
             binding.tvResultOxygenConsumption.text = calOxygenConsumption(vCO, vCaO2CvO2)
         } else {
@@ -621,9 +689,11 @@ class CalculatorFragment : Fragment() {
             calculateSweepGas()
         })
 
-        sharedViewModel.valueCurrentSweepFlowForSweepGas.observe(viewLifecycleOwner, Observer { value ->
-            calculateSweepGas()
-        })
+        sharedViewModel.valueCurrentSweepFlowForSweepGas.observe(
+            viewLifecycleOwner,
+            Observer { value ->
+                calculateSweepGas()
+            })
 
         sharedViewModel.valueDesiredPaCO2ForSweepGas.observe(viewLifecycleOwner, Observer { value ->
             calculateSweepGas()
@@ -631,11 +701,18 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun calculateSweepGas() {
-        val vCurrentPaCO2 = sharedViewModel.valueCurrentPaCO2ForSweepGas.value?.let { Helper.convertStringToDouble(it) }
-        val vCurrentSweepFlow = sharedViewModel.valueCurrentSweepFlowForSweepGas.value?.let { Helper.convertStringToDouble(it) }
-        val vDesiredPaCO2 = sharedViewModel.valueDesiredPaCO2ForSweepGas.value?.let { Helper.convertStringToDouble(it) }
+        val vCurrentPaCO2 = sharedViewModel.valueCurrentPaCO2ForSweepGas.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vCurrentSweepFlow = sharedViewModel.valueCurrentSweepFlowForSweepGas.value?.let {
+            Helper.convertStringToDouble(it)
+        }
+        val vDesiredPaCO2 = sharedViewModel.valueDesiredPaCO2ForSweepGas.value?.let {
+            Helper.convertStringToDouble(it)
+        }
         if (vCurrentPaCO2 != null && vCurrentSweepFlow != null && vDesiredPaCO2 != null) {
-            binding.tvResultSweepGas.text = calSweepGas(vCurrentPaCO2, vCurrentSweepFlow, vDesiredPaCO2)
+            binding.tvResultSweepGas.text =
+                calSweepGas(vCurrentPaCO2, vCurrentSweepFlow, vDesiredPaCO2)
         } else {
             binding.tvResultSweepGas.text = "--- L/min"
         }
