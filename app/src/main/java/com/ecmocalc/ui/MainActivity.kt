@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         // TODO: Launch splash screen activity before this to match the design.
         if (Build.VERSION.SDK_INT >= 31){
             installSplashScreen() //init new splash screen api for Android 12+
+           // val splashScreen = installSplashScreen() //init new splash screen api for Android 12+
+            //splashScreen.setKeepOnScreenCondition { true }
         } else{
             setTheme(R.style.Theme_ECMOCalc) //else use old approach
         }
@@ -29,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(binding.root)
-        //splashScreen.setKeepOnScreenCondition { false }
+
         window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
