@@ -8,20 +8,11 @@
 
     <style name="Theme.ECMOCalc" parent="Base.Theme.ECMOCalc" />
 
-    <!--<style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        &lt;!&ndash; Set the splash screen background to black &ndash;&gt;
-        <item name="windowSplashScreenBackground">@drawable/spl</item>
-        &lt;!&ndash; Use windowSplashScreenAnimatedIcon to add a drawable or an animated
-             drawable. &ndash;&gt;
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
-        <item name="android:windowSplashScreenBrandingImage">@drawable/splash</item>
-        &lt;!&ndash; Set the theme of the Activity that follows your splash screen. &ndash;&gt;
-        <item name="postSplashScreenTheme">@style/Theme.ECMOCalc</item>
-    </style>-->
-
-    <style name="Theme.App.Starting" parent="Theme.ECMOCalc">
+    <style name="AppTheme.Splash" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:statusBarColor">@color/blue</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:navigationBarColor">@color/blue</item>
     </style>
 
     <style name="LightBlueButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">

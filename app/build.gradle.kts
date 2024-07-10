@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("/home/android/TaranWork/OfficeProjects/2024/ECMOCalc/ECMOCalc.jks")
+            storePassword = "ECMOCalc"
+            keyPassword = "ECMOCalc"
+            keyAlias = "ecmocalc"
+        }
+    }
     namespace = "com.ecmocalc"
     compileSdk = 34
 
