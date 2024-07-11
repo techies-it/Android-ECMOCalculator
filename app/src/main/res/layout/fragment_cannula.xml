@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
+    android:visibility="visible"
     tools:context=".ui.cannula.CannulaFragment">
 
     <ScrollView
@@ -225,7 +225,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:paddingBottom="100dp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_BSA">
 
                     <TextView
@@ -346,6 +345,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_marginTop="24dp"
+                android:paddingBottom="110dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_VA_Groin">
 
                 <TextView

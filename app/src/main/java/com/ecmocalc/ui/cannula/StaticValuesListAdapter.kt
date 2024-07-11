@@ -1,11 +1,8 @@
 package com.ecmocalc.ui.cannula
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ecmocalc.R
@@ -29,8 +26,10 @@ class StaticValuesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val staticValue = staticValuesList?.get(position)
-        holder.tvName.text = staticValue?.name
-        holder.tvValue.text = staticValue?.value
+        if (staticValue?.name != null && staticValue.name != "NA") {
+            holder.tvName.text = staticValue?.name
+            holder.tvValue.text = staticValue?.value
+        }
     }
 
     override fun getItemCount(): Int {

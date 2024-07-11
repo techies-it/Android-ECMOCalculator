@@ -16,6 +16,7 @@ import com.ecmocalc.R
 import com.ecmocalc.databinding.FragmentCannulaBinding
 import com.ecmocalc.models.StaticValues
 import com.ecmocalc.ui.SharedViewModel
+import com.ecmocalc.utils.Calculations
 import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea
 import com.ecmocalc.utils.Calculations.Companion.calCardiacOutputWithCIAndBSA
 import com.ecmocalc.utils.Calculations.Companion.calTargetBloodFlowForAdultEntry
@@ -77,6 +78,9 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     binding.layoutVVDL.visibility = View.GONE
                     binding.tvBSA.visibility = View.GONE
                     sharedViewModel.setEditTextCI(null)
+                    binding.layoutVANeck.visibility = View.GONE
+                    binding.layoutVAGroin.visibility = View.GONE
+                    binding.layoutVVDL.visibility = View.GONE
                 }
             }
         }
@@ -116,6 +120,9 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             sharedViewModel.setValueBSA(0.0)
             binding.layoutTargetBloodFlow.visibility = View.GONE
             sharedViewModel.setEditTextCI(null)
+            binding.layoutVANeck.visibility = View.GONE
+            binding.layoutVAGroin.visibility = View.GONE
+            binding.layoutVVDL.visibility = View.GONE
         }
     }
 
@@ -128,133 +135,24 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
     }
 
 
-    private fun generateVANeckList() {
+    private fun generateVANeckList(listVANeck: ArrayList<StaticValues>) {
         binding.layoutVANeck.visibility = View.VISIBLE
-        val staticValuesVANeck: ArrayList<StaticValues> = ArrayList<StaticValues>()
 
-        if (binding.tvTitle.text == "Pediatric Entry") {
-            staticValuesVANeck.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Pediatric Arterial", "Arterial 8Fr"
-                )
-            )
-            staticValuesVANeck.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Pediatric Venous", "Venous 8Fr"
-                )
-            )
-        } else {
-            staticValuesVANeck.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
-                    "Arterial 15Fr"
-                )
-            )
-            staticValuesVANeck.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Femoral Venous Cannulae", "Venous 17Fr"
-                )
-            )
-            staticValuesVANeck.add(
-                StaticValues(
-                    "Getinge Arterial HLS Cannula (15cm)", "Arterial 15Fr"
-                )
-            )
-            staticValuesVANeck.add(
-                StaticValues(
-                    "Getinge Arterial HLS Cannula (23cm)", "Arterial 15Fr"
-                )
-            )
-            staticValuesVANeck.add(StaticValues("Getinge Venous HLS Cannula (15cm)", "Venous 15Fr"))
-            staticValuesVANeck.add(StaticValues("Getinge Venous HLS Cannula (23cm)", "Venous 15Fr"))
-        }
-
-        val staticValuesListAdapterVANeck = StaticValuesListAdapter(staticValuesVANeck)
+        val staticValuesListAdapterVANeck = StaticValuesListAdapter(listVANeck)
         binding.rvVANeck?.adapter = staticValuesListAdapterVANeck
     }
 
-    private fun generateVAGroinList() {
+    private fun generateVAGroinList(listVAGroin: ArrayList<StaticValues>) {
         binding.layoutVAGroin.visibility = View.VISIBLE
-        val staticValuesVAGroin: ArrayList<StaticValues> = ArrayList<StaticValues>()
 
-        if (binding.tvTitle.text == "Pediatric Entry") {
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Pediatric Arterial", "Arterial 8Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Pediatric Venous", "Venous 8Fr"
-                )
-            )
-        } else {
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
-                    "Arterial 15Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Bio-Medicus NextGen Femoral Venous Cannulae", "Venous 17Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Bio-Medicus Multi-Stage Femoral Venous Cannulae", "Venous 19Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Getinge Arterial HLS Cannula (15cm)", "Arterial 15Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Getinge Arterial HLS Cannula (23cm)", "Arterial 15Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Getinge Venous HLS Cannula (23cm)", "Venous 15Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Getinge Venous HLS Cannula (38cm)", "Venous 19Fr"
-                )
-            )
-            staticValuesVAGroin.add(
-                StaticValues(
-                    "Getinge Venous HLS Cannula (55cm)", "Venous 21Fr"
-                )
-            )
-            staticValuesVAGroin.add(StaticValues("Edwards Quickdraw Venous Cannula", "Venous 22Fr"))
-        }
-        val staticValuesListAdapterVAGroin = StaticValuesListAdapter(staticValuesVAGroin)
+        val staticValuesListAdapterVAGroin = StaticValuesListAdapter(listVAGroin)
         binding.rvVAGroin?.adapter = staticValuesListAdapterVAGroin
     }
 
-    private fun generateVVDLList() {
+    private fun generateVVDLList(listVVDL: ArrayList<StaticValues>) {
         binding.layoutVVDL.visibility = View.VISIBLE
-        val staticValuesVVDL: ArrayList<StaticValues> = ArrayList<StaticValues>()
-        if (binding.tvTitle.text == "Pediatric Entry") {
-            staticValuesVVDL.add(
-                StaticValues(
-                    "Avalon Elite Bi-Caval Dual Lumen Catheter", "IJV 13Fr"
-                )
-            )
-            staticValuesVVDL.add(StaticValues("Crescent Dual Lumen VV ECLS Cannula", "IJV 13Fr"))
-        } else {
-            staticValuesVVDL.add(
-                StaticValues(
-                    "Avalon Elite Bi-Caval Dual Lumen Catheter", "IJV 27Fr"
-                )
-            )
-            staticValuesVVDL.add(StaticValues("Crescent Dual Lumen VV ECLS Cannula", "IJV 24Fr"))
-        }
-        val staticValuesListAdapterVVDL = StaticValuesListAdapter(staticValuesVVDL)
+
+        val staticValuesListAdapterVVDL = StaticValuesListAdapter(listVVDL)
         binding.rvVVDL?.adapter = staticValuesListAdapterVVDL
     }
 
@@ -421,10 +319,6 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         targetBloodFlowListAdapter = TargetBloodFlowListAdapter(targetBloodFlow)
         binding.rvTargetBloodFlow?.visibility = View.VISIBLE
         binding.rvTargetBloodFlow?.adapter = targetBloodFlowListAdapter
-
-        /*generateVANeckList()
-        generateVAGroinList()
-        generateVVDLList()*/
     }
 
     private fun showTargetCIListDialog() {
@@ -451,7 +345,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             targetCIArrayList.add(StaticValues("175"))
             targetCIArrayList.add(StaticValues("200"))
             targetCIArrayList.add(StaticValues("250"))
-        }else{
+        } else {
             targetCIArrayList.add(StaticValues("0.5"))
             targetCIArrayList.add(StaticValues("1.0"))
             targetCIArrayList.add(StaticValues("1.2"))
@@ -479,6 +373,47 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     override fun onValueClick(value: StaticValues?, position: Int) {
         value?.name?.let { sharedViewModel.setEditTextCI(it) }
+        if (binding.tvTitle.text == getString(R.string.pediatric_entry)) {
+            val mTargetBloodFlow = convertStringToDouble(binding.etweight.text.toString())?.let {
+                calTargetBloodFlowForPediatricEntry(
+                    it, sharedViewModel.editTextCI.value?.toDouble()!!
+                )
+            }
+            if (mTargetBloodFlow?.removeSuffix(" L/min")?.toDouble() != null) {
+                sharedViewModel.setValueTargetBloodFlow(
+                    mTargetBloodFlow?.removeSuffix(" L/min")?.toDouble()
+                )
+            } else {
+                sharedViewModel.setValueTargetBloodFlow(null)
+            }
+
+            sharedViewModel.valueTargetBloodFlow.value?.let { Calculations.getVANeckForPed(it) }
+                ?.let { generateVANeckList(it) }
+            sharedViewModel.valueTargetBloodFlow.value?.let { Calculations.getVAGroinForPed(it) }
+                ?.let { generateVAGroinList(it) }
+            sharedViewModel.valueTargetBloodFlow.value?.let { Calculations.getVVDLForPed(it) }
+                ?.let { generateVVDLList(it) }
+
+        } else {
+            val mTargetBloodFlow = calCardiacOutputWithCIAndBSA(
+                sharedViewModel.editTextCI.value?.toDouble()!!, sharedViewModel.valueBSA.value!!
+            )
+
+            if (mTargetBloodFlow?.removeSuffix(" L/min")?.toDouble() != null) {
+                sharedViewModel.setValueTargetBloodFlow(
+                    mTargetBloodFlow?.removeSuffix(" L/min")?.toDouble()
+                )
+            } else {
+                sharedViewModel.setValueTargetBloodFlow(null)
+            }
+
+            sharedViewModel.valueTargetBloodFlow.value?.let { Calculations.getVANeckForAud(it) }
+                ?.let { generateVANeckList(it) }
+            sharedViewModel.valueTargetBloodFlow.value?.let { Calculations.getVAGroinForAud(it) }
+                ?.let { generateVAGroinList(it) }
+            sharedViewModel.valueTargetBloodFlow.value?.let { Calculations.getVVDLForAud(it) }
+                ?.let { generateVVDLList(it) }
+        }
         targetBloodFlowListAdapter?.updateSelection(value?.value)
         valuesDialog?.dismiss()
     }

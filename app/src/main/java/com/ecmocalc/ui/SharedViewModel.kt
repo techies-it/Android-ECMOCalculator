@@ -34,6 +34,13 @@ class SharedViewModel: ViewModel() {
         _valueBSA.value = value
     }
 
+    private val _valueTargetBloodFlow = MutableLiveData<Double?>()
+    val valueTargetBloodFlow: LiveData<Double?> get() = _valueTargetBloodFlow
+
+    fun setValueTargetBloodFlow(value: Double?) {
+        _valueTargetBloodFlow.value = value
+    }
+
     /* Calculation Screen values */
 
     private val _valueLbs = MutableLiveData<String>()
