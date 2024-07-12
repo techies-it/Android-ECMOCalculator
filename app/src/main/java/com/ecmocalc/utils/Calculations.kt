@@ -83,7 +83,7 @@ class Calculations {
          */
         fun calOxygenIndex(fio2: Double, map: Double, pao2: Double): String {
             val resultOxygenIndex =
-                ((fio2 / 100) * map / pao2) * 100 /* Acc. to doc val resultOxygenIndex = fio2(%) * map / pao2 */
+                ((map * (fio2 / 100)) / pao2) * 100 /* Acc. to doc val resultOxygenIndex = fio2(%) * map / pao2 */
             return String.format(Locale.ROOT, "%.1f", resultOxygenIndex)
         }
 

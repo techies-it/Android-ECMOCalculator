@@ -70,6 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:focusable="true"
                         android:background="@drawable/edit_text_bg"
                         app:boxBackgroundMode="outline"
                         app:boxCornerRadiusBottomEnd="8dp"
@@ -90,6 +91,7 @@
                             android:id="@+id/etweight"
                             style="@style/AppTheme.EditText"
                             android:layout_width="match_parent"
+                            android:focusable="true"
                             android:layout_height="wrap_content"
                             android:hint="Kg"
                             android:imeOptions="actionDone"
@@ -181,6 +183,7 @@
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal"
                         android:padding="16dp"
+                        android:focusable="false"
                         android:gravity="center_vertical"
                         android:background="@drawable/edit_text_bg_for_text_view"
                         app:layout_constraintStart_toStartOf="parent"
@@ -193,6 +196,7 @@
                             android:gravity="center_vertical"
                             android:layout_weight="1"
                             android:textSize="15sp"
+                            android:focusable="false"
                             android:textColor="@color/black"
                             android:fontFamily="@font/inter_medium"
                             android:hint="@string/select" />
@@ -221,7 +225,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_target_blood_flow"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -251,16 +255,13 @@
                             android:layout_height="wrap_content"
                             android:background="@drawable/list_bg"
                             android:visibility="gone"
-                            android:paddingBottom="16dp"
                             android:paddingStart="16dp"
+                            android:paddingBottom="0.5dp"
                             android:paddingEnd="16dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:listitem="@layout/target_blood_flow_item" />
 
                     </androidx.cardview.widget.CardView>
-
-
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -272,34 +273,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_cannula_selection">
 
                 <TextView
                     android:id="@+id/tv_title_VA_Neck"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VA Neck"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/va_neck"
+                    style="@style/Result"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_sub_title_VA_Neck"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Calculated at: ≤ 100mmHg Pressure Drop"
-                    android:textSize="14sp"
+                    android:text="@string/calculated_at_100mmhg_pressure_drop"
+                    style="@style/SubTitleGrey"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VA_Neck" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_VA_Neck"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VA_Neck"
-                    tools:listitem="@layout/static_values_item" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_VA_Neck"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/static_values_item" />
+
+                </androidx.cardview.widget.CardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -308,34 +324,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_VA_Neck">
 
                 <TextView
                     android:id="@+id/tv_title_VA_Groin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VA Groin"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/va_groin"
+                    style="@style/Result"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_sub_title_VA_Groin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Calculated at: ≤ 100mmHg Pressure Drop"
-                    android:textSize="14sp"
+                    android:text="@string/calculated_at_100mmhg_pressure_drop"
+                    style="@style/SubTitleGrey"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VA_Groin" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_VA_Groin"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VA_Groin"
-                    tools:listitem="@layout/static_values_item" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_VA_Groin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VA_Groin"
+                        tools:listitem="@layout/static_values_item" />
+
+                </androidx.cardview.widget.CardView>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -344,7 +377,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 android:paddingBottom="110dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_VA_Groin">
 
@@ -352,27 +385,42 @@
                     android:id="@+id/tv_title_VVDL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VVDL"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/vvdl"
+                    style="@style/Result"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_sub_title_VVDL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Calculated at: ≤ 150mmHg Pressure Drop"
-                    android:textSize="14sp"
+                    android:text="@string/calculated_at_150mmhg_pressure_drop"
+                    style="@style/SubTitleGrey"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VVDL" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_VVDL"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VVDL"
-                    tools:listitem="@layout/static_values_item" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_VVDL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/static_values_item" />
+
+                </androidx.cardview.widget.CardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

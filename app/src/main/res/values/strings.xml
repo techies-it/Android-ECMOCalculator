@@ -46,5 +46,10 @@
     <string name="support">Support</string>
     <string name="select">Select</string>
     <string name="cancel">Cancel</string>
+    <string name="va_neck">VA Neck</string>
+    <string name="va_groin">VA Groin</string>
+    <string name="vvdl">VVDL</string>
+    <string name="calculated_at_100mmhg_pressure_drop">Calculated at: ≤ 100mmHg Pressure Drop</string>
+    <string name="calculated_at_150mmhg_pressure_drop">Calculated at: ≤ 150mmHg Pressure Drop</string>
 
 </resources>

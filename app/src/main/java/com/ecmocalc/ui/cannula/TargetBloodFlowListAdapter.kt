@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ecmocalc.R
 import com.ecmocalc.models.StaticValues
@@ -48,15 +47,9 @@ class TargetBloodFlowListAdapter(
         holder.tvName.text = staticValue?.name
 
         if (staticValue?.isSelected == true) {
-            mContext?.let { ContextCompat.getColor(it, R.color.blue) }
-                ?.let { holder.tvName.setBackgroundColor(it) }
-            mContext?.let { ContextCompat.getColor(it, R.color.white) }
-                ?.let { holder.tvName.setTextColor(it) }
+            holder.tvName.setTextAppearance(R.style.Result)
         }else{
-            mContext?.let { ContextCompat.getColor(it, android.R.color.transparent) }
-                ?.let { holder.tvName.setBackgroundColor(it) }
-            mContext?.let { ContextCompat.getColor(it, R.color.grey) }
-                ?.let { holder.tvName.setTextColor(it) }
+            holder.tvName.setTextAppearance(R.style.DataText)
         }
     }
 

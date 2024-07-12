@@ -6,6 +6,13 @@ import androidx.lifecycle.ViewModel
 
 class SharedViewModel: ViewModel() {
 
+    private val _textViewTitle = MutableLiveData<String>()
+    val textViewTitle: LiveData<String> get() = _textViewTitle
+
+    fun setTextViewTitle(value: String) {
+        _textViewTitle.value = value
+    }
+
     private val _editTextWeight = MutableLiveData<String>()
     val editTextWeight: LiveData<String> get() = _editTextWeight
 
@@ -27,10 +34,10 @@ class SharedViewModel: ViewModel() {
         _editTextCI.value = value
     }
 
-    private val _valueBSA = MutableLiveData<Double>()
-    val valueBSA: LiveData<Double> get() = _valueBSA
+    private val _valueBSA = MutableLiveData<Double?>()
+    val valueBSA: LiveData<Double?> get() = _valueBSA
 
-    fun setValueBSA(value: Double) {
+    fun setValueBSA(value: Double?) {
         _valueBSA.value = value
     }
 

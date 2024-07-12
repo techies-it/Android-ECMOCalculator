@@ -45,7 +45,6 @@ class CalculatorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
