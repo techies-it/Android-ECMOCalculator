@@ -37,6 +37,14 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
     ): View {
         _binding = FragmentCannulaBinding.inflate(inflater, container, false)
 
+        binding.tvTitle.addTextChangedListener { value ->
+            if (value.toString() == getString(R.string.adult_entry)) {
+                sharedViewModel.setEditTextCI(sharedViewModel.editTextCIForAud.value)
+            } else if (value.toString() == getString(R.string.pediatric_entry)) {
+                sharedViewModel.setEditTextCI(sharedViewModel.editTextCIForPed.value)
+            }
+        }
+
         binding.layoutTargetCi.setOnClickListener {
             showTargetCIListDialog()
         }
@@ -54,6 +62,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                 }
             }
         }
+
+
 
         sharedViewModel.editTextWeight.observe(viewLifecycleOwner) { value ->
             val formattedValue = convertStringToDouble(value)
@@ -75,9 +85,12 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     binding.layoutTargetCi.visibility = View.VISIBLE
                     binding.layoutTargetBloodFlow.visibility = View.GONE
                     binding.tvBSA.visibility = View.GONE
-                    //  sharedViewModel.setEditTextCI(null)
                     binding.etheight.text = null
                     generateTargetBloodFlowList()
+                    if (!sharedViewModel.editTextWeight.value.isNullOrEmpty() && !sharedViewModel.editTextCI.value.isNullOrEmpty()) {
+                        targetBloodFlowListAdapter?.updateSelection(sharedViewModel.editTextCI.value)
+                        showCannulaLists()
+                    }
                 }
 
                 value.isNullOrEmpty() || formattedValue == 0.0 -> {
@@ -105,12 +118,20 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
 
         sharedViewModel.editTextHeight.observe(viewLifecycleOwner, Observer { value ->
-            if (!value.isNullOrEmpty()) {
-                calculateBSA()
+            if (sharedViewModel.textViewTitle.value == getString(R.string.adult_entry)) {
+                if (!value.isNullOrEmpty()) {
+                    calculateBSA()
+                } else {
+                    binding.tvBSA.text = getString(R.string.bsa_m)
+                    sharedViewModel.setValueBSA(null)
+                    binding.layoutTargetBloodFlow.visibility = View.GONE
+                    binding.layoutVANeck.visibility = View.GONE
+                    binding.layoutVAGroin.visibility = View.GONE
+                    binding.layoutVVDL.visibility = View.GONE
+                }
             }else{
                 binding.tvBSA.text = getString(R.string.bsa_m)
                 sharedViewModel.setValueBSA(null)
-                binding.layoutTargetBloodFlow.visibility = View.GONE
                 binding.layoutVANeck.visibility = View.GONE
                 binding.layoutVAGroin.visibility = View.GONE
                 binding.layoutVVDL.visibility = View.GONE
@@ -192,8 +213,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         val targetBloodFlow: ArrayList<StaticValues> = ArrayList<StaticValues>()
         targetBloodFlow.clear()
         if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)) {
-            //binding.etTargetCI.text = null
-            binding.tvTitleTargetBloodFlow.text = "0-10Kg Target Blood Flow"
+
+            binding.tvTitleTargetBloodFlow.text = getString(R.string._0_10kg_target_blood_flow)
             targetBloodFlow.add(StaticValues("100 ml/kg : ${
                 convertStringToDouble(binding.etweight.text.toString())?.let {
                     calTargetBloodFlowForPediatricEntry(
@@ -229,8 +250,10 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     )
                 }
             }", "250"))
+
         } else {
-            binding.tvTitleTargetBloodFlow.text = "10Kg and Greater Target Blood Flow"
+            binding.tvTitleTargetBloodFlow.text =
+                getString(R.string._10kg_and_greater_target_blood_flow)
             if (sharedViewModel.valueBSA.value != null
                 && sharedViewModel.valueBSA.value != 0.0
                 && sharedViewModel.editTextWeight.value != null
@@ -350,7 +373,6 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         targetBloodFlowListAdapter = TargetBloodFlowListAdapter(targetBloodFlow)
         binding.rvTargetBloodFlow.visibility = View.VISIBLE
         binding.rvTargetBloodFlow.adapter = targetBloodFlowListAdapter
-
     }
 
     private fun showTargetCIListDialog() {
@@ -405,6 +427,11 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     override fun onValueClick(value: StaticValues?, position: Int) {
         value?.name?.let { sharedViewModel.setEditTextCI(it) }
+        if (sharedViewModel.textViewTitle.value == getString(R.string.adult_entry)) {
+            value?.name?.let { sharedViewModel.setEditTextCIForAud(it) }
+        } else if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)) {
+            value?.name?.let { sharedViewModel.setEditTextCIForPed(it) }
+        }
         valuesDialog?.dismiss()
     }
 

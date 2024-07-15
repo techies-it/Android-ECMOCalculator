@@ -34,6 +34,20 @@ class SharedViewModel: ViewModel() {
         _editTextCI.value = value
     }
 
+    private val _editTextCIForPed = MutableLiveData<String?>()
+    val editTextCIForPed: LiveData<String?> get() = _editTextCIForPed
+
+    fun setEditTextCIForPed(value: String?) {
+        _editTextCIForPed.value = value
+    }
+
+    private val _editTextCIForAud = MutableLiveData<String?>()
+    val editTextCIForAud: LiveData<String?> get() = _editTextCIForAud
+
+    fun setEditTextCIForAud(value: String?) {
+        _editTextCIForAud.value = value
+    }
+
     private val _valueBSA = MutableLiveData<Double?>()
     val valueBSA: LiveData<Double?> get() = _valueBSA
 

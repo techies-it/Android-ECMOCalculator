@@ -8,8 +8,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.ecmocalc.R
 import com.ecmocalc.databinding.FragmentCalculatorBinding
+import com.ecmocalc.models.StaticValues
 import com.ecmocalc.ui.SharedViewModel
 import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea
 import com.ecmocalc.utils.Calculations.Companion.calCardiacIndex
@@ -249,12 +249,23 @@ class CalculatorFragment : Fragment() {
         sharedViewModel.valueWeightForHeparinLoadingDose.observe(
             viewLifecycleOwner,
             Observer { value ->
-                binding.tvResultHeparinLoadingDose.text = if (value.isNullOrEmpty()) {
-                    getString(R.string.default_weight_heparin_loading_dose)
+                var resultHeparinLoadingDoseList: ArrayList<StaticValues> = ArrayList<StaticValues>()
+                resultHeparinLoadingDoseList.clear()
+                if (value.isNullOrEmpty()) {
+                    resultHeparinLoadingDoseList.add(StaticValues("25u/Kg = 0 units"))
+                    resultHeparinLoadingDoseList.add(StaticValues("50u/Kg = 0 units"))
+                    resultHeparinLoadingDoseList.add(StaticValues("75u/Kg = 0 units"))
+                    resultHeparinLoadingDoseList.add(StaticValues("100u/Kg = 0 units"))
+                    resultHeparinLoadingDoseList.add(StaticValues("200u/Kg = 0 units"))
+                    resultHeparinLoadingDoseList.add(StaticValues("300u/Kg = 0 units"))
                 } else {
-                    Helper.convertStringToDouble(value)
-                        ?.let { calHeparinLoadingDose(it) }
+                    resultHeparinLoadingDoseList = Helper.convertStringToDouble(value)
+                        ?.let { calHeparinLoadingDose(it) }!!
                 }
+
+                val resultsListAdapter = ResultsListAdapter(resultHeparinLoadingDoseList)
+                binding.rvResultHeparinLoadingDose.visibility = View.VISIBLE
+                binding.rvResultHeparinLoadingDose.adapter = resultsListAdapter
             })
     }
 
@@ -266,12 +277,26 @@ class CalculatorFragment : Fragment() {
         sharedViewModel.valueBSAForCardiacIndexCalculator.observe(
             viewLifecycleOwner,
             Observer { value ->
-                binding.tvResultCardiacIndexCalculator.text = if (value.isNullOrEmpty()) {
-                    getString(R.string.default_cardiac_index_calculator)
+                var resultCardiacIndexCalculatorList: ArrayList<StaticValues> = ArrayList<StaticValues>()
+                resultCardiacIndexCalculatorList.clear()
+                if (value.isNullOrEmpty()) {
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 1.0 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 1.5 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 1.8 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 2.0 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 2.2 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 2.4 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 2.6 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 2.8 = 0.00 L/min"))
+                    resultCardiacIndexCalculatorList.add(StaticValues("CI 3.0 = 0.00 L/min"))
                 } else {
-                    Helper.convertStringToDouble(value)
-                        ?.let { calCardiacIndexCalculator(it) }
+                    resultCardiacIndexCalculatorList = Helper.convertStringToDouble(value)
+                        ?.let { calCardiacIndexCalculator(it) }!!
                 }
+
+                val resultsListAdapter = ResultsListAdapter(resultCardiacIndexCalculatorList)
+                binding.rvResultCardiacIndexCalculator.visibility = View.VISIBLE
+                binding.rvResultCardiacIndexCalculator.adapter = resultsListAdapter
             })
     }
 

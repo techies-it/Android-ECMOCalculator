@@ -113,14 +113,17 @@ class Calculations {
          *
          * @param weight - Kg
          */
-        fun calHeparinLoadingDose(weight: Double): String {
-            return "25u/Kg = " + formatNumberWithDecimal(25 * weight) + " units\n" +
-                    "50u/Kg = " + formatNumberWithDecimal(50 * weight) + " units\n" +
-                    "75u/Kg = " + formatNumberWithDecimal(75 * weight) + " units\n" +
-                    "100u/Kg = " + formatNumberWithDecimal(100 * weight) + " units\n" +
-                    "200u/Kg = " + formatNumberWithDecimal(200 * weight) + " units\n" +
-                    "300u/Kg = " + formatNumberWithDecimal(300 * weight) + " units\n" +
-                    "400u/Kg = " + formatNumberWithDecimal(400 * weight) + " units"
+        fun calHeparinLoadingDose(weight: Double): ArrayList<StaticValues> {
+            val resultHeparinLoadingDoseList: ArrayList<StaticValues> = ArrayList<StaticValues>()
+            resultHeparinLoadingDoseList.clear()
+            resultHeparinLoadingDoseList.add(StaticValues("25u/Kg = " + formatNumberWithDecimal(25 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("50u/Kg = " + formatNumberWithDecimal(50 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("75u/Kg = " + formatNumberWithDecimal(75 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("100u/Kg = " + formatNumberWithDecimal(100 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("200u/Kg = " + formatNumberWithDecimal(200 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("300u/Kg = " + formatNumberWithDecimal(300 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("400u/Kg = " + formatNumberWithDecimal(400 * weight) + " units"))
+            return resultHeparinLoadingDoseList
         }
 
         /**
@@ -137,16 +140,19 @@ class Calculations {
          *
          * @param BSA - m^2 or m²
          */
-        fun calCardiacIndexCalculator(BSA: Double): String {
-            return "CI 1.0 = " + String.format(Locale.ROOT, "%.2f", 1.0 * BSA) + " L/min\n" +
-                    "CI 1.5 = " + String.format(Locale.ROOT, "%.2f", 1.5 * BSA) + " L/min\n" +
-                    "CI 1.8 = " + String.format(Locale.ROOT, "%.2f", 1.8 * BSA) + " L/min\n" +
-                    "CI 2.0 = " + String.format(Locale.ROOT, "%.2f", 2.0 * BSA) + " L/min\n" +
-                    "CI 2.2 = " + String.format(Locale.ROOT, "%.2f", 2.2 * BSA) + " L/min\n" +
-                    "CI 2.4 = " + String.format(Locale.ROOT, "%.2f", 2.4 * BSA) + " L/min\n" +
-                    "CI 2.6 = " + String.format(Locale.ROOT, "%.2f", 2.6 * BSA) + " L/min\n" +
-                    "CI 2.8 = " + String.format(Locale.ROOT, "%.2f", 2.8 * BSA) + " L/min\n" +
-                    "CI 3.0 = " + String.format(Locale.ROOT, "%.2f", 3.0 * BSA) + " L/min"
+        fun calCardiacIndexCalculator(BSA: Double): ArrayList<StaticValues> {
+            val resultCardiacIndexCalculatorList: ArrayList<StaticValues> = ArrayList<StaticValues>()
+            resultCardiacIndexCalculatorList.clear()
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 1.0 = " + String.format(Locale.ROOT, "%.2f", 1.0 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 1.5 = " + String.format(Locale.ROOT, "%.2f", 1.5 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 1.8 = " + String.format(Locale.ROOT, "%.2f", 1.8 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.0 = " + String.format(Locale.ROOT, "%.2f", 2.0 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.2 = " + String.format(Locale.ROOT, "%.2f", 2.2 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.4 = " + String.format(Locale.ROOT, "%.2f", 2.4 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.6 = " + String.format(Locale.ROOT, "%.2f", 2.6 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.8 = " + String.format(Locale.ROOT, "%.2f", 2.8 * BSA) + " L/min"))
+            resultCardiacIndexCalculatorList.add(StaticValues("CI 3.0 = " + String.format(Locale.ROOT, "%.2f", 3.0 * BSA) + " L/min"))
+            return  resultCardiacIndexCalculatorList
         }
 
         /**

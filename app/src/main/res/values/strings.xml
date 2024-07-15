@@ -51,5 +51,7 @@
     <string name="vvdl">VVDL</string>
     <string name="calculated_at_100mmhg_pressure_drop">Calculated at: ≤ 100mmHg Pressure Drop</string>
     <string name="calculated_at_150mmhg_pressure_drop">Calculated at: ≤ 150mmHg Pressure Drop</string>
+    <string name="_0_10kg_target_blood_flow">0-10Kg Target Blood Flow</string>
+    <string name="_10kg_and_greater_target_blood_flow">10Kg and Greater Target Blood Flow</string>
 
 </resources>
