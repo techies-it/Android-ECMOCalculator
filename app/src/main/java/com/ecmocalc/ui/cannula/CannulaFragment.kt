@@ -2,6 +2,8 @@ package com.ecmocalc.ui.cannula
 
 import android.app.Dialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,9 +65,28 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             }
         }
 
+        binding.etweight.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                s?.let {
+                    sharedViewModel.setEditTextWeight(it.toString())
+                }
+            }
+        })
 
         sharedViewModel.editTextWeight.observe(viewLifecycleOwner) { value ->
+            if (binding.etweight.text.toString() != value) {
+                binding.etweight.setText(value)
+                binding.etweight.setSelection(value.length)
+            }
+
             val formattedValue = convertStringToDouble(value)
             when {
                 formattedValue != null && formattedValue > 10.0 -> {
@@ -111,11 +132,6 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             }
         }
 
-        binding.etweight.addTextChangedListener { value ->
-            sharedViewModel.setEditTextWeight(value.toString())
-        }
-
-
 
         sharedViewModel.editTextHeight.observe(viewLifecycleOwner, Observer { value ->
             if (sharedViewModel.textViewTitle.value == getString(R.string.adult_entry)) {
@@ -129,7 +145,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     binding.layoutVAGroin.visibility = View.GONE
                     binding.layoutVVDL.visibility = View.GONE
                 }
-            }else{
+            } else {
                 binding.tvBSA.text = getString(R.string.bsa_m)
                 sharedViewModel.setValueBSA(null)
                 binding.layoutVANeck.visibility = View.GONE

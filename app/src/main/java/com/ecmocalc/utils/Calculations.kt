@@ -180,7 +180,7 @@ class Calculations {
         fun calDilutionalHCT(weight: Double, hematocrit: Double, eclsCircuit: Double): String {
             val resultDilutionalHCT =
                 (((weight * 75) * (hematocrit / 100)) / (eclsCircuit + (weight * 75))) * 100
-            return formatNumberWithDecimal(resultDilutionalHCT) + " %"
+            return formatNumberWithDecimal1(resultDilutionalHCT) + " %"
         }
 
         /**
@@ -398,6 +398,16 @@ class Calculations {
                 }
             }
             return decimalFormat.format(number)
+        }
+
+        private fun formatNumberWithDecimal1(number: Double): String {
+            val hasFractionalPart = number % 1 != 0.0
+
+            val decimalFormat = DecimalFormat(if (hasFractionalPart) "#,###.#" else "#,###").apply {
+                roundingMode = RoundingMode.HALF_UP
+            }
+            var res = String.format(Locale.ROOT, "%.1f", decimalFormat.format(number).toDouble())
+            return res
         }
 
         private fun formatNumberWithDecimalForTwoDecimalPlaces(number: Double): String {

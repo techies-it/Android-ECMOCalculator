@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.viewPager.adapter = MyFragmentStateAdapter(this)
-
+        binding.viewPager.offscreenPageLimit = 1 // To fix Focus issue with EditTexts in Fragments when using ViewPager2
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.calculator -> {
@@ -75,3 +75,4 @@ class MainActivity : AppCompatActivity() {
 // https://stackoverflow.com/questions/68711324/android-how-to-set-a-drawable-as-a-windowsplashscreenbackground-parameter-in-th/72464371#72464371
 // https://github.com/ionic-team/capacitor-assets/issues/495
 // https://developer.android.com/develop/ui/views/launch/splash-screen
+// https://github.com/android/views-widgets-samples/issues/107
