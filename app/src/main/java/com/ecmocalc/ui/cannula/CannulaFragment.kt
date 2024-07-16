@@ -19,7 +19,7 @@ import com.ecmocalc.databinding.FragmentCannulaBinding
 import com.ecmocalc.models.StaticValues
 import com.ecmocalc.ui.SharedViewModel
 import com.ecmocalc.utils.Calculations
-import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea
+import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea1
 import com.ecmocalc.utils.Calculations.Companion.calCardiacOutputWithCIAndBSA
 import com.ecmocalc.utils.Calculations.Companion.calTargetBloodFlowForAdultEntry
 import com.ecmocalc.utils.Calculations.Companion.calTargetBloodFlowForPediatricEntry
@@ -170,7 +170,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             ?.let { it1 -> convertStringToDouble(it1) }
 
         if (formattedValueHeight != null && formattedValueWeight != null) {
-            val finalBSA = "BSA ${calBodySurfaceArea(formattedValueWeight, formattedValueHeight)}"
+            val finalBSA = "BSA ${calBodySurfaceArea1(formattedValueWeight, formattedValueHeight)}"
             sharedViewModel.setValueBSA(
                 finalBSA.removeSuffix(" m²").removePrefix("BSA ").toDouble()
             )

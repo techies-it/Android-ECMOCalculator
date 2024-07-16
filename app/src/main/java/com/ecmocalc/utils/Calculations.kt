@@ -61,6 +61,13 @@ class Calculations {
             return String.format(Locale.ROOT, "%.2f", resultBSA) + " m²"
         }
 
+        fun calBodySurfaceArea1(weight: Double, height: Double): String {
+            val heightPower = height.pow(0.725)
+            val weightPower = weight.pow(0.425)
+            val resultBSA = 0.007184 * heightPower * weightPower
+            return String.format(Locale.ROOT, "%.3f", resultBSA) + " m²"
+        }
+
         /**
          * Calculate the Weight based Body Surface Area using the formula:
          * ((Weight * 4) + 7) / (90 + Weight )
