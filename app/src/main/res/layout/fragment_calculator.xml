@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_layout_calculator"
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.calculator.CalculatorFragment">
@@ -15,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/fakeView"
         android:fillViewport="true"
+        android:animateLayoutChanges="false"
         android:scrollbarThumbVertical="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -2376,24 +2378,25 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_consumption">
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_consumption"
+                app:layout_constraintVertical_bias="0.0">
 
                 <TextView
                     android:id="@+id/tv_sweep_gas_title"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/sweep_gas"
-                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_current_paco2_sweep_gas_sub_til"
+                    style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Current\n(PaCO₂)"
-                    style="@style/SubTitle"
-                    app:layout_constraintStart_toStartOf="@+id/current_paco2_sweep_gas_til"
                     app:layout_constraintEnd_toEndOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintStart_toStartOf="@+id/current_paco2_sweep_gas_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -2435,12 +2438,12 @@
 
                 <TextView
                     android:id="@+id/tv_current_sweep_flow_sweep_gas_sub_title"
+                    style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Current\n(Sweep Flow)"
-                    style="@style/SubTitle"
-                    app:layout_constraintStart_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
                     app:layout_constraintEnd_toEndOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintStart_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -2481,12 +2484,12 @@
 
                 <TextView
                     android:id="@+id/tv_desired_paco2_sweep_gas_sub_title"
+                    style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Desired\n(PaCO₂)"
-                    style="@style/SubTitle"
-                    app:layout_constraintStart_toStartOf="@+id/desired_paco2_sweep_gas_til"
                     app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintStart_toStartOf="@+id/desired_paco2_sweep_gas_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -2527,11 +2530,11 @@
 
                 <TextView
                     android:id="@+id/tv_result_sweep_gas"
+                    style="@style/Result"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Result"
-                    app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til"
-                    app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"/>
+                    app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -2542,7 +2545,8 @@
     <View
         android:id="@+id/fakeView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="94dp"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView"/>
 

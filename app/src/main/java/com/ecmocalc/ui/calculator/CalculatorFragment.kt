@@ -1,9 +1,12 @@
 package com.ecmocalc.ui.calculator
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -45,6 +48,7 @@ class CalculatorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
+        setupUI(binding.mainLayoutCalculator)
         return binding.root
     }
 
@@ -115,6 +119,7 @@ class CalculatorFragment : Fragment() {
                 Helper.convertStringToDouble(value)
                     ?.let { calInchesToCentimeters(it) }
             }
+            scrollAction()
         })
     }
 
@@ -130,6 +135,7 @@ class CalculatorFragment : Fragment() {
                 Helper.convertStringToDouble(value)
                     ?.let { calCentimetersToInches(it) }
             }
+            scrollAction()
         })
     }
 
@@ -160,6 +166,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultBSA.text = "--m²"
         }
+        scrollAction()
     }
 
     private fun uiWeightBaseBodySurfaceArea() {
@@ -174,6 +181,7 @@ class CalculatorFragment : Fragment() {
                 Helper.convertStringToDouble(value)
                     ?.let { calWeightBasedBodySurfaceArea(it) }
             }
+            scrollAction()
         })
     }
 
@@ -210,6 +218,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultOxygenIndex.text = "---"
         }
+        scrollAction()
     }
 
     private fun uiPaO2ByFiO2Ratio() {
@@ -239,6 +248,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultPaO2FiO2Ratio.text = "---"
         }
+        scrollAction()
     }
 
     private fun uiHeparinLoadingDose() {
@@ -266,6 +276,12 @@ class CalculatorFragment : Fragment() {
                 val resultsListAdapter = ResultsListAdapter(resultHeparinLoadingDoseList)
                 binding.rvResultHeparinLoadingDose.visibility = View.VISIBLE
                 binding.rvResultHeparinLoadingDose.adapter = resultsListAdapter
+                // Calculate new scroll position
+                val newScrollY = (binding.scrollView.scrollY + 600).coerceAtLeast(0)
+                // Scroll smoothly to a specific position
+                binding.scrollView.post {
+                    binding.scrollView.smoothScrollTo(0, newScrollY)
+                }
             })
     }
 
@@ -297,6 +313,12 @@ class CalculatorFragment : Fragment() {
                 val resultsListAdapter = ResultsListAdapter(resultCardiacIndexCalculatorList)
                 binding.rvResultCardiacIndexCalculator.visibility = View.VISIBLE
                 binding.rvResultCardiacIndexCalculator.adapter = resultsListAdapter
+                // Calculate new scroll position
+                val newScrollY = (binding.scrollView.scrollY + 600).coerceAtLeast(0)
+                // Scroll smoothly to a specific position
+                binding.scrollView.post {
+                    binding.scrollView.smoothScrollTo(0, newScrollY)
+                }
             })
     }
 
@@ -334,6 +356,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultEstimatedRedCellMass.text = "--- mL"
         }
+        scrollAction()
     }
 
     private fun uiDilutionalHematocrit() {
@@ -383,6 +406,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultDilutionalHematocritTil.text = "--- %"
         }
+        scrollAction()
     }
 
     private fun uiCardiacOutput() {
@@ -415,6 +439,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultCardiacOutput.text = "0.00 L/min"
         }
+        scrollAction()
     }
 
     private fun uiCardiacIndex() {
@@ -444,6 +469,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultCardiacIndex.text = "--- L/min/m²"
         }
+        scrollAction()
     }
 
     private fun uiSystemicVascularResistance() {
@@ -492,6 +518,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultSystemicVascularResistance.text = "--- Dynes-sec/cm⁵"
         }
+        scrollAction()
     }
 
     private fun uiPulmonaryVascularResistance() {
@@ -540,6 +567,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultPulmonaryVascularResistance.text = "--- Dynes-sec/cm⁵"
         }
+        scrollAction()
     }
 
     private fun uiOxygenContentArterial() {
@@ -588,6 +616,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultOxygenContentArterial.text = "--- mL/dL"
         }
+        scrollAction()
     }
 
     private fun uiOxygenDelivery() {
@@ -617,6 +646,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultOxygenDelivery.text = "--- mL/min"
         }
+        scrollAction()
     }
 
     private fun uiOxygenContentVenous() {
@@ -664,6 +694,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultOxygenContentVenous.text = "--- mL/dL"
         }
+        scrollAction()
     }
 
     private fun uiOxygenConsumption() {
@@ -696,6 +727,7 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultOxygenConsumption.text = "--- mL/min"
         }
+        scrollAction()
     }
 
     private fun uiSweepGas() {
@@ -740,10 +772,43 @@ class CalculatorFragment : Fragment() {
         } else {
             binding.tvResultSweepGas.text = "--- L/min"
         }
+        scrollAction()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun scrollAction(){
+        // Calculate new scroll position
+        val newScrollY = (binding.scrollView.scrollY + 90).coerceAtLeast(0)
+        // Scroll smoothly to a specific position
+        binding.scrollView.post {
+            binding.scrollView.smoothScrollTo(0, newScrollY)
+        }
+    }
+
+    private fun setupUI(view: View) {
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (view !is EditText) {
+            view.setOnTouchListener { v, event ->
+                hideSoftKeyboard()
+                false
+            }
+        }
+
+        // If a layout container, iterate over children and seed recursion.
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val innerView = view.getChildAt(i)
+                setupUI(innerView)
+            }
+        }
+    }
+
+    private fun hideSoftKeyboard() {
+        val inputMethodManager = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
     }
 }

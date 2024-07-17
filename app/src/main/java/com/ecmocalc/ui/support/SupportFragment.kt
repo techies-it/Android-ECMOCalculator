@@ -7,12 +7,12 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import com.ecmocalc.databinding.FragmentSupportBinding
 import com.ecmocalc.ui.WebViewActivity
 import com.ecmocalc.utils.Constants
@@ -21,7 +21,6 @@ class SupportFragment : Fragment() {
 
     private var _binding: FragmentSupportBinding? = null
     private val binding get() = _binding!!
-    private val CALL_PHONE_REQUEST_CODE = 101
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

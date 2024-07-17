@@ -448,6 +448,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         } else if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)) {
             value?.name?.let { sharedViewModel.setEditTextCIForPed(it) }
         }
+        binding.fakeView.visibility = View.GONE
         valuesDialog?.dismiss()
     }
 

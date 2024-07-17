@@ -172,7 +172,8 @@ class Calculations {
          */
         fun calEstimatedRedCellMass(weight: Double, hematocrit: Double): String {
             val resultERCM = (weight * 75 * (hematocrit / 100))
-            return Math.round(resultERCM).toString() + " ml"
+           // return Math.round(resultERCM).toString() + " ml"
+            return "$resultERCM ml"
         }
 
         /**
