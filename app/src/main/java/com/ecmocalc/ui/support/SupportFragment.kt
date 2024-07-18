@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.ecmocalc.databinding.FragmentSupportBinding
 import com.ecmocalc.ui.WebViewActivity
 import com.ecmocalc.utils.Constants
+import com.ecmocalc.utils.Helper.Companion.getNavigationMode
 
 class SupportFragment : Fragment() {
 
@@ -26,7 +27,13 @@ class SupportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSupportBinding.inflate(inflater,container,false)
+        _binding = FragmentSupportBinding.inflate(inflater, container, false)
+
+        if (getNavigationMode(requireContext())) {
+            binding.spacerView.visibility = View.GONE
+        } else {
+            binding.spacerView.visibility = View.VISIBLE
+        }
 
         binding.btPhone.setOnClickListener {
             checkCallingPermission()
@@ -53,7 +60,7 @@ class SupportFragment : Fragment() {
         return binding.root
     }
 
-    private fun checkCallingPermission(){
+    private fun checkCallingPermission() {
         when {
             ContextCompat.checkSelfPermission(
                 requireContext(),
@@ -62,10 +69,12 @@ class SupportFragment : Fragment() {
                 // You can use the location directly
                 makePhoneCall()
             }
+
             shouldShowRequestPermissionRationale(Manifest.permission.CALL_PHONE) -> {
                 // Explain to the user why you need the permission
                 showDialog()
             }
+
             else -> {
                 // Request the permission
                 requestPermissionLauncher.launch(Manifest.permission.CALL_PHONE)
@@ -115,7 +124,6 @@ class SupportFragment : Fragment() {
             //activity?.finish()
         }
     }
-
 
 
     override fun onDestroyView() {

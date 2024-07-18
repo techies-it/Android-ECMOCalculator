@@ -64,6 +64,13 @@ class SharedViewModel: ViewModel() {
 
     /* Calculation Screen values */
 
+    private val _scrollPosition = MutableLiveData<Int>()
+    val scrollPosition: LiveData<Int> get() = _scrollPosition
+
+    fun setScrollPosition(value: Int) {
+        _scrollPosition.value = value
+    }
+
     private val _valueLbs = MutableLiveData<String>()
     val valueLbs: LiveData<String> get() = _valueLbs
 

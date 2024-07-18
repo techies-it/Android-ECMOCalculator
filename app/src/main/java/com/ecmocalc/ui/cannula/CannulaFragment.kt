@@ -1,6 +1,8 @@
 package com.ecmocalc.ui.cannula
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -38,6 +42,8 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCannulaBinding.inflate(inflater, container, false)
+
+        setupUI(binding.mainLayoutCannula)
 
         binding.tvTitle.addTextChangedListener { value ->
             if (value.toString() == getString(R.string.adult_entry)) {
@@ -205,21 +211,18 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     private fun generateVANeckList(listVANeck: ArrayList<StaticValues>) {
         binding.layoutVANeck.visibility = View.VISIBLE
-
         val staticValuesListAdapterVANeck = StaticValuesListAdapter(listVANeck)
         binding.rvVANeck.adapter = staticValuesListAdapterVANeck
     }
 
     private fun generateVAGroinList(listVAGroin: ArrayList<StaticValues>) {
         binding.layoutVAGroin.visibility = View.VISIBLE
-
         val staticValuesListAdapterVAGroin = StaticValuesListAdapter(listVAGroin)
         binding.rvVAGroin.adapter = staticValuesListAdapterVAGroin
     }
 
     private fun generateVVDLList(listVVDL: ArrayList<StaticValues>) {
         binding.layoutVVDL.visibility = View.VISIBLE
-
         val staticValuesListAdapterVVDL = StaticValuesListAdapter(listVVDL)
         binding.rvVVDL.adapter = staticValuesListAdapterVVDL
     }
@@ -498,5 +501,30 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     ?.let { generateVVDLList(it) }
             }
         }
+    }
+
+    @SuppressLint("", "ClickableViewAccessibility")
+    private fun setupUI(view: View) {
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (view !is EditText) {
+            view.setOnTouchListener { v, event ->
+                hideSoftKeyboard()
+                false
+            }
+        }
+
+        // If a layout container, iterate over children and seed recursion.
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val innerView = view.getChildAt(i)
+                setupUI(innerView)
+            }
+        }
+    }
+
+    private fun hideSoftKeyboard() {
+        val inputMethodManager =
+            activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
     }
 }

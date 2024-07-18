@@ -148,18 +148,91 @@ class Calculations {
          * @param BSA - m^2 or m²
          */
         fun calCardiacIndexCalculator(BSA: Double): ArrayList<StaticValues> {
-            val resultCardiacIndexCalculatorList: ArrayList<StaticValues> = ArrayList<StaticValues>()
+            val resultCardiacIndexCalculatorList: ArrayList<StaticValues> =
+                ArrayList<StaticValues>()
             resultCardiacIndexCalculatorList.clear()
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 1.0 = " + String.format(Locale.ROOT, "%.2f", 1.0 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 1.5 = " + String.format(Locale.ROOT, "%.2f", 1.5 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 1.8 = " + String.format(Locale.ROOT, "%.2f", 1.8 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.0 = " + String.format(Locale.ROOT, "%.2f", 2.0 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.2 = " + String.format(Locale.ROOT, "%.2f", 2.2 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.4 = " + String.format(Locale.ROOT, "%.2f", 2.4 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.6 = " + String.format(Locale.ROOT, "%.2f", 2.6 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 2.8 = " + String.format(Locale.ROOT, "%.2f", 2.8 * BSA) + " L/min"))
-            resultCardiacIndexCalculatorList.add(StaticValues("CI 3.0 = " + String.format(Locale.ROOT, "%.2f", 3.0 * BSA) + " L/min"))
-            return  resultCardiacIndexCalculatorList
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 1.0 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        1.0 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 1.5 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        1.5 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 1.8 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        1.8 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 2.0 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        2.0 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 2.2 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        2.2 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 2.4 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        2.4 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 2.6 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        2.6 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 2.8 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        2.8 * BSA
+                    ) + " L/min"
+                )
+            )
+            resultCardiacIndexCalculatorList.add(
+                StaticValues(
+                    "CI 3.0 = " + String.format(
+                        Locale.ROOT,
+                        "%.2f",
+                        3.0 * BSA
+                    ) + " L/min"
+                )
+            )
+            return resultCardiacIndexCalculatorList
         }
 
         /**
@@ -172,8 +245,7 @@ class Calculations {
          */
         fun calEstimatedRedCellMass(weight: Double, hematocrit: Double): String {
             val resultERCM = (weight * 75 * (hematocrit / 100))
-           // return Math.round(resultERCM).toString() + " ml"
-            return "$resultERCM ml"
+            return String.format(Locale.ROOT, "%.2f", resultERCM) + " ml"
         }
 
         /**
@@ -414,7 +486,12 @@ class Calculations {
             val decimalFormat = DecimalFormat(if (hasFractionalPart) "#,###.#" else "#,###").apply {
                 roundingMode = RoundingMode.HALF_UP
             }
-            var res = String.format(Locale.ROOT, "%.1f", decimalFormat.format(number).toDouble())
+            val decimalFormatResult = decimalFormat.format(number).toDouble()
+            var res = if (decimalFormatResult.isNaN()) "0.0" else String.format(
+                Locale.ROOT,
+                "%.1f",
+                decimalFormatResult
+            )
             return res
         }
 
@@ -441,45 +518,101 @@ class Calculations {
         }
 
         /* Start : Logic for VA Neck, VA Groin, and VVDL list for pediatric */
-        fun getBioMedicusNextGenPediatricArterialCannulaeForPed(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..0.625 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Arterial Cannulae", value = "Arterial 8Fr")
-                in 0.626..1.25 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Arterial Cannulae", value = "Arterial 10Fr")
-                in 1.251..2.062 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Arterial Cannulae", value = "Arterial 12Fr")
-                in 2.063..2.5 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Arterial Cannulae", value = "Arterial 14Fr")
+        fun getBioMedicusNextGenPediatricArterialCannulaeForPed(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..0.625 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Arterial Cannulae",
+                    value = "Arterial 8Fr"
+                )
+
+                in 0.626..1.25 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Arterial Cannulae",
+                    value = "Arterial 10Fr"
+                )
+
+                in 1.251..2.062 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Arterial Cannulae",
+                    value = "Arterial 12Fr"
+                )
+
+                in 2.063..2.5 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Arterial Cannulae",
+                    value = "Arterial 14Fr"
+                )
+
                 else -> StaticValues(name = "NA", value = "NA")
             }
         }
 
-        private fun getBioMedicusNextGenPediatricVenousCannulaeForPed(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..0.75 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Venous Cannulae", value = "Venous 8Fr")
-                in 0.751..1.375 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Venous Cannulae", value = "Venous 10Fr")
-                in 1.376..2.187 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Venous Cannulae", value = "Venous 12Fr")
-                in 2.188..2.8 -> StaticValues(name = "Bio-Medicus NextGen Pediatric Venous Cannulae", value = "Venous 14Fr")
+        private fun getBioMedicusNextGenPediatricVenousCannulaeForPed(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..0.75 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Venous Cannulae",
+                    value = "Venous 8Fr"
+                )
+
+                in 0.751..1.375 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Venous Cannulae",
+                    value = "Venous 10Fr"
+                )
+
+                in 1.376..2.187 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Venous Cannulae",
+                    value = "Venous 12Fr"
+                )
+
+                in 2.188..2.8 -> StaticValues(
+                    name = "Bio-Medicus NextGen Pediatric Venous Cannulae",
+                    value = "Venous 14Fr"
+                )
+
                 else -> StaticValues(name = "NA", value = "NA")
             }
         }
 
-        private fun getAvalonEliteBiCavalDualLumenCatheterForPed(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..0.625 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 13Fr")
-                in 0.626..0.9 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 16Fr")
-                in 0.901..1.58 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 19Fr")
+        private fun getAvalonEliteBiCavalDualLumenCatheterForPed(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..0.625 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 13Fr"
+                )
+
+                in 0.626..0.9 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 16Fr"
+                )
+
+                in 0.901..1.58 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 19Fr"
+                )
+
                 else -> StaticValues(name = "NA", value = "NA")
             }
         }
 
-        private fun getCrescentDualLumenVVECLSCannulaForPed(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..0.75 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 13Fr")
-                in 0.751..1.25 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 15Fr")
-                in 1.26..1.8 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 19Fr")
+        private fun getCrescentDualLumenVVECLSCannulaForPed(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..0.75 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 13Fr"
+                )
+
+                in 0.751..1.25 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 15Fr"
+                )
+
+                in 1.26..1.8 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 19Fr"
+                )
+
                 else -> StaticValues(name = "NA", value = "NA")
             }
         }
 
-        fun getVANeckForPed(targetBloodFlow:Double):ArrayList<StaticValues>{
+        fun getVANeckForPed(targetBloodFlow: Double): ArrayList<StaticValues> {
             var list = ArrayList<StaticValues>()
             list.clear()
             list.add(getBioMedicusNextGenPediatricArterialCannulaeForPed(targetBloodFlow))
@@ -487,7 +620,7 @@ class Calculations {
             return list
         }
 
-        fun getVAGroinForPed(targetBloodFlow:Double):ArrayList<StaticValues>{
+        fun getVAGroinForPed(targetBloodFlow: Double): ArrayList<StaticValues> {
             var list = ArrayList<StaticValues>()
             list.clear()
             list.add(getBioMedicusNextGenPediatricArterialCannulaeForPed(targetBloodFlow))
@@ -495,7 +628,7 @@ class Calculations {
             return list
         }
 
-        fun getVVDLForPed(targetBloodFlow:Double):ArrayList<StaticValues>{
+        fun getVVDLForPed(targetBloodFlow: Double): ArrayList<StaticValues> {
             var list = ArrayList<StaticValues>()
             list.clear()
             list.add(getAvalonEliteBiCavalDualLumenCatheterForPed(targetBloodFlow))
@@ -507,132 +640,409 @@ class Calculations {
 
         /* Start : Logic for VA Neck, VA Groin, and VVDL list for adult */
 
-        private fun getBioMedicusNextGenFemoralArterialOrJugularArterialCannulaForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..3.1 -> StaticValues(name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula", value = "Arterial 15Fr")
-                in 3.101..4.1 -> StaticValues(name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula", value = "Arterial 17Fr")
-                in 4.101..5.5 -> StaticValues(name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula", value = "Arterial 19Fr")
-                in 5.501..6.5 -> StaticValues(name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula", value = "Arterial 21Fr")
-                in 6.5..7.0 -> StaticValues(name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula", value = "Arterial 23Fr")
-                in 6.5..7.5 -> StaticValues(name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula", value = "Arterial 25Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getBioMedicusNextGenFemoralVenousCannulaeForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..2.3 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 15Fr")
-                in 2.301..3.2 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 17Fr")
-                in 3.201..4.35 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 19Fr")
-                in 4.351..5.7 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 21Fr")
-                in 6.0..6.5 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 23Fr")
-                in 6.0..7.0 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 25Fr")
-                in 6.0..7.25 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 27Fr")
-                in 6.0..7.5 -> StaticValues(name = "Bio-Medicus NextGen Femoral Venous Cannulae", value = "Venous 29Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getGetingeArterialHLSCannula15cmForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..2.125 -> StaticValues(name = "Getinge Arterial HLS Cannula (15cm)", value = "Arterial 13Fr")
-                in 2.126..2.8 -> StaticValues(name = "Getinge Arterial HLS Cannula (15cm)", value = "Arterial 15Fr")
-                in 2.81..4.0 -> StaticValues(name = "Getinge Arterial HLS Cannula (15cm)", value = "Arterial 17Fr")
-                in 4.01..5.125 -> StaticValues(name = "Getinge Arterial HLS Cannula (15cm)", value = "Arterial 19Fr")
-                in 5.126..6.375 -> StaticValues(name = "Getinge Arterial HLS Cannula (15cm)", value = "Arterial 21Fr")
-                in 6.376..7.0 -> StaticValues(name = "Getinge Arterial HLS Cannula (15cm)", value = "Arterial 23Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getGetingeVenousHLSCannula15cmForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..2.125 -> StaticValues(name = "Getinge Venous HLS Cannula (15cm)", value = "Venous 13Fr")
-                in 2.126..2.8 -> StaticValues(name = "Getinge Venous HLS Cannula (15cm)", value = "Venous 15Fr")
-                in 2.81..4.0 -> StaticValues(name = "Getinge Venous HLS Cannula (15cm)", value = "Venous 17Fr")
-                in 4.01..5.125 -> StaticValues(name = "Getinge Venous HLS Cannula (15cm)", value = "Venous 19Fr")
-                in 5.126..6.375 -> StaticValues(name = "Getinge Venous HLS Cannula (15cm)", value = "Venous 21Fr")
-                in 6.376..7.0 -> StaticValues(name = "Getinge Venous HLS Cannula (15cm)", value = "Venous 23Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getGetingeArterialHLSCannula23cmForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..2.625 -> StaticValues(name = "Getinge Arterial HLS Cannula (23cm)", value = "Arterial 15Fr")
-                in 2.626..3.625 -> StaticValues(name = "Getinge Arterial HLS Cannula (23cm)", value = "Arterial 17Fr")
-                in 3.626..4.6 -> StaticValues(name = "Getinge Arterial HLS Cannula (23cm)", value = "Arterial 19Fr")
-                in 4.601..5.875 -> StaticValues(name = "Getinge Arterial HLS Cannula (23cm)", value = "Arterial 21Fr")
-                in 5.876..7.0 -> StaticValues(name = "Getinge Arterial HLS Cannula (23cm)", value = "Arterial 23Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getGetingeVenousHLSCannula23cmForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..2.625 -> StaticValues(name = "Getinge Venous HLS Cannula (23cm)", value = "Venous 15Fr")
-                in 2.626..3.625 -> StaticValues(name = "Getinge Venous HLS Cannula (23cm)", value = "Venous 17Fr")
-                in 3.626..4.6 -> StaticValues(name = "Getinge Venous HLS Cannula (23cm)", value = "Venous 19Fr")
-                in 4.601..5.875 -> StaticValues(name = "Getinge Venous HLS Cannula (23cm)", value = "Venous 21Fr")
-                in 5.876..7.0 -> StaticValues(name = "Getinge Venous HLS Cannula (23cm)", value = "Venous 23Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getGetingeVenousHLSCannula38cmForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..4.4 -> StaticValues(name = "Getinge Venous HLS Cannula (38cm)", value = "Venous 19Fr")
-                in 4.401..5.75 -> StaticValues(name = "Getinge Venous HLS Cannula (38cm)", value = "Venous 21Fr")
-                in 5.751..7.0 -> StaticValues(name = "Getinge Venous HLS Cannula (38cm)", value = "Venous 23Fr")
-                in 7.01..7.25 -> StaticValues(name = "Getinge Venous HLS Cannula (38cm)", value = "Venous 25Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getGetingeVenousHLSCannula55cmForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..5.3 -> StaticValues(name = "Getinge Venous HLS Cannula (55cm)", value = "Venous 21Fr")
-                in 5.301..6.6 -> StaticValues(name = "Getinge Venous HLS Cannula (55cm)", value = "Venous 23Fr")
-                in 6.601..7.0 -> StaticValues(name = "Getinge Venous HLS Cannula (55cm)", value = "Venous 25Fr")
-                in 7.01..7.25 -> StaticValues(name = "Getinge Venous HLS Cannula (55cm)", value = "Venous 29Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getEdwardsQuickdrawVenousCannulaForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..5.0 -> StaticValues(name = "Edwards Quickdraw Venous Cannula", value = "Venous 22Fr")
-                in 5.01..6.5 -> StaticValues(name = "Edwards Quickdraw Venous Cannula", value = "Venous 25Fr")
-                else -> StaticValues(name = "NA", value = "NA")
-            }
-        }
-        private fun getBioMedicusMultiStageFemoralVenousCannulaeForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..4.1 -> StaticValues(name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae", value = "Venous 19Fr")
-                in 4.101..5.375 -> StaticValues(name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae", value = "Venous 21Fr")
-                in 5.376..7.0 -> StaticValues(name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae", value = "Venous 25Fr")
-                else -> StaticValues(name = "NA", value = "NA")
+        private fun getBioMedicusNextGenFemoralArterialOrJugularArterialCannulaForAud(
+            targetBloodFlow: Double
+        ): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..3.1 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial 15Fr"
+                )
+
+                in 3.101..4.1 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial 17Fr"
+                )
+
+                in 4.101..5.5 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial 19Fr"
+                )
+
+                in 5.501..6.5 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial 21Fr"
+                )
+
+                in 6.5..7.0 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial 23Fr"
+                )
+
+                in 6.5..7.5 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial 25Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Arterial or Jugular Arterial Cannula",
+                    value = "Arterial NA"
+                )
             }
         }
 
-        private fun getAvalonEliteBiCavalDualLumenCatheterForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..1.4 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 20Fr")
-                in 1.401..2.25 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 23Fr")
-                in 2.251..3.35 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 27Fr")
-                in 3.351..4.75 -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV 31Fr")
-                else -> StaticValues(name = "NA", value = "NA")
+        private fun getBioMedicusNextGenFemoralVenousCannulaeForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..2.3 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 15Fr"
+                )
+
+                in 2.301..3.2 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 17Fr"
+                )
+
+                in 3.201..4.35 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 19Fr"
+                )
+
+                in 4.351..5.7 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 21Fr"
+                )
+
+                in 6.0..6.5 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 23Fr"
+                )
+
+                in 6.0..7.0 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 25Fr"
+                )
+
+                in 6.0..7.25 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 27Fr"
+                )
+
+                in 6.0..7.5 -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous 29Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Bio-Medicus NextGen Femoral Venous Cannulae",
+                    value = "Venous NA"
+                )
             }
         }
 
-        private fun getCrescentDualLumenVVECLSCannulaForAud(targetBloodFlow:Double):StaticValues{
-            return when(targetBloodFlow){
-                in 0.0..2.7 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 24Fr")
-                in 2.701..3.35 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 26Fr")
-                in 3.351..4.0 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 28Fr")
-                in 4.001..4.75 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 30Fr")
-                in 4.751..5.6 -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV 32Fr")
-                else -> StaticValues(name = "NA", value = "NA")
+        private fun getGetingeArterialHLSCannula15cmForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..2.125 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial 13Fr"
+                )
+
+                in 2.126..2.8 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial 15Fr"
+                )
+
+                in 2.81..4.0 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial 17Fr"
+                )
+
+                in 4.01..5.125 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial 19Fr"
+                )
+
+                in 5.126..6.375 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial 21Fr"
+                )
+
+                in 6.376..7.0 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial 23Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (15cm)",
+                    value = "Arterial NA"
+                )
+            }
+        }
+
+        private fun getGetingeVenousHLSCannula15cmForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..2.125 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous 13Fr"
+                )
+
+                in 2.126..2.8 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous 15Fr"
+                )
+
+                in 2.81..4.0 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous 17Fr"
+                )
+
+                in 4.01..5.125 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous 19Fr"
+                )
+
+                in 5.126..6.375 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous 21Fr"
+                )
+
+                in 6.376..7.0 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous 23Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (15cm)",
+                    value = "Venous NA"
+                )
+            }
+        }
+
+        private fun getGetingeArterialHLSCannula23cmForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..2.625 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (23cm)",
+                    value = "Arterial 15Fr"
+                )
+
+                in 2.626..3.625 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (23cm)",
+                    value = "Arterial 17Fr"
+                )
+
+                in 3.626..4.6 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (23cm)",
+                    value = "Arterial 19Fr"
+                )
+
+                in 4.601..5.875 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (23cm)",
+                    value = "Arterial 21Fr"
+                )
+
+                in 5.876..7.0 -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (23cm)",
+                    value = "Arterial 23Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Getinge Arterial HLS Cannula (23cm)",
+                    value = "Arterial NA"
+                )
+            }
+        }
+
+        private fun getGetingeVenousHLSCannula23cmForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..2.625 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (23cm)",
+                    value = "Venous 15Fr"
+                )
+
+                in 2.626..3.625 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (23cm)",
+                    value = "Venous 17Fr"
+                )
+
+                in 3.626..4.6 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (23cm)",
+                    value = "Venous 19Fr"
+                )
+
+                in 4.601..5.875 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (23cm)",
+                    value = "Venous 21Fr"
+                )
+
+                in 5.876..7.0 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (23cm)",
+                    value = "Venous 23Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (23cm)",
+                    value = "Venous NA"
+                )
+            }
+        }
+
+        private fun getGetingeVenousHLSCannula38cmForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..4.4 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (38cm)",
+                    value = "Venous 19Fr"
+                )
+
+                in 4.401..5.75 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (38cm)",
+                    value = "Venous 21Fr"
+                )
+
+                in 5.751..7.0 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (38cm)",
+                    value = "Venous 23Fr"
+                )
+
+                in 7.01..7.25 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (38cm)",
+                    value = "Venous 25Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (38cm)",
+                    value = "Venous NA"
+                )
+            }
+        }
+
+        private fun getGetingeVenousHLSCannula55cmForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..5.3 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (55cm)",
+                    value = "Venous 21Fr"
+                )
+
+                in 5.301..6.6 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (55cm)",
+                    value = "Venous 23Fr"
+                )
+
+                in 6.601..7.0 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (55cm)",
+                    value = "Venous 25Fr"
+                )
+
+                in 7.01..7.25 -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (55cm)",
+                    value = "Venous 29Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Getinge Venous HLS Cannula (55cm)",
+                    value = "Venous NA"
+                )
+            }
+        }
+
+        private fun getEdwardsQuickdrawVenousCannulaForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..5.0 -> StaticValues(
+                    name = "Edwards Quickdraw Venous Cannula",
+                    value = "Venous 22Fr"
+                )
+
+                in 5.01..6.5 -> StaticValues(
+                    name = "Edwards Quickdraw Venous Cannula",
+                    value = "Venous 25Fr"
+                )
+
+                else -> StaticValues(name = "Edwards Quickdraw Venous Cannula", value = "Venous NA")
+            }
+        }
+
+        private fun getBioMedicusMultiStageFemoralVenousCannulaeForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..4.1 -> StaticValues(
+                    name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae",
+                    value = "Venous 19Fr"
+                )
+
+                in 4.101..5.375 -> StaticValues(
+                    name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae",
+                    value = "Venous 21Fr"
+                )
+
+                in 5.376..7.0 -> StaticValues(
+                    name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae",
+                    value = "Venous 25Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Bio-Medicus Multi-Stage Femoral Venous Cannulae",
+                    value = "Venous NA"
+                )
+            }
+        }
+
+        private fun getAvalonEliteBiCavalDualLumenCatheterForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..1.4 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 20Fr"
+                )
+
+                in 1.401..2.25 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 23Fr"
+                )
+
+                in 2.251..3.35 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 27Fr"
+                )
+
+                in 3.351..4.75 -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV 31Fr"
+                )
+
+                else -> StaticValues(
+                    name = "Avalon Elite Bi-Caval Dual Lumen Catheter",
+                    value = "IJV NA"
+                )
+            }
+        }
+
+        private fun getCrescentDualLumenVVECLSCannulaForAud(targetBloodFlow: Double): StaticValues {
+            return when (targetBloodFlow) {
+                in 0.0..2.7 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 24Fr"
+                )
+
+                in 2.701..3.35 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 26Fr"
+                )
+
+                in 3.351..4.0 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 28Fr"
+                )
+
+                in 4.001..4.75 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 30Fr"
+                )
+
+                in 4.751..5.6 -> StaticValues(
+                    name = "Crescent Dual Lumen VV ECLS Cannula",
+                    value = "IJV 32Fr"
+                )
+
+                else -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV NA")
             }
         }
 
 
-        fun getVANeckForAud(targetBloodFlow:Double):ArrayList<StaticValues>{
+        fun getVANeckForAud(targetBloodFlow: Double): ArrayList<StaticValues> {
             var list = ArrayList<StaticValues>()
             list.clear()
-            list.add(getBioMedicusNextGenFemoralArterialOrJugularArterialCannulaForAud(targetBloodFlow))
+            list.add(
+                getBioMedicusNextGenFemoralArterialOrJugularArterialCannulaForAud(
+                    targetBloodFlow
+                )
+            )
             list.add(getBioMedicusNextGenFemoralVenousCannulaeForAud(targetBloodFlow))
             list.add(getGetingeArterialHLSCannula15cmForAud(targetBloodFlow))
             list.add(getGetingeArterialHLSCannula23cmForAud(targetBloodFlow))
@@ -641,10 +1051,14 @@ class Calculations {
             return list
         }
 
-        fun getVAGroinForAud(targetBloodFlow:Double):ArrayList<StaticValues>{
+        fun getVAGroinForAud(targetBloodFlow: Double): ArrayList<StaticValues> {
             var list = ArrayList<StaticValues>()
             list.clear()
-            list.add(getBioMedicusNextGenFemoralArterialOrJugularArterialCannulaForAud(targetBloodFlow))
+            list.add(
+                getBioMedicusNextGenFemoralArterialOrJugularArterialCannulaForAud(
+                    targetBloodFlow
+                )
+            )
             list.add(getBioMedicusNextGenFemoralVenousCannulaeForAud(targetBloodFlow))
             list.add(getBioMedicusMultiStageFemoralVenousCannulaeForAud(targetBloodFlow))
             list.add(getGetingeArterialHLSCannula15cmForAud(targetBloodFlow))
@@ -656,14 +1070,13 @@ class Calculations {
             return list
         }
 
-        fun getVVDLForAud(targetBloodFlow:Double):ArrayList<StaticValues>{
+        fun getVVDLForAud(targetBloodFlow: Double): ArrayList<StaticValues> {
             var list = ArrayList<StaticValues>()
             list.clear()
             list.add(getAvalonEliteBiCavalDualLumenCatheterForAud(targetBloodFlow))
             list.add(getCrescentDualLumenVVECLSCannulaForAud(targetBloodFlow))
             return list
         }
-
 
 
         /* End : Logic for VA Neck, VA Groin, and VVDL list for adult */

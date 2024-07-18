@@ -26,10 +26,8 @@ class StaticValuesListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val staticValue = staticValuesList?.get(position)
-        if (staticValue?.name != null && staticValue.name != "NA") {
             holder.tvName.text = staticValue?.name
             holder.tvValue.text = staticValue?.value
-        }
     }
 
     override fun getItemCount(): Int {

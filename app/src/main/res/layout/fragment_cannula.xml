@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible"
+    android:id="@+id/main_layout_cannula"
     tools:context=".ui.cannula.CannulaFragment">
 
     <ScrollView
@@ -292,6 +292,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/calculated_at_100mmhg_pressure_drop"
                     style="@style/SubTitleGrey"
+                    android:textColor="@color/red"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VA_Neck" />
 
                 <androidx.cardview.widget.CardView
@@ -343,6 +344,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/calculated_at_100mmhg_pressure_drop"
                     style="@style/SubTitleGrey"
+                    android:textColor="@color/red"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VA_Groin" />
 
                 <androidx.cardview.widget.CardView
@@ -380,7 +382,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:layout_marginTop="20dp"
-                android:paddingBottom="110dp"
+                android:paddingBottom="130dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_VA_Groin">
 
                 <TextView
@@ -397,6 +399,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/calculated_at_150mmhg_pressure_drop"
                     style="@style/SubTitleGrey"
+                    android:textColor="@color/red"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VVDL" />
 
                 <androidx.cardview.widget.CardView
@@ -434,7 +437,7 @@
     <View
         android:id="@+id/fakeView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="140dp"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"/>

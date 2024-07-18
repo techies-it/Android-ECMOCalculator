@@ -19,14 +19,13 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:src="@drawable/ic_ecmo_logo"
         app:layout_constraintBottom_toTopOf="@+id/bt_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/screen_title"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/screen_title" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,6 +134,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_education" />
+
+        <View
+            android:id="@+id/spacer_view"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="22dp"
+            android:background="@android:color/transparent"/>
 
     </LinearLayout>
 
