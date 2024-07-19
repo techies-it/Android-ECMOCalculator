@@ -813,4 +813,15 @@ class CalculatorFragment : Fragment() {
             activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
     }
+
+    override fun onPause() {
+        super.onPause()
+        hideKeyboard()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun hideKeyboard() {
+        val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+    }
 }

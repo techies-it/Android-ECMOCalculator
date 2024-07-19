@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.ecmocalc.R
 import com.ecmocalc.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -70,8 +71,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
 }
 
 // https://stackoverflow.com/questions/68711324/android-how-to-set-a-drawable-as-a-windowsplashscreenbackground-parameter-in-th/72464371#72464371

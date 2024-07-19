@@ -168,6 +168,18 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
     }
 
 
+    override fun onPause() {
+        hideKeyboard()
+        super.onPause()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun hideKeyboard() {
+        val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+    }
+
+
     private fun calculateBSA() {
         val formattedValueWeight = sharedViewModel.editTextWeight.value?.toString()
             ?.let { it1 -> convertStringToDouble(it1) }
@@ -199,6 +211,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     override fun onResume() {
         super.onResume()
+        hideKeyboard()
         sharedViewModel.editTextCI.observe(viewLifecycleOwner) { value ->
             binding.etTargetCI.text = value
             targetBloodFlowListAdapter?.updateSelection(value)
