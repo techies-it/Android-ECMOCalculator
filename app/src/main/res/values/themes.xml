@@ -62,7 +62,7 @@
         <item name="fontFamily">@font/inter_semi_bold</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:layout_marginTop">22dp</item>
+        <item name="android:layout_marginTop">38dp</item>
     </style>
 
     <style name="Title">

@@ -51,9 +51,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        binding.viewPager.offscreenPageLimit = 1 // To fix Focus issue with EditTexts in Fragments when using ViewPager2
+        // Retain the first, second, and third fragments in memory
+        binding.viewPager.offscreenPageLimit = 2 // To fix Focus issue with EditTexts in Fragments when using ViewPager2
         binding.viewPager.isUserInputEnabled = false // Disable swipe gesture
-
         binding.viewPager.adapter = MyFragmentStateAdapter(this)
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){

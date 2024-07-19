@@ -50,13 +50,13 @@ class CalculatorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
-        setupUI(binding.mainLayoutCalculator)
+        setupUI(binding.root)
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        hideKeyboard()
+        //hideKeyboard()
         uiPoundsToKilograms()
         uiKilogramsToPounds()
         uiInchesToCentimeters()
@@ -122,6 +122,7 @@ class CalculatorFragment : Fragment() {
                 Helper.convertStringToDouble(value)
                     ?.let { calInchesToCentimeters(it) }
             }
+            scrollAction(19)
         })
     }
 
@@ -813,7 +814,7 @@ class CalculatorFragment : Fragment() {
     private fun hideSoftKeyboard() {
         val inputMethodManager =
             activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 
     override fun onPause() {
