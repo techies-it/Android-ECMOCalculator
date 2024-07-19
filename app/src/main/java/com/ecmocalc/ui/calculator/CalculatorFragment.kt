@@ -38,6 +38,7 @@ import com.ecmocalc.utils.Calculations.Companion.calSystemicVascularResistance
 import com.ecmocalc.utils.Calculations.Companion.calWeightBasedBodySurfaceArea
 import com.ecmocalc.utils.Helper
 
+
 class CalculatorFragment : Fragment() {
 
     private var _binding: FragmentCalculatorBinding? = null
@@ -47,7 +48,7 @@ class CalculatorFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCalculatorBinding.inflate(inflater, container, false)
         setupUI(binding.mainLayoutCalculator)
         return binding.root
@@ -55,6 +56,7 @@ class CalculatorFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        hideKeyboard()
         uiPoundsToKilograms()
         uiKilogramsToPounds()
         uiInchesToCentimeters()
@@ -819,9 +821,8 @@ class CalculatorFragment : Fragment() {
         hideKeyboard()
     }
 
-    @Suppress("DEPRECATION")
     private fun hideKeyboard() {
-        val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        val imm = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 }

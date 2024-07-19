@@ -173,10 +173,10 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         super.onPause()
     }
 
-    @Suppress("DEPRECATION")
+
     private fun hideKeyboard() {
-        val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        val imm = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 
 
@@ -211,7 +211,6 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     override fun onResume() {
         super.onResume()
-        hideKeyboard()
         sharedViewModel.editTextCI.observe(viewLifecycleOwner) { value ->
             binding.etTargetCI.text = value
             targetBloodFlowListAdapter?.updateSelection(value)

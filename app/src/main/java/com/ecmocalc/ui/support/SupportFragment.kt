@@ -62,15 +62,19 @@ class SupportFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        hideKeyboard()
+    }
+
     override fun onPause() {
         super.onPause()
         hideKeyboard()
     }
 
-    @Suppress("DEPRECATION")
     private fun hideKeyboard() {
-        val imm = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
+        val imm = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
     }
 
     private fun checkCallingPermission() {
