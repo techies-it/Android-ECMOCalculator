@@ -423,7 +423,6 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         btCancel.setOnClickListener {
             valuesDialog?.dismiss()
         }
-
         if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)){
             title.text = getString(R.string.target_blood_flow_ml_kg_min)
         } else{
