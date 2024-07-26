@@ -64,7 +64,7 @@
                         style="@style/SubTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/weight"
+                        android:text="@string/weight_kg"
                         app:layout_constraintEnd_toEndOf="@+id/weight_til"
                         app:layout_constraintStart_toStartOf="@+id/weight_til"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -95,7 +95,7 @@
                             style="@style/AppTheme.EditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Kg"
+                            android:hint="kg"
                             android:imeOptions="actionDone"
                             android:inputType="number|numberDecimal" />
 
@@ -118,7 +118,7 @@
                         style="@style/SubTitle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/height"
+                        android:text="@string/height_cm"
                         app:layout_constraintEnd_toEndOf="@+id/height_til"
                         app:layout_constraintStart_toStartOf="@+id/height_til"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -166,7 +166,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/layout_height"
-                    app:layout_constraintTop_toTopOf="@+id/layout_weight">
+                    app:layout_constraintBottom_toBottomOf="@+id/layout_weight">
 
                     <TextView
                         android:id="@+id/tv_target_ci_sub_til"
@@ -174,6 +174,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/target_c_i"
+                        android:maxLines="1"
+                        android:lines="1"
+                        app:autoSizeMinTextSize="11sp"
+                        app:autoSizeStepGranularity="2sp"
+                        app:autoSizeTextType="uniform"
                         app:layout_constraintEnd_toEndOf="@+id/layout_Target_CI"
                         app:layout_constraintStart_toStartOf="@+id/layout_Target_CI"
                         app:layout_constraintTop_toTopOf="parent" />

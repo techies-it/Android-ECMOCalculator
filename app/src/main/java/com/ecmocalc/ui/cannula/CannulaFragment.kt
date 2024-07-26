@@ -47,8 +47,12 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
         binding.tvTitle.addTextChangedListener { value ->
             if (value.toString() == getString(R.string.adult_entry)) {
+                binding.tvTargetCiSubTil.text = getString(R.string.target_c_i)
+                binding.etTargetCI.hint = getString(R.string.select)
                 sharedViewModel.setEditTextCI(sharedViewModel.editTextCIForAud.value)
             } else if (value.toString() == getString(R.string.pediatric_entry)) {
+                binding.tvTargetCiSubTil.text = getString(R.string.target_blood_flow_ml_kg_min)
+                binding.etTargetCI.hint = getString(R.string.ml_kg_min)
                 sharedViewModel.setEditTextCI(sharedViewModel.editTextCIForPed.value)
             }
         }
@@ -246,35 +250,35 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
         if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)) {
 
             binding.tvTitleTargetBloodFlow.text = getString(R.string._0_10kg_target_blood_flow)
-            targetBloodFlow.add(StaticValues("100 ml/kg : ${
+            targetBloodFlow.add(StaticValues("100 ml/kg/min : ${
                 convertStringToDouble(binding.etweight.text.toString())?.let {
                     calTargetBloodFlowForPediatricEntry(
                         it, 100.0
                     )
                 }
             }", "100"))
-            targetBloodFlow.add(StaticValues("150 ml/kg : ${
+            targetBloodFlow.add(StaticValues("150 ml/kg/min : ${
                 convertStringToDouble(binding.etweight.text.toString())?.let {
                     calTargetBloodFlowForPediatricEntry(
                         it, 150.0
                     )
                 }
             }", "150"))
-            targetBloodFlow.add(StaticValues("175 ml/kg : ${
+            targetBloodFlow.add(StaticValues("175 ml/kg/min : ${
                 convertStringToDouble(binding.etweight.text.toString())?.let {
                     calTargetBloodFlowForPediatricEntry(
                         it, 175.0
                     )
                 }
             }", "175"))
-            targetBloodFlow.add(StaticValues("200 ml/kg : ${
+            targetBloodFlow.add(StaticValues("200 ml/kg/min : ${
                 convertStringToDouble(binding.etweight.text.toString())?.let {
                     calTargetBloodFlowForPediatricEntry(
                         it, 200.0
                     )
                 }
             }", "200"))
-            targetBloodFlow.add(StaticValues("250 ml/kg : ${
+            targetBloodFlow.add(StaticValues("250 ml/kg/min : ${
                 convertStringToDouble(binding.etweight.text.toString())?.let {
                     calTargetBloodFlowForPediatricEntry(
                         it, 250.0
@@ -420,7 +424,11 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
             valuesDialog?.dismiss()
         }
 
-        title.text = "Target C.I."
+        if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)){
+            title.text = getString(R.string.target_blood_flow_ml_kg_min)
+        } else{
+            title.text = getString(R.string.target_c_i)
+        }
         val targetCIArrayList: ArrayList<StaticValues> = ArrayList<StaticValues>()
         targetCIArrayList.clear()
 

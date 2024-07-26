@@ -13,7 +13,7 @@ class Calculations {
 
         /**
          * @param pounds - Lb
-         * @return Kilograms - Kg
+         * @return Kilograms - kg
          */
         fun calPoundsToKilograms(pounds: Double): String {
             val resultKg = pounds / 2.2F
@@ -21,7 +21,7 @@ class Calculations {
         }
 
         /**
-         * @param kilograms - Kg
+         * @param kilograms - kg
          * @return Pounds - Lb
          */
         fun calKilogramsToPounds(kilograms: Double): String {
@@ -50,7 +50,7 @@ class Calculations {
         /**
          * Calculates the body surface area (BSA) using the formula:
          * 0.007184 * Height^0.725 * Weight^0.425 and returns the result as a string with 2 decimal places.
-         * @param weight - Kg
+         * @param weight - kg
          * @param height - cm
          * @return BSA - m^2 or m²
          */
@@ -71,7 +71,7 @@ class Calculations {
         /**
          * Calculate the Weight based Body Surface Area using the formula:
          * ((Weight * 4) + 7) / (90 + Weight )
-         * @param weight - Kg
+         * @param weight - kg
          * @return BSA - m^2 or m²
          */
         fun calWeightBasedBodySurfaceArea(weight: Double): String {
@@ -110,26 +110,26 @@ class Calculations {
 
         /**
          * Calculates Heparin Loading Dose using the formula:
-         * 25iu Heparin/Kg = 25 x Weight [Kg] __________ iu Heparin
-         * 50iu Heparin/Kg = 50 x Weight [Kg] __________ iu Heparin
-         * 75iu Heparin/Kg = 75 x Weight [Kg] __________ iu Heparin
-         * 100iu Heparin/Kg = 100 x Weight [Kg] __________ iu Heparin
-         * 200iu Heparin/Kg = 200 x Weight [Kg] __________ iu Heparin
-         * 300iu Heparin/Kg = 300 x Weight [Kg] __________ iu Heparin
-         * 400iu Heparin/Kg = 400 x Weight [Kg] __________ iu Heparin
+         * 25iu Heparin/kg = 25 x Weight [kg] __________ iu Heparin
+         * 50iu Heparin/kg = 50 x Weight [kg] __________ iu Heparin
+         * 75iu Heparin/kg = 75 x Weight [kg] __________ iu Heparin
+         * 100iu Heparin/kg = 100 x Weight [kg] __________ iu Heparin
+         * 200iu Heparin/kg = 200 x Weight [kg] __________ iu Heparin
+         * 300iu Heparin/kg = 300 x Weight [kg] __________ iu Heparin
+         * 400iu Heparin/kg = 400 x Weight [kg] __________ iu Heparin
          *
-         * @param weight - Kg
+         * @param weight - kg
          */
         fun calHeparinLoadingDose(weight: Double): ArrayList<StaticValues> {
             val resultHeparinLoadingDoseList: ArrayList<StaticValues> = ArrayList<StaticValues>()
             resultHeparinLoadingDoseList.clear()
-            resultHeparinLoadingDoseList.add(StaticValues("25u/Kg = " + formatNumberWithDecimal(25 * weight) + " units"))
-            resultHeparinLoadingDoseList.add(StaticValues("50u/Kg = " + formatNumberWithDecimal(50 * weight) + " units"))
-            resultHeparinLoadingDoseList.add(StaticValues("75u/Kg = " + formatNumberWithDecimal(75 * weight) + " units"))
-            resultHeparinLoadingDoseList.add(StaticValues("100u/Kg = " + formatNumberWithDecimal(100 * weight) + " units"))
-            resultHeparinLoadingDoseList.add(StaticValues("200u/Kg = " + formatNumberWithDecimal(200 * weight) + " units"))
-            resultHeparinLoadingDoseList.add(StaticValues("300u/Kg = " + formatNumberWithDecimal(300 * weight) + " units"))
-            resultHeparinLoadingDoseList.add(StaticValues("400u/Kg = " + formatNumberWithDecimal(400 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("25u/kg = " + formatNumberWithDecimal(25 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("50u/kg = " + formatNumberWithDecimal(50 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("75u/kg = " + formatNumberWithDecimal(75 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("100u/kg = " + formatNumberWithDecimal(100 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("200u/kg = " + formatNumberWithDecimal(200 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("300u/kg = " + formatNumberWithDecimal(300 * weight) + " units"))
+            resultHeparinLoadingDoseList.add(StaticValues("400u/kg = " + formatNumberWithDecimal(400 * weight) + " units"))
             return resultHeparinLoadingDoseList
         }
 
@@ -237,7 +237,7 @@ class Calculations {
 
         /**
          * Calculates the Estimated Red Cell Mass (ERCM) using the formula:
-         *  * ERCM = Weight * 75ml/Kg * (Hematocrit / 100)
+         *  * ERCM = Weight * 75ml/kg * (Hematocrit / 100)
          *
          * @param weight the body weight of the person (in kilograms)
          * @param hematocrit the percentage of red blood cells in the blood volume (e.g., 0.45 for 45%)
@@ -430,7 +430,7 @@ class Calculations {
          * Calculates the Target Blood Flow For Pediatric Entry using the formula:
          * (weight x Target C.I.) / 1000
          *
-         * @param weight - Current Patient Weight - (in Kg)
+         * @param weight - Current Patient Weight - (in kg)
          * @param targetCI - Cardiac Index value - (L/min/m²)
          * @return the calculated Target Blood Flow For Pediatric Entry as a string formatted (L/min)
          */
@@ -444,12 +444,12 @@ class Calculations {
          * CardiacOutput / weight
          *
          * @param cardiacOutput - Cardiac Output value - (in L/min)
-         * @param weight - Weight value - (in Kg)
-         * @return the calculated Target Blood Flow For Adult Entry as a string formatted (mL/Kg/min)
+         * @param weight - Weight value - (in kg)
+         * @return the calculated Target Blood Flow For Adult Entry as a string formatted (ml/kg/min)
          */
         fun calTargetBloodFlowForAdultEntry(cardiacOutput: Double, weight: Double): String {
             val resultTargetBloodFlow = (cardiacOutput * 1000) / weight
-            return String.format(Locale.ROOT, "%.2f", resultTargetBloodFlow) + " mL/Kg/min"
+            return String.format(Locale.ROOT, "%.2f", resultTargetBloodFlow) + " ml/kg/min"
         }
 
         /**

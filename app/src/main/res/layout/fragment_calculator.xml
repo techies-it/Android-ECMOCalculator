@@ -328,7 +328,7 @@
                     style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/height"
+                    android:text="@string/height_cm"
                     app:layout_constraintEnd_toEndOf="@+id/height_til"
                     app:layout_constraintStart_toStartOf="@+id/height_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area" />
@@ -375,7 +375,7 @@
                     style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/weight"
+                    android:text="@string/weight_kg"
                     app:layout_constraintEnd_toEndOf="@+id/weight_til"
                     app:layout_constraintStart_toStartOf="@+id/weight_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area" />
@@ -447,7 +447,7 @@
                     style="@style/SubTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/weight"
+                    android:text="@string/weight_kg"
                     app:layout_constraintTop_toBottomOf="@+id/tv_weight_base_body_surface_area" />
 
 
@@ -800,7 +800,7 @@
                     style="@style/SubTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
+                    android:text="@string/weight_kg"
                     app:layout_constraintTop_toBottomOf="@+id/tv_heparin_loading_dose" />
 
 
@@ -971,7 +971,7 @@
                     style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="kg"
+                    android:text="@string/weight_kg"
                     app:layout_constraintEnd_toEndOf="@+id/weight_estimated_red_cell_mass_til"
                     app:layout_constraintStart_toStartOf="@+id/weight_estimated_red_cell_mass_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_estimated_red_cell_mass_title" />
@@ -1090,7 +1090,7 @@
                     style="@style/SubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
+                    android:text="@string/weight_kg"
                     app:layout_constraintEnd_toEndOf="@+id/weight_dilutional_hematocrit_til"
                     app:layout_constraintStart_toStartOf="@+id/weight_dilutional_hematocrit_til"
                     app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />

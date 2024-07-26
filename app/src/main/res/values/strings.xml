@@ -10,7 +10,7 @@
     <string name="default_cardiac_index_calculator">CI 1.0 = 0.00 L/min\nCI 1.5 = 0.00 L/min\nCI 1.8 = 0.00 L/min\nCI 2.0 = 0.00 L/min\nCI 2.2 = 0.00 L/min\nCI 2.4 = 0.00 L/min\nCI 2.6 = 0.00 L/min\nCI 2.8 = 0.00 L/min\nCI 3.0 = 0.00 L/min</string>
     <string name="clinical_calculator">Clinical Calculator</string>
     <string name="pounds_to_kilograms">Pounds to Kilograms</string>
-    <string name="lbs">Lbs</string>
+    <string name="lbs">lbs</string>
     <string name="kilograms_to_pounds">Kilograms to Pounds</string>
     <string name="kg">kg</string>
     <string name="inches_to_centimeters">Inches to Centimeters</string>
@@ -41,7 +41,7 @@
     <string name="target_c_i">Target C.I.</string>
     <string name="website">Website</string>
     <string name="education">Education</string>
-    <string name="contact">Contact</string>
+    <string name="contact">Contact Us</string>
     <string name="_1_800_874_ecmo_3266">1-800-874-ECMO(3266)</string>
     <string name="support">Support</string>
     <string name="select">Select</string>
@@ -53,5 +53,9 @@
     <string name="calculated_at_150mmhg_pressure_drop">Calculated at: ≤ 150mmHg Pressure Drop</string>
     <string name="_0_10kg_target_blood_flow">0-10Kg Target Blood Flow</string>
     <string name="_10kg_and_greater_target_blood_flow">10Kg and Greater Target Blood Flow</string>
+    <string name="target_blood_flow_ml_kg_min">Target Blood Flow (ml/kg/min)</string>
+    <string name="ml_kg_min">ml/kg/min</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="height_cm">Height (cm)</string>
 
 </resources>
