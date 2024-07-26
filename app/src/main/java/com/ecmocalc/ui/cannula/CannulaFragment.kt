@@ -245,6 +245,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
     private fun generateTargetBloodFlowList() {
         binding.layoutTargetBloodFlow.visibility = View.VISIBLE
+        binding.fakeView.visibility = View.VISIBLE
         val targetBloodFlow: ArrayList<StaticValues> = ArrayList<StaticValues>()
         targetBloodFlow.clear()
         if (sharedViewModel.textViewTitle.value == getString(R.string.pediatric_entry)) {
