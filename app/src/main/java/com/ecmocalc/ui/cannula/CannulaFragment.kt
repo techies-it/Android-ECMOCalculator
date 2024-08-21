@@ -99,7 +99,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 
             val formattedValue = convertStringToDouble(value)
             when {
-                formattedValue != null && formattedValue > 10.0 -> {
+                formattedValue != null && formattedValue > 15.0 -> {
                     sharedViewModel.setTextViewTitle(getString(R.string.adult_entry))
                     binding.tvTitle.text = sharedViewModel.textViewTitle.value
                     binding.layoutHeight.visibility = View.VISIBLE
@@ -109,7 +109,7 @@ class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
                     calculateBSA()
                 }
 
-                formattedValue != null && formattedValue in 1.0..10.0 -> {
+                formattedValue != null && formattedValue in 1.0..15.0 -> {
                     sharedViewModel.setTextViewTitle(getString(R.string.pediatric_entry))
                     binding.tvTitle.text = sharedViewModel.textViewTitle.value
                     binding.layoutHeight.visibility = View.GONE
