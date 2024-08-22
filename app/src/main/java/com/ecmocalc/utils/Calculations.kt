@@ -540,7 +540,7 @@ class Calculations {
                     value = "Arterial 14Fr"
                 )
 
-                else -> StaticValues(name = "NA", value = "NA")
+                else -> StaticValues(name = "Bio-Medicus NextGen Pediatric Arterial Cannulae", value = "Arterial NA")
             }
         }
 
@@ -566,7 +566,7 @@ class Calculations {
                     value = "Venous 14Fr"
                 )
 
-                else -> StaticValues(name = "NA", value = "NA")
+                else -> StaticValues(name = "Bio-Medicus NextGen Pediatric Venous Cannulae", value = "Venous NA")
             }
         }
 
@@ -587,7 +587,7 @@ class Calculations {
                     value = "IJV 19Fr"
                 )
 
-                else -> StaticValues(name = "NA", value = "NA")
+                else -> StaticValues(name = "Avalon Elite Bi-Caval Dual Lumen Catheter", value = "IJV NA")
             }
         }
 
@@ -608,7 +608,7 @@ class Calculations {
                     value = "IJV 19Fr"
                 )
 
-                else -> StaticValues(name = "NA", value = "NA")
+                else -> StaticValues(name = "Crescent Dual Lumen VV ECLS Cannula", value = "IJV NA")
             }
         }
 
