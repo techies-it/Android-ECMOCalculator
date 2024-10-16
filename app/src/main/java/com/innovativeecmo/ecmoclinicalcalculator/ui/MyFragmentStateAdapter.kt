@@ -1,11 +1,11 @@
-package com.ecmocalc.ui
+package com.innovativeecmo.ecmoclinicalcalculator.ui
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.ecmocalc.ui.calculator.CalculatorFragment
-import com.ecmocalc.ui.cannula.CannulaFragment
-import com.ecmocalc.ui.support.SupportFragment
+import com.innovativeecmo.ecmoclinicalcalculator.ui.calculator.CalculatorFragment
+import com.innovativeecmo.ecmoclinicalcalculator.ui.cannula.CannulaFragment
+import com.innovativeecmo.ecmoclinicalcalculator.ui.support.SupportFragment
 
 class MyFragmentStateAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {

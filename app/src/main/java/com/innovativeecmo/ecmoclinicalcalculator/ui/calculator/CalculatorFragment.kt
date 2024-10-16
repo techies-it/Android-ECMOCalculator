@@ -1,4 +1,4 @@
-package com.ecmocalc.ui.calculator
+package com.innovativeecmo.ecmoclinicalcalculator.ui.calculator
 
 import android.annotation.SuppressLint
 import android.content.Context.INPUT_METHOD_SERVICE
@@ -12,31 +12,31 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.ecmocalc.databinding.FragmentCalculatorBinding
-import com.ecmocalc.models.StaticValues
-import com.ecmocalc.ui.SharedViewModel
-import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea
-import com.ecmocalc.utils.Calculations.Companion.calCardiacIndex
-import com.ecmocalc.utils.Calculations.Companion.calCardiacIndexCalculator
-import com.ecmocalc.utils.Calculations.Companion.calCardiacOutput
-import com.ecmocalc.utils.Calculations.Companion.calCentimetersToInches
-import com.ecmocalc.utils.Calculations.Companion.calDilutionalHCT
-import com.ecmocalc.utils.Calculations.Companion.calEstimatedRedCellMass
-import com.ecmocalc.utils.Calculations.Companion.calHeparinLoadingDose
-import com.ecmocalc.utils.Calculations.Companion.calInchesToCentimeters
-import com.ecmocalc.utils.Calculations.Companion.calKilogramsToPounds
-import com.ecmocalc.utils.Calculations.Companion.calOxygenConsumption
-import com.ecmocalc.utils.Calculations.Companion.calOxygenContentArterial
-import com.ecmocalc.utils.Calculations.Companion.calOxygenContentVenous
-import com.ecmocalc.utils.Calculations.Companion.calOxygenDelivery
-import com.ecmocalc.utils.Calculations.Companion.calOxygenIndex
-import com.ecmocalc.utils.Calculations.Companion.calPaO2ByFiO2Ratio
-import com.ecmocalc.utils.Calculations.Companion.calPoundsToKilograms
-import com.ecmocalc.utils.Calculations.Companion.calPulmonaryVascularResistance
-import com.ecmocalc.utils.Calculations.Companion.calSweepGas
-import com.ecmocalc.utils.Calculations.Companion.calSystemicVascularResistance
-import com.ecmocalc.utils.Calculations.Companion.calWeightBasedBodySurfaceArea
-import com.ecmocalc.utils.Helper
+import com.innovativeecmo.ecmoclinicalcalculator.databinding.FragmentCalculatorBinding
+import com.innovativeecmo.ecmoclinicalcalculator.models.StaticValues
+import com.innovativeecmo.ecmoclinicalcalculator.ui.SharedViewModel
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calBodySurfaceArea
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calCardiacIndex
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calCardiacIndexCalculator
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calCardiacOutput
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calCentimetersToInches
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calDilutionalHCT
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calEstimatedRedCellMass
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calHeparinLoadingDose
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calInchesToCentimeters
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calKilogramsToPounds
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calOxygenConsumption
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calOxygenContentArterial
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calOxygenContentVenous
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calOxygenDelivery
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calOxygenIndex
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calPaO2ByFiO2Ratio
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calPoundsToKilograms
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calPulmonaryVascularResistance
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calSweepGas
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calSystemicVascularResistance
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calWeightBasedBodySurfaceArea
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Helper
 
 
 class CalculatorFragment : Fragment() {

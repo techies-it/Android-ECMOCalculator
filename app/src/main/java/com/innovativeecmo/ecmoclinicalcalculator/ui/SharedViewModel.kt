@@ -1,4 +1,4 @@
-package com.ecmocalc.ui
+package com.innovativeecmo.ecmoclinicalcalculator.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

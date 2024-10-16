@@ -1,4 +1,4 @@
-package com.ecmocalc.utils
+package com.innovativeecmo.ecmoclinicalcalculator.utils
 
 class Constants {
 

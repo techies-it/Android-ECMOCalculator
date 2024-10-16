@@ -1,4 +1,4 @@
-package com.ecmocalc.ui.cannula
+package com.innovativeecmo.ecmoclinicalcalculator.ui.cannula
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -18,17 +18,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.ecmocalc.R
-import com.ecmocalc.databinding.FragmentCannulaBinding
-import com.ecmocalc.models.StaticValues
-import com.ecmocalc.ui.SharedViewModel
-import com.ecmocalc.utils.Calculations
-import com.ecmocalc.utils.Calculations.Companion.calBodySurfaceArea1
-import com.ecmocalc.utils.Calculations.Companion.calCardiacOutputWithCIAndBSA
-import com.ecmocalc.utils.Calculations.Companion.calTargetBloodFlowForAdultEntry
-import com.ecmocalc.utils.Calculations.Companion.calTargetBloodFlowForPediatricEntry
-import com.ecmocalc.utils.Helper.Companion.convertStringToDouble
+import com.ecmoclinicalcalculator.ui.cannula.TargetBloodFlowListAdapter
+import com.ecmoclinicalcalculator.ui.cannula.TargetCIListAdapter
 import com.google.android.material.button.MaterialButton
+import com.innovativeecmo.ecmoclinicalcalculator.R
+import com.innovativeecmo.ecmoclinicalcalculator.databinding.FragmentCannulaBinding
+import com.innovativeecmo.ecmoclinicalcalculator.models.StaticValues
+import com.innovativeecmo.ecmoclinicalcalculator.ui.SharedViewModel
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calBodySurfaceArea1
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calCardiacOutputWithCIAndBSA
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calTargetBloodFlowForAdultEntry
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Calculations.Companion.calTargetBloodFlowForPediatricEntry
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Helper.Companion.convertStringToDouble
 
 class CannulaFragment : Fragment(), TargetCIListAdapter.SetTargetCIValue {
 

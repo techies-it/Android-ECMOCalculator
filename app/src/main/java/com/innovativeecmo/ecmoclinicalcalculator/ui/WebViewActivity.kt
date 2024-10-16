@@ -1,4 +1,4 @@
-package com.ecmocalc.ui
+package com.innovativeecmo.ecmoclinicalcalculator.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,9 +9,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.ecmocalc.R
-import com.ecmocalc.databinding.ActivityWebViewBinding
-import com.ecmocalc.utils.Constants.Companion.KEY_WEB_PAGE
+import com.innovativeecmo.ecmoclinicalcalculator.R
+import com.innovativeecmo.ecmoclinicalcalculator.databinding.ActivityWebViewBinding
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Constants.Companion.KEY_WEB_PAGE
 
 class WebViewActivity : AppCompatActivity() {
 

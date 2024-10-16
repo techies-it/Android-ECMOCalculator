@@ -12,11 +12,11 @@ android {
             keyAlias = "ecmocalc"
         }
     }
-    namespace = "com.ecmocalc"
+    namespace = "com.innovativeecmo.ecmoclinicalcalculator"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.ecmocalc"
+        applicationId = "com.innovativeecmo.ecmoclinicalcalculator"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

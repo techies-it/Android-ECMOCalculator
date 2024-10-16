@@ -1,12 +1,12 @@
-package com.ecmocalc.ui.cannula
+package com.innovativeecmo.ecmoclinicalcalculator.ui.cannula
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.ecmocalc.R
-import com.ecmocalc.models.StaticValues
+import com.innovativeecmo.ecmoclinicalcalculator.R
+import com.innovativeecmo.ecmoclinicalcalculator.models.StaticValues
 
 
 class StaticValuesListAdapter(

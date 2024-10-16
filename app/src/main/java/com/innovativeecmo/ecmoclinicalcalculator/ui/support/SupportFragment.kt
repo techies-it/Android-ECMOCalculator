@@ -1,4 +1,4 @@
-package com.ecmocalc.ui.support
+package com.innovativeecmo.ecmoclinicalcalculator.ui.support
 
 import android.Manifest
 import android.app.AlertDialog
@@ -15,10 +15,10 @@ import android.view.inputmethod.InputMethodManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.ecmocalc.databinding.FragmentSupportBinding
-import com.ecmocalc.ui.WebViewActivity
-import com.ecmocalc.utils.Constants
-import com.ecmocalc.utils.Helper.Companion.getNavigationMode
+import com.innovativeecmo.ecmoclinicalcalculator.databinding.FragmentSupportBinding
+import com.innovativeecmo.ecmoclinicalcalculator.ui.WebViewActivity
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Constants
+import com.innovativeecmo.ecmoclinicalcalculator.utils.Helper.Companion.getNavigationMode
 
 class SupportFragment : Fragment() {
 

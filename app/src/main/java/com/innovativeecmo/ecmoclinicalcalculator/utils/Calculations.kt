@@ -1,6 +1,6 @@
-package com.ecmocalc.utils
+package com.innovativeecmo.ecmoclinicalcalculator.utils
 
-import com.ecmocalc.models.StaticValues
+import com.innovativeecmo.ecmoclinicalcalculator.models.StaticValues
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat

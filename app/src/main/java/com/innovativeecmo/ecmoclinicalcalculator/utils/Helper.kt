@@ -1,4 +1,4 @@
-package com.ecmocalc.utils
+package com.innovativeecmo.ecmoclinicalcalculator.utils
 
 import android.content.Context
 import android.os.Build

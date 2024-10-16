@@ -1,20 +1,19 @@
-package com.ecmocalc.ui.calculator
+package com.ecmoclinicalcalculator.ui.cannula
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.ecmocalc.R
-import com.ecmocalc.models.StaticValues
+import com.innovativeecmo.ecmoclinicalcalculator.R
+import com.innovativeecmo.ecmoclinicalcalculator.models.StaticValues
 
 
-class ResultsListAdapter(
+class TargetBloodFlowListAdapter(
     private val staticValuesList: List<StaticValues>?
-) : RecyclerView.Adapter<ResultsListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<TargetBloodFlowListAdapter.ViewHolder>() {
 
     var mContext: Context? = null
 
@@ -43,14 +42,18 @@ class ResultsListAdapter(
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return staticValuesList?.size ?: 0
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val staticValue = staticValuesList?.get(position)
         holder.tvName.text = staticValue?.name
-        holder.tvName.setTextAppearance(R.style.Result)
-        holder.tvName.gravity = Gravity.END
+
+        if (staticValue?.isSelected == true) {
+            holder.tvName.setTextAppearance(R.style.Result)
+        }else{
+            holder.tvName.setTextAppearance(R.style.DataText)
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return staticValuesList?.size ?: 0
     }
 }

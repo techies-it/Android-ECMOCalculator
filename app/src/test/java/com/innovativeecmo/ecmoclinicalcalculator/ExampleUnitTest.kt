@@ -1,4 +1,4 @@
-package com.ecmocalc
+package com.ecmoclinicalcalculator
 
 import org.junit.Test
 
