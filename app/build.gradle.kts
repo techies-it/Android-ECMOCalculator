@@ -5,7 +5,7 @@ plugins {
 
 android {
     signingConfigs {
-        getByName("release") {
+        getByName("debug") {
             storeFile = file("/home/techies/TaranWork/OfficeProjects/2024/ECMOCalc/ECMOCalc.jks")
             storePassword = "ECMOCalc"
             keyPassword = "ECMOCalc"
