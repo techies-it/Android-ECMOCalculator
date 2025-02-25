@@ -6,4 +6,56 @@
     <string name="pediatric_entry">Pediatric Entry</string>
     <string name="enter_weight">Enter Weight</string>
     <string name="bsa_m">BSA ---m²</string>
+    <string name="default_weight_heparin_loading_dose">25u/Kg = 0 units\n50u/Kg = 0 units\n75u/Kg = 0 units\n100u/Kg = 0 units\n200u/Kg = 0 units\n300u/Kg = 0 units</string>
+    <string name="default_cardiac_index_calculator">CI 1.0 = 0.00 L/min\nCI 1.5 = 0.00 L/min\nCI 1.8 = 0.00 L/min\nCI 2.0 = 0.00 L/min\nCI 2.2 = 0.00 L/min\nCI 2.4 = 0.00 L/min\nCI 2.6 = 0.00 L/min\nCI 2.8 = 0.00 L/min\nCI 3.0 = 0.00 L/min</string>
+    <string name="clinical_calculator">Clinical Calculator</string>
+    <string name="pounds_to_kilograms">Pounds to Kilograms</string>
+    <string name="lbs">lbs</string>
+    <string name="kilograms_to_pounds">Kilograms to Pounds</string>
+    <string name="kg">kg</string>
+    <string name="inches_to_centimeters">Inches to Centimeters</string>
+    <string name="in">in</string>
+    <string name="centimeters_to_inches">Centimeters to Inches</string>
+    <string name="cm">cm</string>
+    <string name="body_surface_area">Body Surface Area</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="weight_base_body_surface_area">Weight Base Body Surface Area</string>
+    <string name="oxygen_index">Oxygen Index</string>
+    <string name="map">MAP</string>
+    <string name="pao_fio_ratio">PaO₂/FiO₂ Ratio</string>
+    <string name="heparin_loading_dose">Heparin Loading Dose</string>
+    <string name="cardiac_index_calculator">Cardiac Index Calculator</string>
+    <string name="estimated_red_cell_mass">Estimated Red Cell Mass</string>
+    <string name="dilutional_hematocrit_hct">Dilutional Hematocrit (HCT)</string>
+    <string name="cardiac_output">Cardiac Output</string>
+    <string name="cardiac_index">Cardiac Index</string>
+    <string name="systemic_vascular_resistance">Systemic Vascular Resistance</string>
+    <string name="pulmonary_vascular_resistance">Pulmonary Vascular Resistance</string>
+    <string name="oxygen_content_cao_arterial">Oxygen Content (CaO₂) - Arterial</string>
+    <string name="oxygen_delivery_do">Oxygen Delivery (DO₂)</string>
+    <string name="oxygen_content_cvo_venous">Oxygen Content (CvO₂) - Venous</string>
+    <string name="oxygen_consumption_vo">Oxygen Consumption (VO₂)</string>
+    <string name="sweep_gas">Sweep Gas</string>
+    <string name="cannula_selection">Cannula Selection</string>
+    <string name="target_c_i">Target C.I.</string>
+    <string name="website">Website</string>
+    <string name="education">Education</string>
+    <string name="contact">Contact Us</string>
+    <string name="_1_800_874_ecmo_3266">1-800-874-ECMO(3266)</string>
+    <string name="support">Support</string>
+    <string name="select">Select</string>
+    <string name="cancel">Cancel</string>
+    <string name="va_neck">VA Neck</string>
+    <string name="va_groin">VA Groin</string>
+    <string name="vvdl">VVDL</string>
+    <string name="calculated_at_100mmhg_pressure_drop">Calculated at: ≤ 100mmHg Pressure Drop</string>
+    <string name="calculated_at_150mmhg_pressure_drop">Calculated at: ≤ 150mmHg Pressure Drop</string>
+    <string name="_0_10kg_target_blood_flow">0-15 kg Target Blood Flow</string>
+    <string name="_10kg_and_greater_target_blood_flow">15 kg and greater Target Blood Flow</string>
+    <string name="target_blood_flow_ml_kg_min">Target Blood Flow (ml/kg/min)</string>
+    <string name="ml_kg_min">ml/kg/min</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="height_cm">Height (cm)</string>
+
 </resources>

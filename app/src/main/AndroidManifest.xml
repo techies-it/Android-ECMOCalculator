@@ -19,15 +19,15 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup"
-        android:theme="@style/Theme.ECMOCalc"
-        tools:targetApi="31">
+        android:theme="@style/Theme.ECMOCalc">
         <activity
             android:name=".ui.WebViewActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting">
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

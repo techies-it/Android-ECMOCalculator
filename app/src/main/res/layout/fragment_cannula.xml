@@ -4,161 +4,268 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="invisible"
-    android:padding="16dp"
+    android:id="@+id/main_layout_cannula"
     tools:context=".ui.cannula.CannulaFragment">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fakeView"
+        android:fillViewport="true"
         android:scrollbarThumbVertical="@android:color/transparent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingEnd="22dp"
+            android:paddingBottom="22dp"
+            android:paddingStart="22dp">
+
+            <TextView
+                android:id="@+id/screen_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cannula_selection"
+                style="@style/ScreenTitle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_cannula_selection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/screen_title">
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter Weight"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/enter_weight"
+                    style="@style/Title"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/weight_til"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_weight"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/edit_text_bg"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/holo_blue_dark"
-                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
-                    app:boxStrokeWidth="1dp"
-                    app:boxStrokeWidthFocused="1dp"
-                    app:errorTextColor="@android:color/holo_red_dark"
-                    app:hintEnabled="false"
-                    app:hintTextColor="@android:color/darker_gray"
-                    app:layout_constraintEnd_toStartOf="@+id/height_til"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toStartOf="@+id/layout_height"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-                    <EditText
-                        android:id="@+id/etweight"
-                        style="@style/AppTheme.EditText"
+                    <TextView
+                        android:id="@+id/tv_weight_sub_til"
+                        style="@style/SubTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/weight_kg"
+                        app:layout_constraintEnd_toEndOf="@+id/weight_til"
+                        app:layout_constraintStart_toStartOf="@+id/weight_til"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/weight_til"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Kg"
-                        android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_text_bg"
+                        app:boxBackgroundMode="outline"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@android:color/holo_blue_dark"
+                        app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                        app:boxStrokeWidth="1dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        app:errorTextColor="@android:color/holo_red_dark"
+                        app:hintEnabled="false"
+                        app:hintTextColor="@android:color/darker_gray"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_weight_sub_til">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <EditText
+                            android:id="@+id/etweight"
+                            style="@style/AppTheme.EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="kg"
+                            android:imeOptions="actionDone"
+                            android:inputType="number|numberDecimal" />
 
-                <TextView
-                    android:id="@+id/tv_BSA"
-                    android:layout_width="match_parent"
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_height"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/bsa_m"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:visibility="gone"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/weight_til"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/layout_target_ci"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/layout_weight"
+                    app:layout_constraintTop_toTopOf="@+id/layout_weight">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/height_til"
+                    <TextView
+                        android:id="@+id/tv_height_sub_til"
+                        style="@style/SubTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/height_cm"
+                        app:layout_constraintEnd_toEndOf="@+id/height_til"
+                        app:layout_constraintStart_toStartOf="@+id/height_til"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/height_til"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_bg"
+                        app:boxBackgroundMode="outline"
+                        android:layout_marginTop="8dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@android:color/holo_blue_dark"
+                        app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                        app:boxStrokeWidth="1dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        app:errorTextColor="@android:color/holo_red_dark"
+                        app:hintEnabled="false"
+                        app:hintTextColor="@android:color/darker_gray"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_height_sub_til">
+
+                        <EditText
+                            android:id="@+id/etheight"
+                            style="@style/AppTheme.EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="cm"
+                            android:imeOptions="actionDone"
+                            android:inputType="number|numberDecimal" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_target_ci"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:visibility="invisible"
                     android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/edit_text_bg"
-                    app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/holo_blue_dark"
-                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
-                    app:boxStrokeWidth="1dp"
-                    app:boxStrokeWidthFocused="1dp"
-                    app:errorTextColor="@android:color/holo_red_dark"
-                    app:hintEnabled="false"
-                    app:hintTextColor="@android:color/darker_gray"
-                    app:layout_constraintEnd_toStartOf="@+id/etTarget_CI"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toEndOf="@+id/weight_til"
-                    app:layout_constraintTop_toTopOf="@+id/weight_til">
-
-                    <EditText
-                        android:id="@+id/etheight"
-                        style="@style/AppTheme.EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="cm"
-                        android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <TextView
-                    android:id="@+id/etTarget_CI"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/edit_text_bg"
-                    android:text="Select"
-                    android:visibility="invisible"
-                    android:padding="8dp"
-                    android:gravity="center_vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/weight_til"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toEndOf="@+id/height_til"
-                    app:layout_constraintTop_toTopOf="@+id/weight_til" />
+                    app:layout_constraintStart_toEndOf="@+id/layout_height"
+                    app:layout_constraintBottom_toBottomOf="@+id/layout_weight">
+
+                    <TextView
+                        android:id="@+id/tv_target_ci_sub_til"
+                        style="@style/SubTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/target_c_i"
+                        android:maxLines="1"
+                        android:lines="1"
+                        app:layout_constraintEnd_toEndOf="@+id/layout_Target_CI"
+                        app:layout_constraintStart_toStartOf="@+id/layout_Target_CI"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/layout_Target_CI"
+                        android:layout_width="match_parent"
+                        android:layout_height="58dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:focusable="false"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/edit_text_bg_for_text_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_target_ci_sub_til">
+
+                        <TextView
+                            android:id="@+id/etTarget_CI"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:textSize="15sp"
+                            android:focusable="false"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/inter_medium"
+                            android:hint="@string/select" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_drop"/>
+
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_BSA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bsa_m"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    style="@style/Result"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_weight"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_target_blood_flow"
                     android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     app:layout_constraintTop_toBottomOf="@+id/tv_BSA">
 
                     <TextView
                         android:id="@+id/tv_title_target_blood_flow"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        style="@style/Title"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_target_blood_flow"
-                        android:layout_width="match_parent"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:layout_marginTop="16dp"
+                        app:cardElevation="2dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true"
                         app:layout_constraintTop_toBottomOf="@+id/tv_title_target_blood_flow"
-                        tools:listitem="@layout/static_values_item" />
+                        app:layout_constraintStart_toStartOf="parent">
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_target_blood_flow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/list_bg"
+                            android:visibility="gone"
+                            android:paddingStart="16dp"
+                            android:paddingBottom="0.5dp"
+                            android:paddingEnd="16dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/target_blood_flow_item" />
+
+                    </androidx.cardview.widget.CardView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -170,34 +277,50 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_cannula_selection">
 
                 <TextView
                     android:id="@+id/tv_title_VA_Neck"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VA Neck"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/va_neck"
+                    style="@style/Result"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_sub_title_VA_Neck"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Calculated at: ≤ 100mmHg Pressure Drop"
-                    android:textSize="14sp"
+                    android:text="@string/calculated_at_100mmhg_pressure_drop"
+                    style="@style/SubTitleGrey"
+                    android:textColor="@color/red"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VA_Neck" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_VA_Neck"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VA_Neck"
-                    tools:listitem="@layout/static_values_item" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_VA_Neck"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/static_values_item" />
+
+                </androidx.cardview.widget.CardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -206,34 +329,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_VA_Neck">
 
                 <TextView
                     android:id="@+id/tv_title_VA_Groin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VA Groin"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/va_groin"
+                    style="@style/Result"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_sub_title_VA_Groin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Calculated at: ≤ 100mmHg Pressure Drop"
-                    android:textSize="14sp"
+                    android:text="@string/calculated_at_100mmhg_pressure_drop"
+                    style="@style/SubTitleGrey"
+                    android:textColor="@color/red"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VA_Groin" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_VA_Groin"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VA_Groin"
-                    tools:listitem="@layout/static_values_item" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_VA_Groin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VA_Groin"
+                        tools:listitem="@layout/static_values_item" />
+
+                </androidx.cardview.widget.CardView>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -242,34 +383,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="130dp"
                 app:layout_constraintTop_toBottomOf="@+id/layout_VA_Groin">
 
                 <TextView
                     android:id="@+id/tv_title_VVDL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VVDL"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/vvdl"
+                    style="@style/Result"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_sub_title_VVDL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Calculated at: ≤ 150mmHg Pressure Drop"
-                    android:textSize="14sp"
+                    android:text="@string/calculated_at_150mmhg_pressure_drop"
+                    style="@style/SubTitleGrey"
+                    android:textColor="@color/red"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_VVDL" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_VVDL"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_VVDL"
-                    tools:listitem="@layout/static_values_item" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_VVDL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingTop="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/static_values_item" />
+
+                </androidx.cardview.widget.CardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -277,6 +435,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <View
+        android:id="@+id/fakeView"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

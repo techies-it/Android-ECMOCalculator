@@ -4,11 +4,19 @@ plugins {
 }
 
 android {
-    namespace = "com.ecmocalc"
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("/home/techies/TaranWork/OfficeProjects/2024/ECMOCalc/ECMOCalc.jks")
+            storePassword = "ECMOCalc"
+            keyPassword = "ECMOCalc"
+            keyAlias = "ecmocalc"
+        }
+    }
+    namespace = "com.innovativeecmo.ecmoclinicalcalculator"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.ecmocalc"
+        applicationId = "com.innovativeecmo.ecmoclinicalcalculator"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

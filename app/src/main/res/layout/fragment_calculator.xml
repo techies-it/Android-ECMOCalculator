@@ -3,37 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
+    android:id="@+id/main_layout_calculator"
+    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.calculator.CalculatorFragment">
 
-
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarThumbVertical="@android:color/transparent">
+        android:layout_height="0dp"
+        android:animateLayoutChanges="false"
+        android:fillViewport="true"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/fakeView"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="16dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp">
+
+            <TextView
+                android:id="@+id/screen_title"
+                style="@style/ScreenTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="@string/clinical_calculator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_pounds_to_kilograms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/screen_title">
 
                 <TextView
                     android:id="@+id/tv_pounds_to_kilograms"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pounds To Kilograms"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/pounds_to_kilograms"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_lbs_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbs"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pounds_to_kilograms" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/lbs_til"
@@ -46,37 +70,35 @@
                     app:boxCornerRadiusBottomStart="8dp"
                     app:boxCornerRadiusTopEnd="8dp"
                     app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeColor="@color/blue"
                     app:boxStrokeErrorColor="@android:color/holo_red_dark"
                     app:boxStrokeWidth="1dp"
                     app:boxStrokeWidthFocused="1dp"
                     app:errorTextColor="@android:color/holo_red_dark"
                     app:hintEnabled="false"
-                    app:hintTextColor="@android:color/darker_gray"
+                    app:hintTextColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_pounds_to_kilograms">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lbs_sub_til">
 
                     <EditText
                         android:id="@+id/et_lbs"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:lines="1"
-                        android:hint="Lbs"
+                        android:hint="@string/lbs"
                         android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_result_kilograms"
-                    android:layout_width="match_parent"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
+                    app:layout_constraintEnd_toEndOf="@+id/lbs_til"
                     app:layout_constraintTop_toBottomOf="@+id/lbs_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,18 +107,25 @@
                 android:id="@+id/layout_kilograms_to_pounds"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_pounds_to_kilograms"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/layout_pounds_to_kilograms">
 
                 <TextView
                     android:id="@+id/tv_kilograms_to_pounds"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kilograms To Pounds"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/kilograms_to_pounds"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_kg_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kg"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_kilograms_to_pounds" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/kg_til"
@@ -117,29 +146,27 @@
                     app:hintEnabled="false"
                     app:hintTextColor="@android:color/darker_gray"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_kilograms_to_pounds">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_kg_sub_til">
 
                     <EditText
                         android:id="@+id/et_kg"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:lines="1"
-                        android:hint="Kg"
+                        android:hint="@string/kg"
                         android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_result_pounds"
-                    android:layout_width="match_parent"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
+                    app:layout_constraintEnd_toEndOf="@+id/kg_til"
                     app:layout_constraintTop_toBottomOf="@+id/kg_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -148,18 +175,25 @@
                 android:id="@+id/layout_inches_to_centimeters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_kilograms_to_pounds"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/layout_kilograms_to_pounds">
 
                 <TextView
                     android:id="@+id/tv_inches_to_centimeters"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Inches To Centimeters"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/inches_to_centimeters"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_inches_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_inches_to_centimeters" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/inches_til"
@@ -180,29 +214,27 @@
                     app:hintEnabled="false"
                     app:hintTextColor="@android:color/darker_gray"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_inches_to_centimeters">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_inches_sub_til">
 
                     <EditText
                         android:id="@+id/et_inches"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:lines="1"
-                        android:hint="in"
+                        android:hint="@string/in"
                         android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_result_centimeters"
-                    android:layout_width="match_parent"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
+                    app:layout_constraintEnd_toEndOf="@id/inches_til"
                     app:layout_constraintTop_toBottomOf="@+id/inches_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -211,18 +243,25 @@
                 android:id="@+id/layout_centimeters_to_inches"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_inches_to_centimeters"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/layout_inches_to_centimeters">
 
                 <TextView
                     android:id="@+id/tv_centimeters_to_inches"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Centimeters To Inches"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/centimeters_to_inches"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_centimeters_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cm"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_centimeters_to_inches" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/centimeters_til"
@@ -243,29 +282,27 @@
                     app:hintEnabled="false"
                     app:hintTextColor="@android:color/darker_gray"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_centimeters_to_inches">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_centimeters_sub_til">
 
                     <EditText
                         android:id="@+id/et_centimeters"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:lines="1"
-                        android:hint="cm"
+                        android:hint="@string/cm"
                         android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_result_inches"
-                    android:layout_width="match_parent"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
+                    app:layout_constraintEnd_toEndOf="@+id/centimeters_til"
                     app:layout_constraintTop_toBottomOf="@+id/centimeters_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -280,12 +317,21 @@
 
                 <TextView
                     android:id="@+id/tv_body_surface_area"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Body Surface Area"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/body_surface_area"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_height_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/height_cm"
+                    app:layout_constraintEnd_toEndOf="@+id/height_til"
+                    app:layout_constraintStart_toStartOf="@+id/height_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/height_til"
@@ -309,20 +355,30 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_height_sub_til">
 
                     <EditText
                         android:id="@+id/et_height"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="cm"
+                        android:hint="@string/cm"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal"
                         android:lines="1"
                         android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_weight_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight_kg"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_til"
+                    app:layout_constraintStart_toStartOf="@+id/weight_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_body_surface_area" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/weight_til"
@@ -352,7 +408,7 @@
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Kg"
+                        android:hint="@string/kg"
                         android:imeOptions="actionDone"
                         android:inputType="number|numberDecimal"
                         android:lines="1"
@@ -362,12 +418,10 @@
 
                 <TextView
                     android:id="@+id/tv_result_BSA"
-                    android:layout_width="match_parent"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_til"
                     app:layout_constraintTop_toBottomOf="@+id/weight_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -376,19 +430,26 @@
                 android:id="@+id/layout_weight_base_body_surface_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="500dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_body_surface_area"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/layout_body_surface_area">
 
                 <TextView
                     android:id="@+id/tv_weight_base_body_surface_area"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Weight Base Body Surface Area"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:text="@string/weight_base_body_surface_area"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weight_BSA_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight_kg"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_weight_base_body_surface_area" />
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/weight_BSA_til"
@@ -409,35 +470,2082 @@
                     app:hintEnabled="false"
                     app:hintTextColor="@android:color/darker_gray"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_weight_base_body_surface_area">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_weight_BSA_sub_til">
 
                     <EditText
                         android:id="@+id/et_weight_BSA"
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:lines="1"
-                        android:hint="Kg"
+                        android:hint="@string/kg"
                         android:imeOptions="actionDone"
-                        android:inputType="number|numberDecimal" />
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_result_weight_base_body_surface_area"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_BSA_til"
+                    app:layout_constraintTop_toBottomOf="@+id/weight_BSA_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_index"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_weight_base_body_surface_area">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_index_title"
+                    style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:lines="1"
-                    app:layout_constraintTop_toBottomOf="@+id/weight_BSA_til" />
+                    android:text="@string/oxygen_index"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_map_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/map"
+                    app:layout_constraintEnd_toEndOf="@+id/map_til"
+                    app:layout_constraintStart_toStartOf="@+id/map_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_index_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/map_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/fio2_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_map_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_map"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="cmH₂O"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_fiO2_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="FiO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/fio2_til"
+                    app:layout_constraintStart_toStartOf="@+id/fio2_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_index_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fio2_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pao2_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/map_til"
+                    app:layout_constraintTop_toTopOf="@+id/map_til">
+
+                    <EditText
+                        android:id="@+id/et_fio2"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_paO2_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PaO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_til"
+                    app:layout_constraintStart_toStartOf="@+id/pao2_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_index_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pao2_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/fio2_til"
+                    app:layout_constraintTop_toTopOf="@+id/map_til">
+
+                    <EditText
+                        android:id="@+id/et_pao2"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="PaO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_Oxygen_index"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_til"
+                    app:layout_constraintTop_toBottomOf="@+id/pao2_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_paO2_fiO2_ratio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_index">
+
+                <TextView
+                    android:id="@+id/tv_paO2_fiO2_ratio"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pao_fio_ratio"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_paO2_ratio_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PaO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/paO2_ratio_til"
+                    app:layout_constraintStart_toStartOf="@+id/paO2_ratio_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_paO2_fiO2_ratio" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/paO2_ratio_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/fiO2_ratio_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_paO2_ratio_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_paO2_ratio"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="PaO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_fiO2_ratio_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="FiO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/fiO2_ratio_til"
+                    app:layout_constraintStart_toStartOf="@+id/fiO2_ratio_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_paO2_fiO2_ratio" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/fiO2_ratio_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/paO2_ratio_til"
+                    app:layout_constraintTop_toTopOf="@+id/paO2_ratio_til">
+
+                    <EditText
+                        android:id="@+id/et_fiO2_ratio"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="FiO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_paO2_fiO2_ratio"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/fiO2_ratio_til"
+                    app:layout_constraintTop_toBottomOf="@+id/fiO2_ratio_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_heparin_loading_dose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_paO2_fiO2_ratio">
+
+                <TextView
+                    android:id="@+id/tv_heparin_loading_dose"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/heparin_loading_dose"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weight_heparin_loading_dose_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight_kg"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_heparin_loading_dose" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/weight_heparin_loading_dose_til"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_weight_heparin_loading_dose_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_weight_heparin_loading_dose"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="kg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/weight_heparin_loading_dose_til">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_result_heparin_loading_dose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="0.5dp"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/target_blood_flow_item" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_cardiac_index_calculator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_heparin_loading_dose">
+
+                <TextView
+                    android:id="@+id/tv_cardiac_index_calculator"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cardiac_index_calculator"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_bsa_cardiac_index_calculator_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BSA"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_index_calculator" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bsa_cardiac_index_calculator_til"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_bsa_cardiac_index_calculator_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_bsa_cardiac_index_calculator"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="m²"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_calculator_til">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_result_cardiac_index_calculator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/list_bg"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:paddingBottom="0.5dp"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/target_blood_flow_item" />
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_estimated_red_cell_mass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_cardiac_index_calculator">
+
+                <TextView
+                    android:id="@+id/tv_estimated_red_cell_mass_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/estimated_red_cell_mass"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weight_estimated_red_cell_mass_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight_kg"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_estimated_red_cell_mass_til"
+                    app:layout_constraintStart_toStartOf="@+id/weight_estimated_red_cell_mass_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_estimated_red_cell_mass_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/weight_estimated_red_cell_mass_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/hematocrit_estimated_red_cell_mass_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_weight_estimated_red_cell_mass_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_weight_estimated_red_cell_mass"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="kg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_hematocrit_estimated_red_cell_mass_sub_til_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hematocrit"
+                    app:layout_constraintEnd_toEndOf="@+id/hematocrit_estimated_red_cell_mass_til"
+                    app:layout_constraintStart_toStartOf="@+id/hematocrit_estimated_red_cell_mass_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_estimated_red_cell_mass_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hematocrit_estimated_red_cell_mass_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/weight_estimated_red_cell_mass_til"
+                    app:layout_constraintTop_toTopOf="@+id/weight_estimated_red_cell_mass_til">
+
+                    <EditText
+                        android:id="@+id/et_hematocrit_estimated_red_cell_mass"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_estimated_red_cell_mass"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/hematocrit_estimated_red_cell_mass_til"
+                    app:layout_constraintTop_toBottomOf="@+id/hematocrit_estimated_red_cell_mass_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_dilutional_hematocrit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_estimated_red_cell_mass">
+
+                <TextView
+                    android:id="@+id/tv_dilutional_hematocrit_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dilutional_hematocrit_hct"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_weight_dilutional_hematocrit_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weight_kg"
+                    app:layout_constraintEnd_toEndOf="@+id/weight_dilutional_hematocrit_til"
+                    app:layout_constraintStart_toStartOf="@+id/weight_dilutional_hematocrit_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/weight_dilutional_hematocrit_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/hct_dilutional_hematocrit_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_weight_dilutional_hematocrit_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_weight_dilutional_hematocrit"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="kg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_hct_dilutional_hematocrit_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="HCT"
+                    app:layout_constraintEnd_toEndOf="@+id/hct_dilutional_hematocrit_til"
+                    app:layout_constraintStart_toStartOf="@+id/hct_dilutional_hematocrit_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hct_dilutional_hematocrit_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/weight_dilutional_hematocrit_til"
+                    app:layout_constraintTop_toTopOf="@+id/weight_dilutional_hematocrit_til">
+
+                    <EditText
+                        android:id="@+id/et_hct_dilutional_hematocrit"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_ecls_circuit_vol_dilutional_hematocrit_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="ECLS Circuit Vol."
+                    app:layout_constraintEnd_toEndOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
+                    app:layout_constraintStart_toStartOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dilutional_hematocrit_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hct_dilutional_hematocrit_til"
+                    app:layout_constraintTop_toTopOf="@+id/weight_dilutional_hematocrit_til">
+
+                    <EditText
+                        android:id="@+id/et_ecls_circuit_vol_dilutional_hematocrit"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mL"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_dilutional_hematocrit_til"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til"
+                    app:layout_constraintTop_toBottomOf="@+id/ecls_circuit_vol_dilutional_hematocrit_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_cardiac_output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_dilutional_hematocrit">
+
+                <TextView
+                    android:id="@+id/tv_cardiac_output_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cardiac_output"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hr_cardiac_output_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="HR"
+                    app:layout_constraintEnd_toEndOf="@+id/hr_cardiac_output_til"
+                    app:layout_constraintStart_toStartOf="@+id/hr_cardiac_output_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_output_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hr_cardiac_output_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/stroke_vol_cardiac_output_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hr_cardiac_output_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_hr_cardiac_output"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="B/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_stroke_vol_cardiac_output_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Stroke Vol"
+                    app:layout_constraintEnd_toEndOf="@+id/stroke_vol_cardiac_output_til"
+                    app:layout_constraintStart_toStartOf="@+id/stroke_vol_cardiac_output_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_output_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/stroke_vol_cardiac_output_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hr_cardiac_output_til"
+                    app:layout_constraintTop_toTopOf="@+id/hr_cardiac_output_til">
+
+                    <EditText
+                        android:id="@+id/et_stroke_vol_cardiac_output"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mL"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_cardiac_output"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/stroke_vol_cardiac_output_til"
+                    app:layout_constraintTop_toBottomOf="@+id/stroke_vol_cardiac_output_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_cardiac_index"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_cardiac_output">
+
+                <TextView
+                    android:id="@+id/tv_cardiac_index_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cardiac_index"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_co_cardiac_index_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    app:layout_constraintEnd_toEndOf="@+id/co_cardiac_index_til"
+                    app:layout_constraintStart_toStartOf="@+id/co_cardiac_index_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_index_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_cardiac_index_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/bsa_cardiac_index_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_co_cardiac_index_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_co_cardiac_index"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_bsa_cardiac_index_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="BSA"
+                    app:layout_constraintEnd_toEndOf="@+id/bsa_cardiac_index_til"
+                    app:layout_constraintStart_toStartOf="@+id/bsa_cardiac_index_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_cardiac_index_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/bsa_cardiac_index_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/co_cardiac_index_til"
+                    app:layout_constraintTop_toTopOf="@+id/co_cardiac_index_til">
+
+                    <EditText
+                        android:id="@+id/et_bsa_cardiac_index"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="m²"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_cardiac_index"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/bsa_cardiac_index_til"
+                    app:layout_constraintTop_toBottomOf="@+id/bsa_cardiac_index_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_systemic_vascular_resistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_cardiac_index">
+
+                <TextView
+                    android:id="@+id/tv_systemic_vascular_resistance_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/systemic_vascular_resistance"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_map_systemic_vascular_resistance_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="MAP"
+                    app:layout_constraintEnd_toEndOf="@+id/map_systemic_vascular_resistance_til"
+                    app:layout_constraintStart_toStartOf="@+id/map_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/map_systemic_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_map_systemic_vascular_resistance_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_map_systemic_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_cvp_systemic_vascular_resistance_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CVP"
+                    app:layout_constraintEnd_toEndOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintStart_toStartOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cvp_systemic_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/map_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/map_systemic_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_cvp_systemic_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_co_systemic_vascular_resistance_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    app:layout_constraintEnd_toEndOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintStart_toStartOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_systemic_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_systemic_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cvp_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/cvp_systemic_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_co_systemic_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_systemic_vascular_resistance"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/co_systemic_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/co_systemic_vascular_resistance_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_pulmonary_vascular_resistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_systemic_vascular_resistance">
+
+                <TextView
+                    android:id="@+id/tv_pulmonary_vascular_resistance_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pulmonary_vascular_resistance"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_mpap_pulmonary_vascular_resistance_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="MPAP"
+                    app:layout_constraintEnd_toEndOf="@+id/mpap_pulmonary_vascular_resistance_til"
+                    app:layout_constraintStart_toStartOf="@+id/mpap_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mpap_pulmonary_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_mpap_pulmonary_vascular_resistance_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_mpap_pulmonary_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_pcwp_pulmonary_vascular_resistance_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PCWP"
+                    app:layout_constraintEnd_toEndOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintStart_toStartOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/mpap_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/mpap_pulmonary_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_pcwp_pulmonary_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_co_pulmonary_vascular_resistance_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    app:layout_constraintEnd_toEndOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintStart_toStartOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_pulmonary_vascular_resistance_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_pulmonary_vascular_resistance_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/pcwp_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toTopOf="@+id/pcwp_pulmonary_vascular_resistance_til">
+
+                    <EditText
+                        android:id="@+id/et_co_pulmonary_vascular_resistance"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_pulmonary_vascular_resistance"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/co_pulmonary_vascular_resistance_til"
+                    app:layout_constraintTop_toBottomOf="@+id/co_pulmonary_vascular_resistance_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_content_arterial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_pulmonary_vascular_resistance">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_content_arterial_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oxygen_content_cao_arterial"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hgb_oxygen_content_arterial_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hgb"
+                    app:layout_constraintEnd_toEndOf="@+id/hgb_oxygen_content_arterial_til"
+                    app:layout_constraintStart_toStartOf="@+id/hgb_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hgb_oxygen_content_arterial_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hgb_oxygen_content_arterial_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_hgb_oxygen_content_arterial"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="g/dL"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_sao2_oxygen_content_arterial_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SaO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintStart_toStartOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/sao2_oxygen_content_arterial_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hgb_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toTopOf="@+id/hgb_oxygen_content_arterial_til">
+
+                    <EditText
+                        android:id="@+id/et_sao2_oxygen_content_arterial"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_pao2_oxygen_content_arterial_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PaO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintStart_toStartOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_arterial_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pao2_oxygen_content_arterial_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/sao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toTopOf="@+id/sao2_oxygen_content_arterial_til">
+
+                    <EditText
+                        android:id="@+id/et_pao2_oxygen_content_arterial"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_content_arterial"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/pao2_oxygen_content_arterial_til"
+                    app:layout_constraintTop_toBottomOf="@+id/pao2_oxygen_content_arterial_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_content_arterial">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_delivery_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oxygen_delivery_do"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_co_oxygen_delivery_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    app:layout_constraintEnd_toEndOf="@+id/co_oxygen_delivery_til"
+                    app:layout_constraintStart_toStartOf="@+id/co_oxygen_delivery_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_delivery_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_oxygen_delivery_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_co_oxygen_delivery_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_co_oxygen_delivery"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_cao2_oxygen_delivery_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CaO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintStart_toStartOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_delivery_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cao2_oxygen_delivery_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/co_oxygen_delivery_til"
+                    app:layout_constraintTop_toTopOf="@+id/co_oxygen_delivery_til">
+
+                    <EditText
+                        android:id="@+id/et_cao2_oxygen_delivery"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CaO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_delivery"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_oxygen_delivery_til"
+                    app:layout_constraintTop_toBottomOf="@+id/cao2_oxygen_delivery_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_content_venous"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_delivery">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_content_venous_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oxygen_content_cvo_venous"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_hgb_oxygen_content_venous_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Hgb"
+                    app:layout_constraintEnd_toEndOf="@+id/hgb_oxygen_content_venous_til"
+                    app:layout_constraintStart_toStartOf="@+id/hgb_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hgb_oxygen_content_venous_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_hgb_oxygen_content_venous_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_hgb_oxygen_content_venous"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="g/dL"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_svo2_oxygen_content_venous_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SvO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintStart_toStartOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/svo2_oxygen_content_venous_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hgb_oxygen_content_venous_til"
+                    app:layout_constraintTop_toTopOf="@+id/hgb_oxygen_content_venous_til">
+
+                    <EditText
+                        android:id="@+id/et_svo2_oxygen_content_venous"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="%"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_pvo2_oxygen_content_venous_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="PvO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintStart_toStartOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_content_venous_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pvo2_oxygen_content_venous_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/svo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toTopOf="@+id/svo2_oxygen_content_venous_til">
+
+                    <EditText
+                        android:id="@+id/et_pvo2_oxygen_content_venous"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_content_venous"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/pvo2_oxygen_content_venous_til"
+                    app:layout_constraintTop_toBottomOf="@+id/pvo2_oxygen_content_venous_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_oxygen_consumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_content_venous">
+
+                <TextView
+                    android:id="@+id/tv_oxygen_consumption_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/oxygen_consumption_vo"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_co_oxygen_consumption_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CO"
+                    app:layout_constraintEnd_toEndOf="@+id/co_oxygen_consumption_til"
+                    app:layout_constraintStart_toStartOf="@+id/co_oxygen_consumption_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_consumption_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/co_oxygen_consumption_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_co_oxygen_consumption_sub_title">
+
+                    <EditText
+                        android:id="@+id/et_co_oxygen_consumption"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_cao2_cvo2_oxygen_consumption_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CaO₂-CvO₂"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintStart_toStartOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_oxygen_consumption_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/cao2_cvo2_oxygen_consumption_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/co_oxygen_consumption_til"
+                    app:layout_constraintTop_toTopOf="@+id/co_oxygen_consumption_til">
+
+                    <EditText
+                        android:id="@+id/et_cao2_cvo2_oxygen_consumption"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CaO₂-CvO₂"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_oxygen_consumption"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/cao2_cvo2_oxygen_consumption_til"
+                    app:layout_constraintTop_toBottomOf="@+id/cao2_cvo2_oxygen_consumption_til" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_sweep_gas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_oxygen_consumption"
+                app:layout_constraintVertical_bias="0.0">
+
+                <TextView
+                    android:id="@+id/tv_sweep_gas_title"
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sweep_gas"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_current_paco2_sweep_gas_sub_til"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current\n(PaCO₂)"
+                    app:layout_constraintEnd_toEndOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintStart_toStartOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/current_paco2_sweep_gas_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_current_paco2_sweep_gas_sub_til">
+
+                    <EditText
+                        android:id="@+id/et_current_paco2_sweep_gas"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_current_sweep_flow_sweep_gas_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Current\n(Sweep Flow)"
+                    app:layout_constraintEnd_toEndOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintStart_toStartOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/current_sweep_flow_sweep_gas_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/current_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toTopOf="@+id/current_paco2_sweep_gas_til">
+
+                    <EditText
+                        android:id="@+id/et_current_sweep_flow_sweep_gas"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="L/min"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_desired_paco2_sweep_gas_sub_title"
+                    style="@style/SubTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Desired\n(PaCO₂)"
+                    app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintStart_toStartOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sweep_gas_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/desired_paco2_sweep_gas_til"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/edit_text_bg"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="@android:color/holo_blue_dark"
+                    app:boxStrokeErrorColor="@android:color/holo_red_dark"
+                    app:boxStrokeWidth="1dp"
+                    app:boxStrokeWidthFocused="1dp"
+                    app:errorTextColor="@android:color/holo_red_dark"
+                    app:hintEnabled="false"
+                    app:hintTextColor="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/current_sweep_flow_sweep_gas_til"
+                    app:layout_constraintTop_toTopOf="@+id/current_sweep_flow_sweep_gas_til">
+
+                    <EditText
+                        android:id="@+id/et_desired_paco2_sweep_gas"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="mmHg"
+                        android:imeOptions="actionDone"
+                        android:inputType="number|numberDecimal"
+                        android:lines="1"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tv_result_sweep_gas"
+                    style="@style/Result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/desired_paco2_sweep_gas_til"
+                    app:layout_constraintTop_toBottomOf="@+id/desired_paco2_sweep_gas_til" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <View
+        android:id="@+id/fakeView"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
